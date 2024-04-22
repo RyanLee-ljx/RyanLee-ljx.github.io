@@ -1,0 +1,19 @@
+{
+  "name": "ryan",
+  "version": "2.0.0",
+  "description": "self-study",
+  "license": "CSU",
+  "type": "module",
+  "scripts": {
+    "build": "vuepress-vite build src",
+    "clean-dev": "vuepress-vite dev src --clean-cache",
+    "dev": "vuepress-vite dev src",
+    "update-package": "pnpm dlx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.9",
+    "vue": "^3.4.21",
+    "vuepress": "2.0.0-rc.9",
+    "vuepress-theme-hope": "2.0.0-rc.36"
+  }
+}
