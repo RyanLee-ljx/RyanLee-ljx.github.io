@@ -3,43 +3,43 @@ home: true
 layout: BlogHome
 icon: home
 title: Blog Home
-heroImage: D:\blog\my-docs\src\.vuepress\public\logo1.png
-bgImage: D:\blog\my-docs\src\.vuepress\public\background1.jpg
+heroImage: src\.vuepress\public\logo1.png
+bgImage: src\.vuepress\public\background3.png
 heroText: Ryan Lee
-tagline: I'm just a boy trying to find a place in this world
+tagline: I'm just a boy trying to find a place in this world.
 heroFullScreen: true
 projects:
-  - icon: project
-    name: project name
-    desc: project detailed description
+  - icon: jiaotongfangzhen
+    name: 交通仿真
+    desc: 基于元胞自动机(Cellular Automata,CA),模拟交通流、行人流过程。
     link: https://your.project.link
 
-  - icon: link
-    name: link name
-    desc: link detailed description
+  - icon: jiaotongguihua
+    name: 交通规划原理
+    desc: 四种增长系数法预测交通分布的GUI编写
     link: https://link.address
 
-  - icon: book
-    name: book name
-    desc: Detailed description of the book
+  - icon: lujingguihua
+    name: 路径规划
+    desc: 改进A*、Dijkstra、Floyd、0-1规划模型实现全局路径规划
     link: https://link.to.your.book
 
-  - icon: article
-    name: article name
-    desc: Detailed description of the article
+  - icon: jiqixuexi
+    name: 机器学习
+    desc: 机器学习一些常见代码（BP、Pytorch实现ANN、MNIST手写数字识别等）
     link: https://link.to.your.article
 
-  - icon: friend
-    name: friend name
-    desc: Detailed description of friend
+  - icon: shumo
+    name: 数学建模
+    desc: 常见数学建模算法整理
     link: https://link.to.your.friend
 
-  - icon: https://theme-hope-assets.vuejs.press/logo.svg
-    name: custom item
-    desc: Detailed description of this custom item
+  - icon: src\.vuepress\public\logo3.jpg
+    name: 个人简介
+    desc: 谈谈自己
     link: https://link.to.your.friend
 
-footer: customize your footer text
+footer: You're on your own kid | You always have been
 ---
 
 This is a blog home page demo.
