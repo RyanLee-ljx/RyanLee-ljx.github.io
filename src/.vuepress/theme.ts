@@ -4,14 +4,25 @@ import { enSidebar, zhSidebar } from "./sidebar/index.js";
 import { MR_HOPE_AVATAR } from "./logo.js";
 
 export default hopeTheme({
-  hostname: "https://mister-hope.github.io",
+  hostname: "https://ryanlee-ljx.github.io/",
 
   author: {
-    name: "Mr.Hope",
-    url: "https://mister-hope.com",
+    name: "RyanLee_ljx",
+    url: "https://ryanlee-ljx.github.io/",
   },
+  
+  darkmode:'toggle',
 
-  iconAssets: "fontawesome-with-brands",
+  iconAssets: [  
+        "//at.alicdn.com/t/c/font_4520209_g5w73xxhwdq.css"
+  ],
+
+  plugins: {
+    prismjs: {
+      light:'coldark-cold',
+      dark: 'tomorrow',
+    },
+
 
   logo: "https://theme-hope-assets.vuejs.press/logo.svg",
 
@@ -131,6 +142,8 @@ export default hopeTheme({
 
     // These features are enabled for demo, only preserve features you need here
     mdEnhance: {
+      katex:true,
+      alert:true,
       align: true,
       attrs: true,
       codetabs: true,

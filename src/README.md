@@ -3,9 +3,10 @@ home: true
 layout: BlogHome
 icon: home
 title: Blog Home
-heroImage: https://theme-hope-assets.vuejs.press/logo.svg
-heroText: The name of your blog
-tagline: You can put your slogan here
+heroImage: D:\blog\my-docs\src\.vuepress\public\logo1.png
+bgImage: D:\blog\my-docs\src\.vuepress\public\background1.jpg
+heroText: Ryan Lee
+tagline: I'm just a boy trying to find a place in this world
 heroFullScreen: true
 projects:
   - icon: project
