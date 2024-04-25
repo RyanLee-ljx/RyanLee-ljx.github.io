@@ -1,5 +1,5 @@
 ---
-icon: /a_star.png
+icon: a_star
 date: 2024-04-27
 category: 交通
 tag: traffic
