@@ -1,8 +1,97 @@
 ---
-icon: circle-info
-cover: /assets/images/cover3.jpg
+icon: /logo3.png
+cover: /background2.jpg
 ---
 
-# Intro Page
+# 简介    *Introduction*
 
-Place your introduction and profile here.
+:huanyingyu: 欢迎来到我的博客！
+
+## 写在前面   *Prologue*
+
+    其实很早就萌生过写blog的想法，但总感觉很难，很麻烦，不想走出舒适圈，所以迟迟不肯行动。
+
+    但痛定思痛，觉得还是要尝试些新东西，所以便有了现在这个页面。
+
+    刚开始的过程确实很难，很多新东西从未见过，一时难以消化吸收，过程中还遇到很多莫名其妙的小bug。 :ziyuan83:
+
+    但还好有[dream-oyh](https://dream-oyh.pages.dev/)的帮助，让我顺利解决了很多问题，在此表示十分感谢！:ganxie2: 
+
+    目前还是处于入门小白阶段，还有很多排版、布局、内容方面有待优化，我会逐步去完善。
+
+    下面来 talk about myself
+
+## 缘由   *Reason*
+
+    :nailao: 决定写 blog 原因大致有以下几点：
+
+        - 很早就有的想法（想当一个知识区博主、音乐区up主），目前先尝试一个。
+
+        - 准备夏令营过程中，发现自己之前做过的很多小项目、写过的很多代码、学过的知识都记不清了，如果之前有所记录就很便于回忆，而且复习过程中也苦于没有地方整理，blog就显得非常合适。
+
+        - 周边盆友的影响:pengyou:。
+
+        - 走出舒适圈，尝试新的记录生活的方式。
+
+## 我   *Myself*
+
+    :xueli: 一名在读CSUer，对，就是那个*California State University*(bushi)。
+
+    :shuipingzuo: 水瓶座一枚。
+
+    :INFJ: INFJ绿老头一枚。
+
+    :caomei: Swiftie一枚。
+
+    :hobby: LOL:yingxionglianmeng:、听歌:tingge:、唱歌:changge:、吉他:mujita:、足球:zuqiu:。
+
+    :qifei: 自我感觉是一个矛盾体，看待问题十分的现实，但同时也是一个理想的完美主义者；绝对的宿命论主义倾向；梦想很多，却也逐渐看清了生活的本质，但还是希望自己未来能成为一个有用之人，探究生命的意义，世界之本质。
+
+    :yuanwangqingdan: 目前小小的愿望清单
+
+        - [ ] 进入到梦中情组
+        - [ ] 现场看一场LOL比赛(S赛/MSI/EDG比赛)
+        - [ ] 看一次霉妈的演唱会
+        - [ ] 现场看一次球赛（世界杯/国家队比赛/亚冠/欧冠/欧洲杯......）
+        - [ ] 冰岛/欧洲游
+        - [ ] 发现我的*twin flame* who？
+        - [ ] 统一
+        - [ ] 国足进世界杯
+
+## 指南   *Navigation*
+
+    目前博客内容主要为过去做过的一些项目、小研究、自学内容的整理等，有时间也会加入书评、乐评、随笔等其他内容。
+
+    - `交通` 主要记录本专业一些基础模型的代码实现。
+    - `机器学习` 主要为自学ML笔记及代码。
+    - `数模` 总结自己参加数模比赛过程中，常见的模型、算法整理。
+    - `English` 记录自我英语学习过程。
+    - `Blog` 记录博主更新历程及计划。
+
+
+
+  感谢你看到这里！
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+    

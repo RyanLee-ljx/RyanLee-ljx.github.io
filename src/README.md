@@ -3,8 +3,9 @@ home: true
 layout: BlogHome
 icon: home
 title: Blog Home
-heroImage: src\.vuepress\public\logo1.png
-bgImage: src\.vuepress\public\background3.png
+heroImage: /logo1.png
+bgImage: /background1.jpg
+bgImageDark: /background3.jpg
 heroText: Ryan Lee
 tagline: I'm just a boy trying to find a place in this world.
 heroFullScreen: true
@@ -34,16 +35,10 @@ projects:
     desc: 常见数学建模算法整理
     link: https://link.to.your.friend
 
-  - icon: src\.vuepress\public\logo3.jpg
+  - icon: /logo3.jpg
     name: 个人简介
     desc: 谈谈自己
-    link: https://link.to.your.friend
+    link: intro.md
 
-footer: You're on your own kid | You always have been
+footer: You're on your own kid | Yeah you could face it | You're on your own kid | You always have been
 ---
-
-This is a blog home page demo.
-
-To use this layout, you should set both `layout: BlogHome` and `home: true` in the page front matter.
-
-For related configuration docs, please see [blog homepage](https://theme-hope.vuejs.press/guide/blog/home/).
