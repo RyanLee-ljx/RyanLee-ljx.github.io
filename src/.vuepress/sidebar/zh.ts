@@ -7,6 +7,7 @@ export default sidebar({
       collapsible: true,
 			link: "/traffic/",
 			children: [
+        'CA.md',
         "pedestrain.md",
 				"ns.md",
 			],
