@@ -13,7 +13,7 @@ projects:
   - icon: jiaotongfangzhen
     name: 交通仿真
     desc: 基于元胞自动机(Cellular Automata,CA),模拟交通流、行人流过程。
-    link: https://your.project.link
+    link: https://github.com/RyanLee-ljx/CA.git
 
   - icon: jiaotongguihua
     name: 交通规划原理

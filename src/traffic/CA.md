@@ -97,3 +97,6 @@ $$
 - 作为物理、化学、生物过程的基础模型
 - 计算单元
 - 模拟现实复杂动态系统
+
+::: important
+*Cellular automaton is a discrete computing model in the Theory of automata. A complete cellular automaton model includes five parts: cell, cell space, cell neighbor, cell boundary, and cell rules. Each cell has a state which can be 0 or 1, alive or dead. Each cell follows a set of rules and updates the state at every time step based on the current state and their neighbors' state, thereby triggering global changes. It has many applications in computing and simulation.* 
