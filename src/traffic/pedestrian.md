@@ -91,7 +91,7 @@ $$
 
 ### 参数设置
 
-'''
+```
 clc,clear
 format short;
 n=16; %平台宽度
@@ -139,7 +139,7 @@ go=0; % 出发人数
 arrive=0; % 到达终点人数
 total=960; % 迭代时间
 time_people_star = zeros(n,h,total); % 记录时刻平台信息
-'''
+```
 
 这里设置了 4 个 map：
 
@@ -150,7 +150,7 @@ time_people_star = zeros(n,h,total); % 记录时刻平台信息
 ### 参数计算
 
 $ L*{i,j} $ 的计算：
-'''
+```
 Dis = zeros(n+2,h+2,size(final_y,2));
 Dis = Dis + inf;
 % 分别计算边界内每个原胞到出口的距离
@@ -165,17 +165,18 @@ Dis(2:n+1,2:h+1,:)=L;
 for i = 1:size(hurdle_y,2)
 Dis(hurdle_y(i)+1,hurdle_x(i)+1,:)=inf; %障碍视为距离无穷
 end
-'''
+```
+
 $ O*{i, j} $ 与 $ D\_{i, j} $ 的计算：
-'''
+```
 O=obstacle_map(1:x,2:y+1)+obstacle_map(3:x+2,2:y+1)+obstacle_map(2:x+1,1:y)+obstacle_map(2:x+1,3:y+2)+obstacle_map(1:x,1:y)+obstacle_map(3:x+2,1:y)+obstacle_map(1:x,3:y+2)+obstacle_map(3:x+2,3:y+2);
 
 D=Sm(1:x,2:y+1)+Sm(3:x+2,2:y+1)+Sm(2:x+1,1:y)+Sm(2:x+1,3:y+2)+Sm(1:x,1:y)+Sm(3:x+2,1:y)+Sm(1:x,3:y+2)+Sm(3:x+2,3:y+2);
-'''
+```
 这段代码思想为用一个 n-2×n-2 大小的滑动窗口在 n×n 的平台上，依次从需要计算的 8 个周边位置滑动，最后得到所求，可以自己手动画一个图验证一下。
 
 计算元胞潜力：
-'''
+```
 % 计算原胞潜力 N
 for f = 1:size(final_y,2)
 for i=1:x
@@ -190,38 +191,38 @@ end
 N_1 = max(N(:,:,1),N(:,:,2)); %最大作为原胞潜力 N
 N_2 = max(N(:,:,3),N(:,:,4));
 N_choose = max(N_1,N_2);
-'''
+```
 这里因为有四个入口，所以需要分别计算四个出口的元胞潜力大小，最后取最大。
 
-    位置更新：
-    '''
-    for j=h+1:-1:2
-        for i=2:n+1
-            if(border(i,j)==0)    %如果位置（即原胞）有人，计算所有邻居原胞的原胞潜力N
-                % 计算位置1到9各原胞潜力大小，并进行归一化处理
-                for xy = po
-                    pp(1,xy) = N_choose(i+neigh(xy,2),j+neigh(xy,1));
-                end
-                prob = pp/sum(pp);
-                if sum([pp(2),pp(3),pp(6),pp(8),pp(9)]~=0)   % 上下前三个方向不全都有人
-                    S=randsrc(1,1,[po;prob]);  %依原胞潜力N，选择下一位置，即进行位置更新
-                else
-                    S = 5;
-                end
+位置更新：
+```
+for j=h+1:-1:2
+    for i=2:n+1
+        if(border(i,j)==0)    %如果位置（即原胞）有人，计算所有邻居原胞的原胞潜力N
+            % 计算位置1到9各原胞潜力大小，并进行归一化处理
+            for xy = po
+                pp(1,xy) = N_choose(i+neigh(xy,2),j+neigh(xy,1));
+            end
+            prob = pp/sum(pp);
+            if sum([pp(2),pp(3),pp(6),pp(8),pp(9)]~=0)   % 上下前三个方向不全都有人
+                S=randsrc(1,1,[po;prob]);  %依原胞潜力N，选择下一位置，即进行位置更新
+            else
+                S = 5;
+            end
+            k = i + neigh(S,2);
+            t = j + neigh(S,1);
+            if platform(k-1,t-1)==0   % 选择新位置已占，则选回原位置
+                S = 5;
                 k = i + neigh(S,2);
                 t = j + neigh(S,1);
-                if platform(k-1,t-1)==0   % 选择新位置已占，则选回原位置
-                    S = 5;
-                    k = i + neigh(S,2);
-                    t = j + neigh(S,1);
-                end
-                platform(i-1,j-1)=1;      % 位置更新，原来原胞更新为空状态
-                platform(k-1,t-1)=0;      % 位置更新，新选择原胞更新为占有状态
             end
+            platform(i-1,j-1)=1;      % 位置更新，原来原胞更新为空状态
+            platform(k-1,t-1)=0;      % 位置更新，新选择原胞更新为占有状态
         end
     end
-    '''
-    这里用border矩阵进行计算，然后在platform上进行更新，最后把再'''border = platform'''，从而实现每一次迭代的整体更新。此外，代码设定，如果上下和前面三个位置共5个位置没有人的话才进行选择，否则就待在原地，贴近现实中人是向前走的；如果选择的位置被占，则待在原地。代码从离平台近的位置向远处开始遍历，反应人流变化的方向与源头。
+end
+'''
+这里用border矩阵进行计算，然后在platform上进行更新，最后把再'''border = platform'''，从而实现每一次迭代的整体更新。此外，代码设定，如果上下和前面三个位置共5个位置没有人的话才进行选择，否则就待在原地，贴近现实中人是向前走的；如果选择的位置被占，则待在原地。代码从离平台近的位置向远处开始遍历，反应人流变化的方向与源头。
 
 ## 结果演示
 
