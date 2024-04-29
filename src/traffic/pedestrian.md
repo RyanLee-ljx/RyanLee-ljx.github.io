@@ -1,6 +1,6 @@
 ---
 icon: tuxingyinqing
-date: 2024-04-24
+date: 2024-04-30
 category: 交通
 isOriginal: true
 star: true
@@ -15,9 +15,9 @@ tag: traffic
 
 行人流仿真是通过模拟人群在不同环境下的移动，揭示人群移动特点、行为及心理的研究，其在城市规划、交通管理、疏散计划、建筑平面设计等方面有着广泛的应用。
 
-::: important
+::: important 分类
 
-行人流仿真按仿真规模可以大致分为三种，即**宏观(macroscopic)**、**微观(microscopic)**、**介于宏微观之间(mesoscopic)**这三种。
+行人流仿真按仿真规模可以大致分为三种，即 **宏观(macroscopic)** 、 **微观(microscopic)** 、**介于宏微观之间(mesoscopic)** 这三种。
 
 - 宏观：以整个人群为研究对象，研究整体移动特征如速度、密度、流向等，每个个体没有行为特征，最为常见方法为流体动力学模型(fluid dynamic model)。
 - 微观：以个体为研究对象，研究个体行为，每个个体有着独特的行为特征，常见模型是社会力模型（social force model）。
@@ -25,11 +25,7 @@ tag: traffic
 
 :::
 
-::: info
-
 :fast_forward: 不同方法并非只适用于一个规模，如 CA 模型也可以在微观层面研究。此外，其他方法还有网络模型、自然模型、格子气模型以及基于机器学习的模型等，对行人流仿真进一步了解可以移步[此篇论文](https://arxiv.org/abs/2102.03289)
-
-:::
 
 ## 问题描述
 
@@ -65,7 +61,7 @@ $$
 N_{i, j}=E_{i, j} \exp \left(k_S S_{i, j}+k_D D_{i, j}\right)
 $$
 
-其中，$ E*{i, j} $ 代表位置(i, j)处元胞状态，0 代表占有，1 代表不占有，$ N*{i, j} $ 代表位置(i, j)处的元胞潜能，可以发现，当元胞占有时 $ E*{i, j}=0 $，即该处元胞潜能为0，反应了元胞有人占据，就无法选择。$ S*{i, j} $ 为元胞静态势能，$ D\_{i, j} $ 为元胞动态势能，$ k_S $ 和 $ k_D $ 分别为对应系数。
+其中，$E*{i, j}$ 代表位置(i, j)处元胞状态，0 代表占有，1 代表不占有，$N*{i, j}$ 代表位置(i, j)处的元胞潜能，可以发现，当元胞占有时 $E*{i, j}=0$ ，即该处元胞潜能为 0，反应了元胞有人占据，就无法选择。$S*{i, j}$ 为元胞静态势能，$D_{i, j}$ 为元胞动态势能，   $k_S$ 和 $k_D$ 分别为对应系数。
 
 元胞静态势能反应了行人在选择下一步时，环境中静止物体的影响，这里主要考虑为出口与障碍物，定义为：
 
@@ -73,9 +69,9 @@ $$
 S_{i, j}=k_L L_{i, j}+k_O O_{i, j}
 $$
 
-其中，$ L*{i, j} $ 为位置为(i, j)的元胞距出口的距离， $ O*{i, j} $ 为位置为(i, j)的元胞周边的障碍数目。
+其中，$L*{i, j}$ 为位置为(i, j)的元胞距出口的距离，$O*{i, j}$ 为位置为(i, j)的元胞周边的障碍数目。
 
-元胞动态势能反应行人在选择下一步时，环境的动态影响，这里以位置为(i, j)的元胞周围空元胞数目 $ D\_{i, j} $ 为指标。
+元胞动态势能反应行人在选择下一步时，环境的动态影响，这里以位置为(i, j)的元胞周围空元胞数目 $D_{i, j}$ 为指标。
 
 所以最后，元胞潜能可以写为：
 
@@ -113,7 +109,7 @@ obstacle_map(end-1:end,:)=0;
 obstacle_map(:,1:2)=0;
 obstacle_map(:,end-1:end);
 border=ones(x,y); %边界矩阵
-border(1,:)=0;  
+border(1,:)=0;
  border(end,:)=0;
 border(:,1)=0;
 border(:,end)=0;
@@ -145,11 +141,12 @@ time_people_star = zeros(n,h,total); % 记录时刻平台信息
 
 - platform：反应平台实时状态
 - border：在 platform 外加了一圈障碍，表示边界条件。
-- Sm 与 obstacle*map：在 platform 外加了两圈障碍，分别用计算 $ O*{i, j} $ 与 $ D\_{i, j} $。
+- Sm 与 obstacle_map：在 platform 外加了两圈障碍，分别用计算 $ O_{i, j} $ 与 $ D_{i, j} $。
 
 ### 参数计算
 
-$ L*{i,j} $ 的计算：
+$ L\*{i,j} $ 的计算：
+
 ```
 Dis = zeros(n+2,h+2,size(final_y,2));
 Dis = Dis + inf;
@@ -167,15 +164,18 @@ Dis(hurdle_y(i)+1,hurdle_x(i)+1,:)=inf; %障碍视为距离无穷
 end
 ```
 
-$ O*{i, j} $ 与 $ D\_{i, j} $ 的计算：
+$ O_{i, j} $ 与 $ D_{i, j} $ 的计算：
+
 ```
 O=obstacle_map(1:x,2:y+1)+obstacle_map(3:x+2,2:y+1)+obstacle_map(2:x+1,1:y)+obstacle_map(2:x+1,3:y+2)+obstacle_map(1:x,1:y)+obstacle_map(3:x+2,1:y)+obstacle_map(1:x,3:y+2)+obstacle_map(3:x+2,3:y+2);
 
 D=Sm(1:x,2:y+1)+Sm(3:x+2,2:y+1)+Sm(2:x+1,1:y)+Sm(2:x+1,3:y+2)+Sm(1:x,1:y)+Sm(3:x+2,1:y)+Sm(1:x,3:y+2)+Sm(3:x+2,3:y+2);
 ```
+
 这段代码思想为用一个 n-2×n-2 大小的滑动窗口在 n×n 的平台上，依次从需要计算的 8 个周边位置滑动，最后得到所求，可以自己手动画一个图验证一下。
 
 计算元胞潜力：
+
 ```
 % 计算原胞潜力 N
 for f = 1:size(final_y,2)
@@ -192,9 +192,11 @@ N_1 = max(N(:,:,1),N(:,:,2)); %最大作为原胞潜力 N
 N_2 = max(N(:,:,3),N(:,:,4));
 N_choose = max(N_1,N_2);
 ```
+
 这里因为有四个入口，所以需要分别计算四个出口的元胞潜力大小，最后取最大。
 
 位置更新：
+
 ```
 for j=h+1:-1:2
     for i=2:n+1
@@ -221,13 +223,15 @@ for j=h+1:-1:2
         end
     end
 end
-'''
-这里用border矩阵进行计算，然后在platform上进行更新，最后把再'''border = platform'''，从而实现每一次迭代的整体更新。此外，代码设定，如果上下和前面三个位置共5个位置没有人的话才进行选择，否则就待在原地，贴近现实中人是向前走的；如果选择的位置被占，则待在原地。代码从离平台近的位置向远处开始遍历，反应人流变化的方向与源头。
+```
+这里用border矩阵进行计算，然后在platform上进行更新，最后把再 ```border = platform``` ，从而实现每一次迭代的整体更新。此外，代码设定，如果上下和前面三个位置共5个位置没有人的话才进行选择，否则就待在原地，贴近现实中人是向前走的；如果选择的位置被占，则待在原地。代码从离平台近的位置向远处开始遍历，反应人流变化的方向与源头。
 
-## 结果演示
+
+## 结果
 
 ![图3 动态演示（以240s为例）](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/demo.gif)
 
 ![图4 热力图（迭代周期960s）](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/hot.png)
 
 [完整代码](https://github.com/RyanLee-ljx/CA.git)
+```
