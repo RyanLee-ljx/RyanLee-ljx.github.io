@@ -8,7 +8,7 @@ export default sidebar({
 			link: "/traffic/",
 			children: [
         'CA.md',
-        "pedestrain.md",
+        "pedestrian.md",
 				"ns.md",
 			],
 		},
