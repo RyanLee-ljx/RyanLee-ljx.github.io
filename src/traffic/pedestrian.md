@@ -13,7 +13,9 @@ tag: traffic
 
 ## 概述
 
-行人流仿真是通过模拟人群在不同环境下的移动，揭示人群移动特点、行为及心理的研究，其在城市规划、交通管理、疏散计划、建筑平面设计等方面有着广泛的应用。
+行人流仿真是通过模拟人群在不同环境下的移动，研究行人行为及心理的特点的研究，其在城市规划、交通管理、疏散计划、建筑平面设计等方面有着广泛的应用。
+
+_Pedestrian simulation studies pedestrians' behavioral patterns and psychological aspects by modeling and simulating the movement of crowds in various scnarios. It finds extensive applications in urban planning, traffic management, evacuation planning, and architectural layout design._
 
 ::: important 分类
 
@@ -42,7 +44,7 @@ tag: traffic
 
 :::
 
-![图1 平面示意图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/platform.png)
+![图1 平面示意图 ](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/platform.png?raw=true)
 
 ## 模型设置
 
@@ -61,7 +63,7 @@ $$
 N_{i, j}=E_{i, j} \exp \left(k_S S_{i, j}+k_D D_{i, j}\right)
 $$
 
-其中，$E*{i, j}$ 代表位置(i, j)处元胞状态，0 代表占有，1 代表不占有，$N*{i, j}$ 代表位置(i, j)处的元胞潜能，可以发现，当元胞占有时 $E*{i, j}=0$ ，即该处元胞潜能为 0，反应了元胞有人占据，就无法选择。$S*{i, j}$ 为元胞静态势能，$D_{i, j}$ 为元胞动态势能，   $k_S$ 和 $k_D$ 分别为对应系数。
+其中，$E*{i, j}$ 代表位置(i, j)处元胞状态，0 代表占有，1 代表不占有，$N*{i, j}$ 代表位置(i, j)处的元胞潜能，可以发现，当元胞占有时 $E*{i, j}=0$ ，即该处元胞潜能为 0，反应了元胞有人占据，就无法选择。$S*{i, j}$ 为元胞静态势能，$D_{i, j}$ 为元胞动态势能， $k_S$ 和 $k_D$ 分别为对应系数。
 
 元胞静态势能反应了行人在选择下一步时，环境中静止物体的影响，这里主要考虑为出口与障碍物，定义为：
 
@@ -79,11 +81,15 @@ $$
 N_{i, j}=E_{i, j} \exp \left(k_1 L_{i, j}+k_2 O_{i, j}+k_3 D_{i, j}\right)
 $$
 
-最后对 9 个位置进行标号、对元胞潜能进行归一化，即可得到选择 9 个位置的选择概率大小。
+最后对 9 个位置进行标号、对元胞潜能进行归一化，即可得到选择 9 个位置的选择概率 $P_{i, j}$。
 
-![图2 Moore邻居选择示意图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/Moore.png)
+![图2 Moore邻居选择示意图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/Moore.png?raw=true)
 
 ## 部分代码解释
+
+代码整体思路如下：
+
+![图3 代码流程图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/flow.png?raw=true)
 
 ### 参数设置
 
@@ -141,7 +147,7 @@ time_people_star = zeros(n,h,total); % 记录时刻平台信息
 
 - platform：反应平台实时状态
 - border：在 platform 外加了一圈障碍，表示边界条件。
-- Sm 与 obstacle_map：在 platform 外加了两圈障碍，分别用计算 $ O_{i, j} $ 与 $ D_{i, j} $。
+- Sm 与 obstacle*map：在 platform 外加了两圈障碍，分别用计算 $ O*{i, j} $ 与 $ D\_{i, j} $。
 
 ### 参数计算
 
@@ -164,7 +170,7 @@ Dis(hurdle_y(i)+1,hurdle_x(i)+1,:)=inf; %障碍视为距离无穷
 end
 ```
 
-$ O_{i, j} $ 与 $ D_{i, j} $ 的计算：
+$O_{i, j}$ 与 $D_{i, j}$ 的计算：
 
 ```
 O=obstacle_map(1:x,2:y+1)+obstacle_map(3:x+2,2:y+1)+obstacle_map(2:x+1,1:y)+obstacle_map(2:x+1,3:y+2)+obstacle_map(1:x,1:y)+obstacle_map(3:x+2,1:y)+obstacle_map(1:x,3:y+2)+obstacle_map(3:x+2,3:y+2);
@@ -224,14 +230,17 @@ for j=h+1:-1:2
     end
 end
 ```
-这里用border矩阵进行计算，然后在platform上进行更新，最后把再 ```border = platform``` ，从而实现每一次迭代的整体更新。此外，代码设定，如果上下和前面三个位置共5个位置没有人的话才进行选择，否则就待在原地，贴近现实中人是向前走的；如果选择的位置被占，则待在原地。代码从离平台近的位置向远处开始遍历，反应人流变化的方向与源头。
 
+这里用 border 矩阵进行计算，然后在 platform 上进行更新，最后把再 `border = platform` ，从而实现每一次迭代的整体更新。此外，代码设定，如果上下和前面三个位置共 5 个位置没有人的话才进行选择，否则就待在原地，贴近现实中人是向前走的；如果选择的位置被占，则待在原地。代码从离平台近的位置向远处开始遍历，反应人流变化的方向与源头。
 
 ## 结果
 
-![图3 动态演示（以240s为例）](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/demo.gif)
+![图4 动态演示](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/demo.gif?raw=true)
 
-![图4 热力图（迭代周期960s）](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/hot.png)
+![图5 热力图（迭代周期960s）](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/hot.png?raw=true)
 
 [完整代码](https://github.com/RyanLee-ljx/CA.git)
+
+```
+
 ```
