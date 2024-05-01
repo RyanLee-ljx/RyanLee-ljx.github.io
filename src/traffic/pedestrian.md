@@ -151,7 +151,7 @@ time_people_star = zeros(n,h,total); % 记录时刻平台信息
 
 ### 参数计算
 
-$ L\*{i,j} $ 的计算：
+$L_{i,j}$ 的计算：
 
 ```
 Dis = zeros(n+2,h+2,size(final_y,2));
