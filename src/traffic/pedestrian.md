@@ -147,7 +147,7 @@ time_people_star = zeros(n,h,total); % 记录时刻平台信息
 
 - platform：反应平台实时状态
 - border：在 platform 外加了一圈障碍，表示边界条件。
-- Sm 与 obstacle*map：在 platform 外加了两圈障碍，分别用计算 $ O*{i, j} $ 与 $ D\_{i, j} $。
+- Sm 与 obstacle：在 platform 外加了两圈障碍，分别用计算 $ O\*{i, j} $ 与 $ D\_{i, j} $。
 
 ### 参数计算
 
@@ -240,5 +240,3 @@ end
 ![图5 热力图（迭代周期960s）](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/hot.png?raw=true)
 
 [完整代码](https://github.com/RyanLee-ljx/CA.git)
-
-
