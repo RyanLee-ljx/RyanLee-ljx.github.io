@@ -89,7 +89,7 @@ $$
 
 代码整体思路如下：
 
-![图3 代码流程图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/flow.png?raw=true)
+![图3 代码流程图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/code.png?raw=true)
 
 ### 参数设置
 
