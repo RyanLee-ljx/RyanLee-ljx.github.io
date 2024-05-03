@@ -12,6 +12,14 @@ export default sidebar({
 				"ns.md",
 			],
 		},
+    {
+			text: "交通流理论",
+      link: "/traffic/",
+			collapsible: true,
+			children: [
+				"traffic_theory_1.md",
+			],
+		},
 		{
 			text: "路径规划",
       link: "/traffic/",
