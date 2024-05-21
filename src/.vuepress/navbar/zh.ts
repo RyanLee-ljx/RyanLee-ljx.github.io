@@ -24,6 +24,6 @@ export default navbar([
 	{
 		text: "Myself",
 		icon: "/edg.png",
-		link: "/blog/",
+		link: 'intro.md',
 	},
 ]);
