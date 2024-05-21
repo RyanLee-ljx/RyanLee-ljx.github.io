@@ -18,22 +18,22 @@ projects:
   - icon: jiaotongguihua
     name: 交通规划原理
     desc: 四种增长系数法预测交通分布的GUI编写
-    link: https://link.address
+    link: https://github.com/RyanLee-ljx/Traffic-Planning
 
   - icon: lujingguihua
     name: 路径规划
     desc: 改进A*、Dijkstra、Floyd、0-1规划模型实现全局路径规划
-    link: https://link.to.your.book
+    link: https://github.com/RyanLee-ljx/Route-Planning
 
   - icon: jiqixuexi
     name: 机器学习
     desc: 机器学习一些常见代码（BP、Pytorch实现ANN、MNIST手写数字识别等）
-    link: https://link.to.your.article
-
+    link: https://github.com/RyanLee-ljx/ML
+    
   - icon: shumo
     name: 数学建模
     desc: 常见数学建模算法整理
-    link: https://link.to.your.friend
+    link: https://github.com/RyanLee-ljx/Mathematical-Modeling
 
   - icon: /logo3.jpg
     name: 个人简介

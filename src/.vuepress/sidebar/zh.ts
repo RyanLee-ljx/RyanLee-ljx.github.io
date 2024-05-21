@@ -43,7 +43,14 @@ export default sidebar({
 	],
 
 	"/ML/": [
-
+		{
+			text: "基本知识",
+      collapsible: true,
+			link: "/traffic/",
+			children: [
+        'question.md',
+			],
+		},
 	],
 
 
@@ -54,14 +61,55 @@ export default sidebar({
 
 
 	"/english/": [
-	
+		{
+			text: "文献阅读",
+      collapsible: true,
+			link: "/traffic/",
+			children: [
+        'paper_1.md',
+			],
+		},	
+
+    {
+			text: "交通流理论",
+      collapsible: true,
+			link: "/traffic/",
+			children: [
+        'theory_1.md',
+			],
+		},	
+
+    {
+			text: "交通规划",
+      collapsible: true,
+			link: "/traffic/",
+			children: [
+        'planning_1.md',
+			],
+		},	
+
+    {
+			text: "交通工程",
+      collapsible: true,
+			link: "/traffic/",
+			children: [
+        'traffic_1.md',
+			],
+		},	
 
 	],
 
 
 
 	"/Myself/": [
-
+    {
+			text: "交通工程",
+      collapsible: false,
+			link: "/traffic/",
+			children: [
+        'traffic_1.md',
+			],
+		},	
 	],
 
 
