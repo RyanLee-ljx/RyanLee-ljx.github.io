@@ -6,8 +6,7 @@ PageView: true
 ---
 
 # 交通术语 Terminology of Traffic
-
-:::important::: Distinguish
+::: important Distinguish
 
 - **traffic**: refers to ==the movement of vehicles and pedestrians on roadways==, and is often associated with the analysis of flow and congestion. It’s about the operational aspect of vehicles moving on the road and the interactions that occur.
 
