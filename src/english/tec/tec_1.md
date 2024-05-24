@@ -6,11 +6,11 @@ Word: true
 PageView: true
 ---
 
-#  _ Cutting-edge Technology _ 前沿科技
+#  *Cutting-edge Technology* 前沿科技
 
 本文不定期更新前沿科技简介及对交通领域发展影响.
 
-## [大语言模型][def] _ Foudation Model _
+## [大语言模型][def] *Foudation Model*
 
 大语言模型是利用深度学习技术，如预训练、微调、Transformer 架构等，通过海量多样化数据训练，得到的具有
 数以亿计参数的，具有学习、理解、适应能力的，能够处理多任务如自然语言处理、计算机视觉、语音识别等任务的机器学习模型。
