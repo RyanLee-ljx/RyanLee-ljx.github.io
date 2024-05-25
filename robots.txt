@@ -2,4 +2,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://ryanlee-ljx.github.io/sitemap.xml
+Sitemap: https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/sitemap.xml
