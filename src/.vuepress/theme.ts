@@ -4,7 +4,7 @@ import sidebar from "./sidebar/zh.js";
 
 
 export default hopeTheme({
-  hostname: "https://ryanlee-ljx.github.io/",
+  hostname: "https://github.com/RyanLee-ljx/RyanLee-ljx.github.io",
 
   author: {
     name: "RyanLee_ljx",
