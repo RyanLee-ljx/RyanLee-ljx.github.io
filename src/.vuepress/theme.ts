@@ -4,7 +4,7 @@ import sidebar from "./sidebar/zh.js";
 
 
 export default hopeTheme({
-  hostname: "https://github.com/RyanLee-ljx/RyanLee-ljx.github.io",
+  hostname: "https://ryanlee-ljx.github.io/",
 
   author: {
     name: "RyanLee_ljx",
@@ -21,12 +21,13 @@ export default hopeTheme({
     medias: {
       BiliBili: "https://space.bilibili.com/451282775?spm_id_from=333.1007.0.0",
       GitHub: "https://github.com/RyanLee-ljx",
+      XiaoHongShu:'https://www.xiaohongshu.com/user/profile/60e3b5b900000000010099fe',
     },
   },
 
   logo: "/logo1.png",
 
-  repo: "https://ryanlee-ljx.github.io/",
+  repo: "https://github.com/RyanLee-ljx/RyanLee-ljx.github.io",
 
   docsDir: "src",
 
