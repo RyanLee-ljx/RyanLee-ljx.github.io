@@ -1,8 +1,10 @@
 ---
 icon: juanjiceng
 ReadingTime: true
+date: 2024-05-27
 Word: true
 PageView: true
+category: ML
 ---
 
 # 卷积
