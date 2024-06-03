@@ -19,15 +19,29 @@ _Pedestrian simulation studies pedestrians' behavioral patterns and psychologica
 
 ::: important 分类
 
-行人流仿真按仿真规模可以大致分为三种，即 **宏观(macroscopic)** 、 **微观(microscopic)** 、**介于宏微观之间(mesoscopic)** 这三种。
+行人流仿真按仿真规模可以大致分为三种，即 **宏观(macroscopic)** 、 **微观(microscopic)** 、**介于宏微观之间(mesoscopic)** 这三种：
 
-- 宏观：以整个人群为研究对象，研究整体移动特征如速度、密度、流向等，每个个体没有行为特征，最为常见方法为流体动力学模型(fluid dynamic model)。
-- 微观：以个体为研究对象，研究个体行为，每个个体有着独特的行为特征，常见模型是社会力模型（social force model）。
-- 介观：介于宏微观之间，人群中每个个体有着相同的行为特征，既研究整体特征也研究个体特征，常见是元胞自动机模型（cellular automata, CA）。
+- 宏观：以整个人群为研究对象，研究整体移动特征如速度、密度、流向等，每个个体没有行为特征（distinct behavior），如研究拥堵、紧急疏散人群移动特点。
+- 微观：以个体为研究对象，研究个体行为，每个个体有着独特的行为特征。
+- 介观：介于宏微观之间，人群中每个个体有着相同的行为特征，既研究整体特征也研究个体特征。
+
+常见的模型方法有：
+
+- **基于物理规则模型**：这类模型主要是基于物理规则（law of physics），来模拟人与环境的交互，如**流体动力学模型(fluid dynamic model)**，**社会力模型（social force model）**等。
+社会力模型由几种力组成，如使人达到向着目的地前进，达到一定期望速度的**acceleration force**，以及一些环境阻碍的力**repulsive force**，如来自人行道边界（crosswalk boundary）、周围行人（surrounding pedestrian）、冲突车辆（conflicting vehicles）和信号灯状态（signal phase）等阻力，这些力的合力即为行人朝着什么方向（力的方向），以多大的速度（由力的大小决定）前进。
+
+- [**元胞自动机模型（Celluar Automata, CA）**](https://ryanlee-ljx.pages.dev/traffic/CA.html)
+
+- [**数据驱动模型**](https://arxiv.org/pdf/2012.00514)：基于现实场景数据，对数据进行合适的编码（encode），采用深度学习等方法预测行人的轨迹、行为，常见的数据有：
+    - 轨迹信息（trajectory information），可以是2D平面图，也可以是3D坐标（第三维为速度）的形式（2D spatial or 3D global coordinates + velocity）。
+    - 视觉信息（visual information）：包含做过[语义分割处理](https://developer.baidu.com/article/details/2868050)的地图（semantic map）与行人图像(images of pedestrian)，地图主要是反应道路周围的环境，如道路结构（road structure）、其他道路使用者状态（the state of other road users）以及信号状态（signal phase），行人图像主要是反应行人的行为，如动作（motion）、姿势（pose）、朝向（head orientation）等。
+    - 自主车辆（ego vehicle）：包含感知周围环境传感器的车辆的信息(vehicle equiped with sensors)，如车辆坐标（coordinates）、速度（velocity）等。
 
 :::
 
-:fast_forward: 不同方法并非只适用于一个规模，如 CA 模型也可以在微观层面研究。此外，其他方法还有网络模型、自然模型、格子气模型以及基于机器学习的模型等，对行人流仿真进一步了解可以移步[此篇论文](https://arxiv.org/abs/2102.03289)
+![数据驱动模型](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/ml.png?raw=true)
+
+:fast_forward: 不同方法并非只适用于一个规模，对行人流仿真进一步了解可以移步[此篇论文](https://arxiv.org/abs/2102.03289)
 
 ## 问题描述
 
@@ -57,13 +71,13 @@ _Pedestrian simulation studies pedestrians' behavioral patterns and psychologica
 
 ### 更新规则
 
-更新规则即行人如何选择下一步走到哪里一个方格，这里引入元胞潜能，其定义如下：
+更新规则即行人如何选择下一步走到哪里一个方格，这里引入**元胞潜能 Cell Potential**，其定义如下：
 
 $$
 N_{i, j}=E_{i, j} \exp \left(k_S S_{i, j}+k_D D_{i, j}\right)
 $$
 
-其中，$E_{i, j}$ 代表位置(i, j)处元胞状态，0 代表占有，1 代表不占有，$N_{i, j}$ 代表位置(i, j)处的元胞潜能，可以发现，当元胞占有时 $E_{i, j}=0$ ，即该处元胞潜能为 0，反应了元胞有人占据，就无法选择。$S_{i, j}$ 为元胞静态势能，$D_{i, j}$ 为元胞动态势能， $k_S$ 和 $k_D$ 分别为对应系数。
+其中，$E_{i, j}$ 代表位置(i, j)处元胞状态，0 代表占有，1 代表不占有，$N_{i, j}$ 代表位置(i, j)处的元胞潜能，可以发现，当元胞占有时 $E_{i, j}=0$ ，即该处元胞潜能为 0，反应了元胞有人占据，就无法选择。$S_{i, j}$ 为**元胞静态势能 Static Potential**，$D_{i, j}$ 为**元胞动态势能 Dynamic Potential**， $k_S$ 和 $k_D$ 分别为对应系数。
 
 元胞静态势能反应了行人在选择下一步时，环境中静止物体的影响，这里主要考虑为出口与障碍物，定义为：
 
@@ -81,7 +95,7 @@ $$
 N_{i, j}=E_{i, j} \exp \left(k_1 L_{i, j}+k_2 O_{i, j}+k_3 D_{i, j}\right)
 $$
 
-最后对 9 个位置进行标号、对元胞潜能进行归一化，即可得到选择 9 个位置的选择概率 $P_{i, j}$。
+最后对 9 个位置进行标号、对元胞潜能进行归一化，即可得到选择 9 个位置的**选择概率 Transition Probabilitie** $P_{i, j}$。
 
 ![图2 Moore邻居选择示意图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pedestrain/Moore.png?raw=true)
 
