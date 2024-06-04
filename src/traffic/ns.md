@@ -10,21 +10,21 @@ tag: traffic
 # 改进NS模型
 本节介绍NS模型基本内容、改进NS模型以及对应代码的实现。
 
-## 基本概念
+## 1 基本概念
 
-### Nagel–Schreckenberg model NS模型
+### 1.1 Nagel–Schreckenberg model NS模型
 
 **Nagel–Schreckenberg model**，简称NS model，最初由德国物理学家[Kai Nagel and Michael Schreckenberg](https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model#cite_note-sn-1),是一种基于CA模型的用于交通仿真的理论模型。
 
 *Nagel–Schreckenberg model, short for NS model, first develped by German physicists Kai Nagel and Michael Schreckenberg, is a theoretical Cellular Automata-based model for traffic simulation.*
 
-### Rule 184
+### 1.2 Rule 184
 
   补充一下基于CA交通仿真中最常见的规则，即 Rule 184，即对于一条道路上连续的三个cell，他们的状态有以下8种（用0代表空，用1代表有车占有）,如下图所示：
 
   ![Rule 184](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/NS/184.png?raw=true)
 
-### Phantom traffic jam 幽灵拥堵
+### 1.3 Phantom traffic jam 幽灵拥堵
 
 - 定义：莫名发生的交通拥堵 traffic jam without clear reasons
 
@@ -51,7 +51,7 @@ Small disturbances, such as overreations of braking or getting too close to anot
 
 :::
 
-### 基本图 Fundamental Diagram
+### 1.4 基本图 Fundamental Diagram
 
 ![Fundamental Diagram 基本图](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/NS/fd.png?raw=true)
 
@@ -61,9 +61,9 @@ Small disturbances, such as overreations of braking or getting too close to anot
 - Critical Speed 临界速度：极大流率对应的速度
 - Jam Density 堵塞密度：v=0时的密度
 
-## Model Description 模型描述
+## 2 Model Description 模型描述
 
-### Model Information 模型说明
+### 2.1 Model Information 模型说明
 
 - 空间时间上均离散化。 Discrete in space and time 
 
@@ -78,7 +78,7 @@ Each cell can either be empty or occupied by only one vehicle.
 - 每个车辆拥有坐标、速度属性，车辆有最大速度限制。
 Each vehicle is characterized by its velocity and coordinates. The velocity has a limit.
 
-### Model Step 更新规则
+### 2.2 Model Step 更新规则
 
 - **Step 1：加速 Acceleration：**对于未到达最大速度的车辆，以一个单位加速。
 For vehicle not reaching speed limit, it accelerates with 1 unit.
@@ -127,9 +127,9 @@ Randomization reflects the imperfect behavior of drivers like the overreations o
 - **Step 4: 位置更新 Driving：**每个车辆前进当前速度的格数。
 Every vehicle forward by v(i) cells.
 
-## 改进NS模型 NS Model for Inhomogenous Traffic Flow in a Single Lane
+## 3 改进NS模型 NS Model for Inhomogenous Traffic Flow in a Single Lane
 
-### 改进点：
+### 3.1 改进点：
 
 1. 车辆以最大加速度 $a_{max}$ 加减速而不是以1
 Vehicle accelerates/decelerates with maximum acceleration not 1.
@@ -138,11 +138,11 @@ Introduce the Slow Start probability(short for s) to reflect the difficuty of st
 3. 考虑异质(inhomogeneous)车流（反映在车长，最大速度，最大加速度）
 Consider the inhomogeneous flow like the vehicle length, maximum velocity and maximum acceleration.
 
-### 模型信息
+### 3.2 模型信息
 
 ![模型信息](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/NS/model.png?raw=true)
 
-### 结果
+### 3.3 结果
 
 通过改变货车占比r(propotion of trucks)、随机慢化概率p以及慢启动系数s，分别做FD图以及时空位置图，分别分析其对于交通系统的影响影响。
 
@@ -190,13 +190,42 @@ Consider the inhomogeneous flow like the vehicle length, maximum velocity and ma
 
 通过改变s与p的大小，也可以同理做出上述图表，这里不一一展示。
 
-### 代码
+### 3.4 代码
 
 [完整代码](https://github.com/RyanLee-ljx/CA/tree/main/NS)，内含动画演示。
 
-### 进一步的改进点
+### 3.5 进一步的改进点
 
-- 多车道，考虑换道。
+- 多车道，考虑换道，如STCA模型。
 - Velocity-Dependent-Randomization（VDR）：NS模型中p是固定不变的，VDR中p是v的函数（与加入随机慢化概率s效果类似）。
 
+::: info STCA（[以下内容源于](https://kns.cnki.net/KCMS/detail/detail.aspx?filename=1020644168.nh&dbname=CMFDTEMP)）
 
+由[Rickert M][a]和[Chowdhury D][b]等人在单车道元胞自动机Nasch模型的基础上提出了双车道元胞自动机STCA模型。该模型将模拟的道路环境扩展为双车道，增加了**车辆换道规则**，使之能够更真实准确地模拟出道路上交通流的运行状况。
+
+STCA模型在应用过程中将一个时步分为**两个相同的子时步**。**第一个时步**为车辆换道时步，车辆在这个时步内按照设计的换道规则决定是否发生换道行为；**第二个时步**为演化更新时步，两条车道上的车辆在该时步均按照单车道元胞自动机模型中设计的演化更新规则运行。
+
+换道规则一般包括两个部分：
+
+1. 换道动机：
+换道动机是指驾驶员想换道的意愿和条件。当某车辆在当前车道上无法达到驾驶员的期望速度，而另一条车道上的驾驶条件可以满足驾驶员对速度的要求时，车辆会以一定的换道概率进行换道。
+
+$$
+\begin{array}{r}
+d_n<\Delta t \min \left(v_n+1, v_{\max }\right) \\
+d_{n, \text { sidefront }}>d_n \cdots
+\end{array}
+$$
+
+2. 安全条件：
+安全条件是指车辆在决定换道时要确定当前交通状况下换道对于自身和其他车辆是否安全，避免因车辆换道引起交通事故，危害生命财产安全。
+
+$$
+d_{n, \text { sideback }}>d_{\text {safe }}
+$$
+
+[a]:https://www.sciencedirect.com/science/article/abs/pii/0378437195004424
+[b]:https://www.sciencedirect.com/science/article/abs/pii/S0378437196003147
+
+
+::: 
