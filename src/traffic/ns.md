@@ -80,7 +80,7 @@ Each vehicle is characterized by its velocity and coordinates. The velocity has 
 
 ### 2.2 Model Step 更新规则
 
-- **Step 1：加速 Acceleration：**对于未到达最大速度的车辆，以一个单位加速。
+- **Step 1**：加速 Acceleration：对于未到达最大速度的车辆，以一个单位加速。
 For vehicle not reaching speed limit, it accelerates with 1 unit.
 
 :::: center
@@ -94,7 +94,7 @@ $$
 
 ::::
 
-- **Step 2: 减速 Safe Distance Judgment：**当汽车当前速度大于与前车的距离（前方的空元胞数），则汽车减速为安全距离，否则维持原速。   
+- **Step 2**: 减速 Safe Distance Judgment：当汽车当前速度大于与前车的距离（前方的空元胞数），则汽车减速为安全距离，否则维持原速。   
 If vehicle speed is larger than the number of empty cells in front of it, it velocity reduces to that empty cell amount. Otherwise, it keeps its speed.
 
 :::: center
@@ -108,13 +108,13 @@ It encodes the interaction between the vehicle. In this simple model, interactio
 
 ::::
 
-- **Step 3：随机慢化 Randomization：**车辆以p的概率随机减速一个单位，p称为随机慢化概率。
+- **Step 3**：随机慢化 Randomization：车辆以p的概率随机减速一个单位，p称为随机慢化概率。
 The speed of vehicle reduces by one unit with slowdown probability p.
 
 :::: center
 
 $$
-v(i) \rightarrow \max{v(i) - 1, 0}} 
+{v(i) \rightarrow \max{v(i) - 1, 0}} 
 $$
 
 ::: left 
@@ -124,7 +124,7 @@ Randomization reflects the imperfect behavior of drivers like the overreations o
 
 ::::
 
-- **Step 4: 位置更新 Driving：**每个车辆前进当前速度的格数。
+- **Step 4**: 位置更新 Driving：每个车辆前进当前速度的格数。
 Every vehicle forward by v(i) cells.
 
 ## 3 改进NS模型 NS Model for Inhomogenous Traffic Flow in a Single Lane
@@ -199,7 +199,7 @@ Consider the inhomogeneous flow like the vehicle length, maximum velocity and ma
 - 多车道，考虑换道，如STCA模型。
 - Velocity-Dependent-Randomization（VDR）：NS模型中p是固定不变的，VDR中p是v的函数（与加入随机慢化概率s效果类似）。
 
-::: info STCA（[以下内容源于](https://kns.cnki.net/KCMS/detail/detail.aspx?filename=1020644168.nh&dbname=CMFDTEMP)）
+::: info STCA（[以下内容源于][m]）
 
 由[Rickert M][a]和[Chowdhury D][b]等人在单车道元胞自动机Nasch模型的基础上提出了双车道元胞自动机STCA模型。该模型将模拟的道路环境扩展为双车道，增加了**车辆换道规则**，使之能够更真实准确地模拟出道路上交通流的运行状况。
 
@@ -224,6 +224,7 @@ $$
 d_{n, \text { sideback }}>d_{\text {safe }}
 $$
 
+[m]:https://kns.cnki.net/KCMS/detail/detail.aspx?filename=1020644168.nh&dbname=CMFDTEMP
 [a]:https://www.sciencedirect.com/science/article/abs/pii/0378437195004424
 [b]:https://www.sciencedirect.com/science/article/abs/pii/S0378437196003147
 
