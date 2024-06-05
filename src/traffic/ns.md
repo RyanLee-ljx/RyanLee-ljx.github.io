@@ -140,6 +140,8 @@ Consider the inhomogeneous flow like the vehicle length, maximum velocity and ma
 
 ### 3.2 模型信息
 
+单车道 周期边界   Single Lane with Periodic Boundary
+
 ![模型信息](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/NS/model.png?raw=true)
 
 ### 3.3 结果
