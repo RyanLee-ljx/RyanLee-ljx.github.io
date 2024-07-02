@@ -13,22 +13,33 @@ category: ML
 
 ## 基本概念
 
+magnitude: 幅度
+order of magnitude：数量级
+converge: 收敛
+oscillate: 振荡
+fit: 拟合
+fine-tune: 调参
+generalization ability：泛化能力
+dimension: 量纲
+deviation：偏离
+
 ### 一、绪论
 
 1. 什么是机器学习和深度学习？
    机器学习是一种实现人工智能的方法。人工智能是想要达成的目标，而机器学习是想要达成目标的手段：希望机器通过学习的手段，可以跟人一样聪明。机器学习是研究计算机怎样模拟或实现人类的学习行为，以获取新的知识或技能，重新组织已有的知识结构，使不断改善自身的性能。而深度学习，就是机器学习的其中一种方法。
 
 2. 机器学习流程？
-   **表示：**将数据对象进行特征(feature)化表示
+   **表示 represent：**将数据对象进行特征(feature)化表示
 
-   **训练：**给定一个数据样本集，从中学习出规律（模型），目标：该规律不仅适用于训练数据，也适用于未知数据(称为泛化能力)
+   **训练 train：**给定一个数据样本集，从中学习出规律（模型），目标：该规律不仅适用于训练数据，也适用于未知数据(称为泛化能力)
 
-   **测试：**对于一个新的数据样本，利用学到的模型进行预测
+   **测试 test：**对于一个新的数据样本，利用学到的模型进行预测
 
 3. 在机器学习中，学习率这种参数叫什么？学习率太大和太小的可能影响？
 
-   学习率也叫步长，指更新参数步幅。表征了参数每次更新的幅度.
-   学习率过大，梯度下降算法不会收敛，会发散或振荡；学习率过小，梯度下降算法收敛很慢。
+   学习率(learning rate)也叫步长，指更新参数步幅。表征了参数每次更新的幅度（represent the magnitude of parameter update）
+
+If the learning rate is too large, the gradient descent algorithm will not converge and will diverge or oscillate; if the learning rate is too small, the gradient descent algorithm will converge very slowly.
 
 4. 根据学习方式的划分，机器学习三个主要分类是什么？请简要说明他们之间的关系。
    划分为三个主要分类：监督学习、非监督学习、强化学习。关系见下
@@ -61,18 +72,19 @@ category: ML
 
 **举例**
 
-常见的监督学习算法包括线性回归、逻辑回归、决策树、支持向量机、朴素贝叶斯、神经网络等。
+常见的监督学习算法包括线性回归（linear regression）、逻辑回归(logistic regression)、决策树(decision tree)、支持向量机(support vector machine)、朴素贝叶斯、神经网络等。
 
-常见的非监督学习算法包括聚类、主成分分析（PCA）、独立成分分析（ICA）、自编码器、变分自编码器等。
+常见的非监督学习算法包括聚类、主成分分析（Principle Component Analysis）、独立成分分析（ICA）、自编码器、变分自编码器等。
 
 7. 训练集、测试集、验证集区别联系？
 
-- 训练集:用于模型拟合的数据样本,即用于训练的样本集合,主要用来训练神经网络中的参数;
+- 训练集:用于模型拟合的数据样本,即用于训练的样本集合,主要用来训练神经网络中的参数; train
 
-- 验证集：模型训练过程中单独留出的样本集，它可以用于调整模型的超参数和用于对模型的能力进行初步评估;
+- 验证集：模型训练过程中单独留出的样本集，它可以用于调整模型的超参数和用于对模型的能力进行初步评估; tuning
 
-- 测试集：用来评估模最终模型的泛化能力。但不能作为调参、选择特征等算法相关的选择的依据。
-  各数据集的作用
+- 测试集：用来评估模最终模型的泛化能力。但不能作为调参、选择特征等算法相关的选择的依据。 evaluate
+
+各数据集的作用
 
 **训练集的作用**
 
@@ -96,7 +108,7 @@ category: ML
 
 仅仅用来评估模最终模型的泛化能力，确认网络的实际预测能力。
 
-8. 什么是泛化性能？
+8. 什么是泛化性能？（generalization ability）
    是指机器学习算法对新鲜样本的适应能力。 学习的目的是学到隐含在数据背后的规律，对具有同一规律的学习集以外的数据，经过训练的网络也能给出合适的输出，该能力称为泛化能力。
 
 9. 在数据处理时，为什么通常要进行标准化处理
@@ -121,8 +133,7 @@ category: ML
 
 **（3）解决办法：**
 
-过拟合: 1）清洗数据 2）减小模型复杂度 3）增广训练集 4）交叉验证 5）正则化，约束模型特征
-6）early stopping 迭代次数截断 7）dropout，让一些神经元以一定的概率不工作.
+过拟合: 1）清洗数据 2）减小模型复杂度 3）增广训练集 4）交叉验证 5）正则化 regularization，约束模型特征 6）early stopping 迭代次数截断 7）dropout，让一些神经元以一定的概率不工作.
 
 欠拟合应对： 1）增加新特征 2）增加模型复杂度，如决策树的扩展分支，神经网络的训练轮数等 3）扩大训练集。
 
@@ -166,11 +177,17 @@ category: ML
 
 - 噪声表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界即刻画了学习问题本身的难度。
 
+- Bias measures the degree of deviation between the expected prediction of the learning algorithm and the actual result: it depicts the fitting ability of the learning method itself;
+
+- Variance measures the change in learning performance caused by changes in the same size training set: it depicts the impact of data perturbations;
+
+- Noise expresses the lower bound of the expected generalization error that any learning algorithm can achieve on the current task, which depicts the difficulty of the learning problem itself.
+
 6. 偏差-方差分解角度解释泛化性能
-泛化性能是出学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。给定学习任务为了取得好的泛化性能，需要使偏差小(充分拟合数据)而且方差较小(减少数据扰动产生的影响)。
+   泛化性能是出学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。给定学习任务为了取得好的泛化性能，需要使偏差小(充分拟合数据)而且方差较小(减少数据扰动产生的影响)。
 
 7. 偏差方差冲突
-PPT P9
+   PPT P9
 
 8．请给出你对泛化误差的理解
 
@@ -189,7 +206,7 @@ PPT P9
    不足： 第三章 3.2.7 P10
 
 2. 什么是回归（分析）？
-第三章 3.2 P2
+   第三章 3.2 P2
 
 3. 简述 LDA 算法的基本思想及算法流程。
 
@@ -220,25 +237,25 @@ PPT P9
 
 2. 决策树中剪枝方式分为哪两种？请简述这两种方式的优缺点？
 
-   预剪枝和后剪枝。
+   预剪枝（prepruning）和后剪枝(postpruning)。
 
    **预剪枝**
-   
+
    - 优点：降低过拟合风险，显著降低训练时间和测试时间的开销。
 
    - 缺点：有些分支当前划分虽然不能提升泛化性能，但在其基础上进行的后续划分有可能使得性能显著提高，预剪枝基于“贪心”，禁止这些分支展开，有欠拟合风险。
 
    **后剪枝**
-   
+
    - 优点：比预剪枝保留了更多分支，欠拟合风险小，泛化性能更好。
-   
+
    - 缺点：训练时间开销大，后剪枝过程是在生成完全的决策树之后，自底向上对所有非叶节点逐一考察。
 
 ### 五、神经网络
 
 1. 在神经网络中，非线性激活函数的主要作用是什么？请给出常用的几种非线性激活函数及其导数；
 
-激活函数可以加入非线性因素，解决线性模型所不能解决的问题。激活函数是神经网络的一个重要组成部分。如果不使用激活函数，则无论该神经网络有多少层，最终的输出都是输入的线性组合，与没有隐藏层的效果相当，这种情况就是最原始的感知机，无法解决线性不可分问题。
+激活函数（activation function）可以加入非线性因素，解决线性模型所不能解决的问题。激活函数是神经网络的一个重要组成部分。如果不使用激活函数，则无论该神经网络有多少层，最终的输出都是输入的线性组合，与没有隐藏层的效果相当，这种情况就是最原始的感知机（perceptron），无法解决线性不可分问题。
 
 2. 神经网络分类
 
@@ -246,20 +263,20 @@ PPT P9
 按学习方式：有导师的学习（监督学习）、无导师的学习（无监督学习）、再励学习（强化学习），具体解释： PPT 第五章 P6-7
 
 3. 神经网络与人脑相比计算特能力特点：
-PPT 第五章 P5
+   PPT 第五章 P5
 
 4. 简述神经网络的学习过程
-PPT 第五章 P5
+   PPT 第五章 P5
 
 5. 简要介绍卷积概念及其作用、池化的作用是什么？卷积前后图像尺寸之间的关系是什么？
 
 6. 简述神经网络中梯度下降方法的原理和作用（作用请从机器学习训练阶段的三个步骤的角度来阐述）。
-梯度下降方法的原理：梯度下降方法通过求出损失函数在某点对于参数 θ 的微分值，并以负梯度方向为搜索方向，沿着梯度下降的方向求解极小值；作用是在训练阶段的第三个步骤中，通过梯度下降来寻找更优的学习参数 b 和 w，达到优化模型的效果。
+   梯度下降方法的原理：梯度下降方法通过求出损失函数在某点对于参数 θ 的微分值，并以负梯度方向为搜索方向，沿着梯度下降的方向求解极小值；作用是在训练阶段的第三个步骤中，通过梯度下降来寻找更优的学习参数 b 和 w，达到优化模型的效果。
 
 ### 六、支持向量机 SVM
 
 1. 试述硬间隔、软间隔、基于核函数的 SVM 的原理、优缺点、三者最终计算方式以及限制条件。
-**硬间隔 SVM**：
+   **硬间隔 SVM**：
 
 - 原理：硬间隔 SVM 假设数据本身是线性可分的，即存在一个超平面可以将不同类别的样本完全分开。这个超平面需要满足离其最近的点到其的距离最大化。
 
@@ -352,13 +369,13 @@ SVM 的缺点：
 （2）有时候很难找到一个合适的核函数
 
 4. 为什么要引入对偶问题?
-（1）对偶问题将原始问题中的约束转为了对偶问题中的等式约束。
+   （1）对偶问题将原始问题中的约束转为了对偶问题中的等式约束。
 
 （2）改变了问题的复杂度。由求特征向量转化为求比例系数。在原始问题下，求解的复杂度与样本的维度有关即 w 的维度。在对偶问题下，求解的是 a，复杂度只与样本数量有关。
 
 （3）可以自然地引入核函数，从而推广到非线性分类问题
 
-### 七、聚类
+### 七、聚类 Cluster
 
 1. 聚类方法分类？
 
@@ -421,3 +438,27 @@ SVM 的缺点：
 （3）LDA 除了可以用于降维，还可以用于分类。
 
 （4）LDA 选择分类性能最好的投影方向，而 PCA 选择样本点投影具有最大方差的方向。
+
+### 1. What is Regularization?
+
+Regularization is a technique used in machine learning to prevent overfitting by adding a **penalty**（惩罚项） to the model's complexity. It works by incorporating additional terms to the loss function, such as **L1 (Lasso)**（L1 正则化） or **L2 (Ridge)**（L2 正则化） penalties, which constrain the magnitude of the model parameters. This helps in reducing the variance without substantially increasing the bias, leading to better generalization on unseen data.
+
+### 2. What is Cross Validation?
+
+Cross validation is a technique for assessing the performance and robustness of a machine learning model. It involves partitioning the dataset into training and validation sets multiple times to ensure that the model's performance is evaluated on different subsets of data. The most common method is **k-fold cross validation**（k 折交叉验证）, where the dataset is divided into k equally sized folds, and the model is trained and validated k times, each time using a different fold as the validation set and the remaining folds as the training set. This helps in obtaining a more reliable estimate of model performance.
+
+### 3. PCA Principle
+
+**Principal Component Analysis (PCA)**（主成分分析） is a dimensionality reduction technique that transforms the data into a new coordinate system such that the greatest variances by any projection of the data come to lie on the first coordinates (called **principal components**（主成分）). It achieves this by calculating the **eigenvectors**（特征向量） and **eigenvalues**（特征值） of the data's covariance matrix. The principal components are orthogonal to each other, and by selecting the top k principal components, we can reduce the dimensionality of the data while preserving most of its variance.
+
+### 4. K-Means Principle
+
+**K-Means**（K 均值） is a clustering algorithm that partitions a dataset into k distinct, non-overlapping subgroups (**clusters**（簇）). It works by initializing k **centroids**（质心） randomly, assigning each data point to the nearest centroid, and then updating the centroids to be the mean of the data points assigned to them. This process iterates until the centroids no longer change significantly. The goal is to minimize the within-cluster variance, resulting in compact and well-separated clusters.
+
+### 5. Support Vector Machine Principle
+
+**Support Vector Machine (SVM)**（支持向量机） is a supervised learning algorithm used for classification and regression tasks. The principle of SVM is to find the optimal **hyperplane**（超平面） that best separates the data into different classes. This hyperplane is defined by **support vectors**（支持向量）, which are the data points closest to the hyperplane. SVM aims to maximize the **margin**（间隔）, which is the distance between the hyperplane and the support vectors. For non-linearly separable data, SVM uses **kernel functions**（核函数） to transform the data into a higher-dimensional space where a linear separator can be found.
+
+### 6. Decision Tree Principle
+
+A **Decision Tree**（决策树） is a supervised learning algorithm used for both classification and regression tasks. It works by recursively splitting the data based on feature values to create a tree structure, where each internal node represents a decision based on a feature, each branch represents the outcome of the decision, and each leaf node represents a class label or a continuous value. The splits are chosen to maximize the reduction in **impurity**（杂质）, commonly measured by metrics like **Gini impurity**（基尼杂质） or **information gain (entropy)**（信息增益或熵）. The resulting model is a tree that predicts the target variable by traversing from the root to a leaf node based on the feature values of the input data.
