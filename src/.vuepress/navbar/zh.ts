@@ -12,9 +12,9 @@ export default navbar([
 		link: "/ML/",
 	},
 	{
-		text: "数模",
-		icon: "Modeling",
-		link: "/shumo/",
+		text: "路径规划",
+		icon: "lujingguihua",
+		link: "/path/",
 	},
 	{
 		text: "英语",

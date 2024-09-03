@@ -12,34 +12,6 @@ export default sidebar({
 				"ns.md",
 			],
 		},
-    {
-			text: "交通流理论",
-      link: "/traffic/",
-			collapsible: true,
-			children: [
-				"traffic_theory_1.md",
-			],
-		},
-		{
-			text: "路径规划",
-      link: "/traffic/",
-      collapsible: true,
-			children: [
-				"dijkstra.md",
-        'floyd.md',
-        'planning.md',
-        'Astar.md',
-        'ad_Astar.md'
-			],
-		},
-		{
-			text: "交通规划原理",
-      link: "/traffic/",
-			collapsible: true,
-			children: [
-				"zengzhangxishu.md",
-			],
-		},
 	],
 
 	"/ML/": [
@@ -63,12 +35,13 @@ export default sidebar({
 	],
 
 
-	"/shumo/": [
+	"/path/": [
     {
-			text: "基本内容",
-			link: "/shumo/",
+			text: "PLANNING ALGORITHMS",
+			link: "/path/",
 			children: [
-        'math.md',
+        'chapter1.md',
+        'chapter2.md'
 			],
 		},
 	],
@@ -77,56 +50,20 @@ export default sidebar({
 
 	"/english/": [
 		{
-			text: "文献阅读",
-      collapsible: true,
-			link: "/paper/",
-			children: [
-        'paper_1.md',
-			],
-		},	
-
-    {
-			text: "专业术语",
-      collapsible: true,
-			link: "/shuyu/",
-			children: [
-        'terminology.md',
-			],
-		},	
-
-    {
 			text: "前沿技术",
       collapsible: true,
-			link: "/tec/",
+			link: "/english/",
 			children: [
         'tec_1.md',
 			],
 		},	
 
     {
-			text: "交通工程",
+			text: "专业术语",
       collapsible: true,
-			link: "/traffic_en/",
+			link: "/english/",
 			children: [
-        'traffic_1.md',
-			],
-		},	
-
-    {
-			text: "交通规划",
-      collapsible: true,
-			link: "/traffic_planning/",
-			children: [
-        'planning_1.md',
-			],
-		},	
-
-    {
-			text: "交通流理论",
-      collapsible: true,
-			link: "/traffic_theory/",
-			children: [
-        'theory_1.md',
+        'vocabulary.md',
 			],
 		},	
 

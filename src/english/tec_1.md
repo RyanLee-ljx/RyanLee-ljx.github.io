@@ -8,7 +8,7 @@ PageView: true
 
 #  *Cutting-edge Technology* 前沿科技
 
-本文不定期更新前沿科技简介及对交通领域发展影响.
+本文不定期更新前沿科技简介.
 
 ## [大语言模型][def] *Foudation Model*
 
