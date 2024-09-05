@@ -22,13 +22,13 @@ Available for downloading at [http://planning.cs.uiuc.edu/]
 
 Published by Cambridge University Press
 
-## 1 What is planning?
+## 1.1 What is planning?
 
 Planning is a branch of algorithms.
 
 The user of the plan can be referred as robot or decision maker (robot, agent, controller are interchangeable)
 
-## 2 Basic Ingredients of Planning
+## 1.2 Basic Ingredients of Planning
 
 1. **State**
 
@@ -81,7 +81,7 @@ The first plan yields a collision-free path through the building. The second pla
 
 3. Hierarchical inclusion: Under hierarchical inclusion, a plan is incorporated as an action in a larger plan. The original plan can be imagined as a subroutine in the larger plan.Hierarchical inclusion can be performed any number of times, resulting in a *rooted tree of plans*. This leads to a general model of hierarchical planning. Each vertex in the tree is a plan. The root vertex represents the master plan. The children of any vertex are plans that are incorporated as actions in the plan of the vertex. There is no limit to the tree depth or number of children per vertex.
 
-## 3 Organization of this book
+## 1.3 Organization of this book
 
 PART 1 Intro: Chapter 1-2
 
