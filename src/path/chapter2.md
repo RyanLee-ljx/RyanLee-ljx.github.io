@@ -13,13 +13,13 @@ category: PR
 
 ### 2.1.1 Problem Formulation
 
-State: $ x $
+State: $x$
 
-State space: $ X $, nonempty, finite or infinite.
+State space: $X$, nonempty, finite or infinite.
 
-Action: $ u $
+Action: $u$
 
-Action space: $ U(x) , x /in X $
+Action space: $U(x) , x /in X$
 
 State transition fuction: $ x' = f(x, u) $. Each current state *x*, when applied with each action *u*, produces a new state *x'*.
 

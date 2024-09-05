@@ -91,4 +91,4 @@ PART 2 Motion planning: Chapter 3-8
 
 PART 3 Decision-Theoretic Planning: Chapter 9-12
 
-PART 4 Planning Under Differential Constraint 13-15
+PART 4 Planning Under Differential Constraint: Chapter 13-15
