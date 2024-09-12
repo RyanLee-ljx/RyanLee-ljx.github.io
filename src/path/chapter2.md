@@ -50,23 +50,35 @@ The following figure gives a general template of search algorithms. At any point
 
 3. **Alive**: States that have been encountered, but possibly have unvisited next states. These are considered alive. Initially, the only alive state is $x_{I}$.
 
-::: Forward Search
-'''
-Q.insert($x_{I}$) and mark $x_{I}$ as visited.
-while Q not empty do:
-    x = Q.GetFirst()
-    if x $\in x_{G}$:
-        return SUCCESS
-    for all u in U(x):
-        x' = f(x,u)
-        if x' not visited:
-            Q.insert(x')
-            mark x' visited
-        else:
-            Resolve duplicate x'
-Return FAILURE
 
-'''
+  **Forward Search**
+
+  Q.insert($x_{I}$) and mark $x_{I}$ as visited.
+
+  while Q not empty do:
+      
+      x = Q.GetFirst()
+      
+      if x $\in x_{G}$:
+      
+          return SUCCESS
+      
+      for all u in U(x):
+      
+          x' = f(x,u)
+      
+          if x' not visited:
+      
+              Q.insert(x')
+      
+              mark x' visited
+      
+          else:
+      
+              Resolve duplicate x'
+  
+  Return FAILURE
+
 
 The above is a general template of forward search algorithm. Two focuses are presented here: How efficient is the test to determine whether $x \in X_{G}$ in line 4? How can one tell whether $x′$ has been visited in line 8 and line 9?
 
@@ -89,56 +101,87 @@ This section presents several search algorithms, each of which constructs a *sea
 
 1. **Backward search**: For many planning problems, it might be the case that the branching factor is large when starting from xI. In this case, it might be more efficient to start the search at a goal state and work backward until the initial state is encountered.
 
-::: BACKWARD SEARCH  
 
-'''
-Q.insert($x_{G}$) and mark $x_{G}$ as visited.
-while Q not empty do:
-    x = Q.GetFirst()
-    if x $\in x_{I}$:
-        return SUCCESS
-    for all $u^{-1}$ in $U(x)^{-1}$:
-        x' = $f^{-1}(x,$u^{-1})$
-        if x' not visited:
-            Q.insert(x')
-            mark x' visited
-        else:
-            Resolve duplicate x'
-Return FAILURE
+  **BACKWARD SEARCH**  
 
-'''
+  Q.insert($x_{G}$) and mark $x_{G}$ as visited.
+
+  while Q not empty do:
+      x = Q.GetFirst()
+      
+      if x $\in x_{I}$:
+      
+          return SUCCESS
+      
+      for all $u^{-1}$ in $U(x)^{-1}$:
+      
+          x' = $f^{-1}(x,$u^{-1})$
+      
+          if x' not visited:
+      
+              Q.insert(x')
+      
+              mark x' visited
+      
+          else:
+      
+              Resolve duplicate x'
+
+  Return FAILURE
+
 
 2. **Bidirectional search**: One tree is grown from the initial state, and the other is grown from the goal state. The search terminates with success when the two trees meet. Failure occurs if either priority queue has been exhausted.
 
-::: BIDIRECTIONAL SEARCH  
+  
+  **BIDIRECTIONAL SEARCH**  
 
-'''
-$Q_{G}$.insert($X_{G}$) and mark $x_{G}$ as visited.
-$Q_{I}$.insert($X_{I}$) and mark $x_{I}$ as visited.
-while $Q_{G}$ and $Q_{I} not empty do:
-    x = $Q_{I}$.GetFirst()
-    if x already visited from $x_{G}$
-        return SUCCESS
-    for all u in U(x):
-        x' = f(x,u)
-        if x' not visited:
-            $Q_{I}$.insert(x')
-            mark x' visited
-        else:
-            Resolve duplicate x'
-    x = $Q_{G}$.GetFirst()
-    if x already visited from $x_{I}$
-        return SUCCESS
-    for all $u^{-1}$ in $U(x)^{-1}$:
-        x' = $f^{-1}(x,$u^{-1})$
-        if x' not visited:
-            $x_{G}$.insert(x')
-            mark x' visited
-        else:
-            Resolve duplicate x'
-Return FAILURE
+  $Q_{G}$.insert($X_{G}$) and mark $x_{G}$ as visited.
 
-'''
+  $Q_{I}$.insert($X_{I}$) and mark $x_{I}$ as visited.
+  
+  while $Q_{G}$ and $Q_{I} not empty do:
+    
+      x = $Q_{I}$.GetFirst()
+      
+      if x already visited from $x_{G}$
+          
+          return SUCCESS
+      
+      for all u in U(x):
+        
+          x' = f(x,u)
+          
+          if x' not visited:
+              
+              $Q_{I}$.insert(x')
+              
+              mark x' visited
+      
+          else:
+      
+              Resolve duplicate x'
+    
+        x = $Q_{G}$.GetFirst()
+    
+     if x already visited from $x_{I}$
+        
+          return SUCCESS
+    
+      for all $u^{-1}$ in $U(x)^{-1}$:
+      
+          x' = $f^{-1}(x,$u^{-1})$
+        
+          if x' not visited:
+          
+              $x_{G}$.insert(x')
+            
+              mark x' visited
+          
+          else:
+            
+             Resolve duplicate x'
+  
+  Return FAILURE
 
 ### 2.2.4 A Unified View of the Search Methods
 
