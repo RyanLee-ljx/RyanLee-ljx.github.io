@@ -27,4 +27,15 @@ Figure 2.4 omits several details that...
 
 7. asymptotic：渐进的
 
-8. trivial：不重要的  un important
+8. trivial：不重要的  unimportant
+
+9. cumbersome: 笨重的，沉重的，难以去做的
+however, the notation and explanation can become more cumbersome because
+
+10. superficial: 表面的，表皮的，肤浅的
+
+11. recurrence: 重复出现
+
+12. preclude：阻止，防止（人/事）
+
+13. onward：向前的/地
