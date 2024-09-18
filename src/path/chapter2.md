@@ -55,31 +55,31 @@ The following figure gives a general template of search algorithms. At any point
 
 **Forward Search**
 
-   Q.insert(x_I) and mark x_I as visited.
+    Q.insert(x_I) and mark x_I as visited.
 
-   while Q not empty do:
+    while Q not empty do:
 
-        x = Q.GetFirst()
+         x = Q.GetFirst()
 
-        if x in x_G:
+          if x in x_G:
 
-           return SUCCESS
+            return SUCCESS
 
-       for all u in U(x):
+        for all u in U(x):
 
-           x' = f(x,u)
+            x' = f(x,u)
 
-            if x' not visited:
+              if x' not visited:
 
-               Q.insert(x')
+                 Q.insert(x')
 
-                mark x' visited
+                  mark x' visited
 
-            else:
+              else:
 
-                Resolve duplicate x'
+                  Resolve duplicate x'
 
-   Return FAILURE
+    Return FAILURE
 
 The above is a general template of forward search algorithm. Two focuses are presented here: How efficient is the test to determine whether $x \in X_{G}$ in line 4? How can one tell whether $x′$ has been visited in line 8 and line 9?
 
@@ -105,31 +105,31 @@ This section presents several search algorithms, each of which constructs a _sea
 
 **BACKWARD SEARCH**
 
-   Q.insert(x_G) and mark x_G as visited.
+  Q.insert(x_G) and mark x_G as visited.
 
-    while Q not empty do:
+  while Q not empty do:
 
-   x = Q.GetFirst()
+    x = Q.GetFirst()
 
-       if x in xI:
+    if x in xI:
 
-            return SUCCESS
+        return SUCCESS
 
-        for all u^-1 in U(x)^-1:
+    for all u^-1 in U(x)^-1:
 
-            x' = f^-1(x,u^-1)
+        x' = f^-1(x,u^-1)
 
-           if x' not visited:
+        if x' not visited:
 
-               Q.insert(x')
+            Q.insert(x')
 
-                mark x' visited
+            mark x' visited
 
-           else:
+        else:
 
-               Resolve duplicate x'
+            Resolve duplicate x'
 
-    Return FAILURE
+  Return FAILURE
 
 2. **Bidirectional search**: One tree is grown from the initial state, and the other is grown from the goal state. The search terminates with success when the two trees meet. Failure occurs if either priority queue has been exhausted.
 
