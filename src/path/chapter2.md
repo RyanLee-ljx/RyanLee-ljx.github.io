@@ -15,19 +15,19 @@ category: PR
 
 **Formulation 2.1**
 
-State: $x$
+**State**: $x$
 
-State space: $X$, nonempty, finite or infinite.
+**State space**: $X$, nonempty, finite or infinite.
 
-Action: $u$
+**Action**: $u$
 
-Action space: $U(x)$ , $x \in X$
+**Action space**: $U(x)$ , $x \in X$
 
-State transition fuction: $x'=f(x, u)$. Each current state _x_, when applied with each action _u_, produces a new state _x'_.
+**State transition fuction**: $x'=f(x, u)$. Each current state _x_, when applied with each action _u_, produces a new state _x'_.
 
-Initial state: $x_{I} \in X$
+**Initial state**: $x_{I} \in X$
 
-Goal state: $X_{G} \in X$
+**Goal state**: $X_{G} \in X$
 
 ### 2.1.2 Examples of Discrete Planning
 
@@ -55,13 +55,13 @@ The following figure gives a general template of search algorithms. At any point
 
 **Forward Search**
 
-  Q.insert($x_{I}$) and mark $x_{I}$ as visited.
+  Q.insert(x_I) and mark x_I as visited.
 
   while Q not empty do:
 
       x = Q.GetFirst()
 
-      if x $\in x_{G}$:
+      if x in x_G:
 
           return SUCCESS
 
@@ -105,19 +105,19 @@ This section presents several search algorithms, each of which constructs a _sea
 
 **BACKWARD SEARCH**
 
-  Q.insert($x_{G}$) and mark $x_{G}$ as visited.
+  Q.insert(x_G) and mark x_G as visited.
 
   while Q not empty do:
 
   x = Q.GetFirst()
 
-      if x $\in x_{I}$:
+      if x in xI:
 
           return SUCCESS
 
-      for all $u^{-1}$ in $U(x)^{-1}$:
+      for all u^-1 in U(x)^-1:
 
-          x' = $f^{-1}(x,$u^{-1})$
+          x' = f^-1(x,u^-1)
 
           if x' not visited:
 
@@ -135,15 +135,15 @@ This section presents several search algorithms, each of which constructs a _sea
 
 **BIDIRECTIONAL SEARCH**
 
-  $Q_{G}$.insert($X_{G}$) and mark $x_{G}$ as visited.
+  Q_G.insert(X_G) and mark x_G as visited.
 
-  $Q_{I}$.insert($X_{I}$) and mark $x_{I}$ as visited.
+  Q_I.insert(X_I) and mark x_I as visited.
 
-  while $Q_{G}$ and $Q\_{I} not empty do:
+  while Q_G and Q_I not empty do:
 
-      x = $Q_{I}$.GetFirst()
+      x = Q_I.GetFirst()
 
-      if x already visited from $x_{G}$
+      if x already visited from x_G
 
           return SUCCESS
 
@@ -153,7 +153,7 @@ This section presents several search algorithms, each of which constructs a _sea
 
           if x' not visited:
 
-              $Q_{I}$.insert(x')
+              Q_I.insert(x')
 
               mark x' visited
 
@@ -161,19 +161,19 @@ This section presents several search algorithms, each of which constructs a _sea
 
               Resolve duplicate x'
 
-        x = $Q_{G}$.GetFirst()
+        x = Q_G.GetFirst()
 
-     if x already visited from $x_{I}$
+     if x already visited from x_I
 
           return SUCCESS
 
-      for all $u^{-1}$ in $U(x)^{-1}$:
+      for all u^-1 in U(x)^-1:
 
-          x' = $f^{-1}(x,$u^{-1})$
+          x' = f^-1(x,u^-1)
 
           if x' not visited:
 
-              $x_{G}$.insert(x')
+              x_G.insert(x')
 
               mark x' visited
 
@@ -212,7 +212,7 @@ This section discusses optimal planning problems involving optimizing time, dist
 
 3. Introduce cost functional:
 
-$\tag{1} L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F})$
+$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F})$
 
 $L$ denote a stage-additive cost (or loss) functional, which is applied to a K-step plan, $π_{K}$. This means that the sequence $(u_{1},......, u_{K})$ of actions and the sequence $(x_{1},......, x_{K+1})$ of states may appear in an expression of L.
 
@@ -254,7 +254,7 @@ $x_{1}$ may contain the $x_{I}$.
 
 ::: tip **Example**
 
-!(A five-state example. Each vertex represents a state, and each edge represents an input that can be applied to the state transition equation to change the state. The weights on the edges represent l(xk, uk) (xk is the originating vertex of the edge).)[https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example1.png?raw=true]
+![A five-state example. Each vertex represents a state, and each edge represents an input that can be applied to the state transition equation to change the state. The weights on the edges represent l(xk, uk) (xk is the originating vertex of the edge).](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example1.png?raw=true)
 
 Suppose that $K=4, x_{I}=a, x_{G}={d}$. Hence, there will be four iterations by constructing $G^{*}_{4}(x_{4}), G^{*}_{3}(x_{3}), G^{*}_{2}(x_{2}), G^{*}_{1}(x_{1})$.
 
