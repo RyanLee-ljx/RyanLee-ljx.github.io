@@ -55,31 +55,31 @@ The following figure gives a general template of search algorithms. At any point
 
 **Forward Search**
 
-  Q.insert(x_I) and mark x_I as visited.
+   Q.insert(x_I) and mark x_I as visited.
 
-  while Q not empty do:
+   while Q not empty do:
 
-      x = Q.GetFirst()
+        x = Q.GetFirst()
 
-      if x in x_G:
+        if x in x_G:
 
-          return SUCCESS
+           return SUCCESS
 
-      for all u in U(x):
+       for all u in U(x):
 
-          x' = f(x,u)
+           x' = f(x,u)
 
-          if x' not visited:
+            if x' not visited:
 
-              Q.insert(x')
+               Q.insert(x')
 
-              mark x' visited
+                mark x' visited
 
-          else:
+            else:
 
-              Resolve duplicate x'
+                Resolve duplicate x'
 
-  Return FAILURE
+   Return FAILURE
 
 The above is a general template of forward search algorithm. Two focuses are presented here: How efficient is the test to determine whether $x \in X_{G}$ in line 4? How can one tell whether $x′$ has been visited in line 8 and line 9?
 
@@ -105,83 +105,83 @@ This section presents several search algorithms, each of which constructs a _sea
 
 **BACKWARD SEARCH**
 
-  Q.insert(x_G) and mark x_G as visited.
+   Q.insert(x_G) and mark x_G as visited.
 
-  while Q not empty do:
+    while Q not empty do:
 
-  x = Q.GetFirst()
+   x = Q.GetFirst()
 
-      if x in xI:
+       if x in xI:
 
-          return SUCCESS
+            return SUCCESS
 
-      for all u^-1 in U(x)^-1:
+        for all u^-1 in U(x)^-1:
 
-          x' = f^-1(x,u^-1)
+            x' = f^-1(x,u^-1)
 
-          if x' not visited:
+           if x' not visited:
 
-              Q.insert(x')
+               Q.insert(x')
 
-              mark x' visited
+                mark x' visited
 
-          else:
+           else:
 
-              Resolve duplicate x'
+               Resolve duplicate x'
 
-  Return FAILURE
+    Return FAILURE
 
 2. **Bidirectional search**: One tree is grown from the initial state, and the other is grown from the goal state. The search terminates with success when the two trees meet. Failure occurs if either priority queue has been exhausted.
 
 **BIDIRECTIONAL SEARCH**
 
-  Q_G.insert(X_G) and mark x_G as visited.
+    Q_G.insert(X_G) and mark x_G as visited.
 
-  Q_I.insert(X_I) and mark x_I as visited.
+    Q_I.insert(X_I) and mark x_I as visited.
 
-  while Q_G and Q_I not empty do:
+    while Q_G and Q_I not empty do:
 
-      x = Q_I.GetFirst()
+        x = Q_I.GetFirst()
 
-      if x already visited from x_G
+        if x already visited from x_G
 
-          return SUCCESS
+            return SUCCESS
 
-      for all u in U(x):
+        for all u in U(x):
 
-          x' = f(x,u)
+            x' = f(x,u)
 
-          if x' not visited:
+            if x' not visited:
 
-              Q_I.insert(x')
+                Q_I.insert(x')
 
-              mark x' visited
+                mark x' visited
 
-          else:
+            else:
 
-              Resolve duplicate x'
+               Resolve duplicate x'
 
-        x = Q_G.GetFirst()
+          x = Q_G.GetFirst()
 
-     if x already visited from x_I
+       if x already visited from x_I
 
-          return SUCCESS
+            return SUCCESS
 
-      for all u^-1 in U(x)^-1:
+       for all u^-1 in U(x)^-1:
 
-          x' = f^-1(x,u^-1)
+            x' = f^-1(x,u^-1)
 
-          if x' not visited:
+            if x' not visited:
 
-              x_G.insert(x')
+               x_G.insert(x')
 
-              mark x' visited
+                mark x' visited
 
-          else:
+           else:
 
-             Resolve duplicate x'
+               Resolve duplicate x'
 
-  Return FAILURE
+    Return FAILURE
 
 
 ### 2.2.4 A Unified View of the Search Methods
@@ -214,7 +214,7 @@ This section discusses optimal planning problems involving optimizing time, dist
 
 ::: center
 
-$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F}) \quad \quad \quad \quad \quad(1)$
+$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F}) \quad \quad \quad \quad \quad  \quad \quad \quad \quad \quad \quad (1)$
 
 :::
 
@@ -240,11 +240,19 @@ This section will mainly discuss the *value iteration* algorithm, which is to it
 
 Firstly, we will introduce a new cost fuctional called $G^{*}_{k}$, which represents the cost accumulated through stage k to F. It can be written as the following equation:
 
-$\tag{2} G^{*}_{k}(x_{k})= \underset{uk}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}$
+::: center
+
+$G^{*}_{k}(x_{k})= \underset{uk}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}\quad \quad \quad \quad \quad  \quad \quad \quad \quad \quad \quad (2)$
+
+:::
 
 This can be converted to the following equation (the proof process is omitted here as the formula will be well understood from its definition):
 
-$\tag{3}  G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})}$
+::: center
+
+$G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})} \quad \quad \quad \quad \quad  \quad \quad \quad \quad \quad \quad (3)$
+
+:::
 
 This produces the recurrence, which can be used to obtain $G^{*}_{k}(x_{k})$ iteratively from $G^{*}_{k+1}(x_{k+1})$. It's like:
 
