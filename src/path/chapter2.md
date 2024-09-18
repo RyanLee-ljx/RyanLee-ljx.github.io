@@ -212,7 +212,11 @@ This section discusses optimal planning problems involving optimizing time, dist
 
 3. Introduce cost functional:
 
-$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F})                           (1)$
+::: center
+
+$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F}) \quad \quad \quad \quad \quad(1)$
+
+:::
 
 $L$ denote a stage-additive cost (or loss) functional, which is applied to a K-step plan, $π_{K}$. This means that the sequence $(u_{1},......, u_{K})$ of actions and the sequence $(x_{1},......, x_{K+1})$ of states may appear in an expression of L.
 
