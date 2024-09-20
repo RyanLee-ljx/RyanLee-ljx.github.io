@@ -242,15 +242,20 @@ Firstly, we will introduce a new cost fuctional called $G^{*}_{k}$, which repres
 
 ::: center
 
-$G^{*}_{k}(x_{k})= \underset{uk...uK}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}$
-
+$$
+G^{*}_{k}(x_{k})= \underset{uk...uK}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}
+$$
+$(1)$
 :::
 
 This can be converted to the following equation (the proof process is omitted here as the formula will be well understood from its definition):
 
 ::: center
 
-$G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})}$
+$$
+G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})}
+$$
+$(2)$
 
 :::
 
@@ -264,7 +269,7 @@ $G^{*}_{F}(x_{F}) \to G^{*}_{K}(x_{K}) \to G^{*}_{K-1}(x_{K-1}) \to ... \to G^{*
 
 $x_{1}$ may contain the $x_{I}$.
 
-::: tip **Example 1**
+::: tip Example 1
 
 ![Figure 1 A five-state example. Each vertex represents a state, and each edge represents an input that can be applied to the state transition equation to change the state. The weights on the edges represent l(xk, uk) (xk is the originating vertex of the edge).](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example1.png?raw=true)
 
@@ -310,7 +315,10 @@ Likewise, we can get the same equation:
 
 :::center
 
-$C^{*}_{k}(x_{k})= \underset{u1...uk-1}{\min} {sum_{i=1}^{k-1} l(x_{k}, u_{k}) + l_I(x_I)}$
+$$
+C^{*}_{k}(x_{k})= \underset{u1...uk-1}{\min} {sum_{i=1}^{k-1} l(x_{k}, u_{k}) + l_I(x_I)}
+$$
+$(3)$
 
 :::
 
@@ -318,11 +326,14 @@ Also the recurrence:
 
 ::: center
 
-$C^{*}_{k}(x_{k}) = \underset{uk-1}{\min} {l(x_{k}, u_{k}) + C^{*}_{k-1}(x_{k-1})}$
+$$
+C^{*}_{k}(x_{k}) = \underset{uk-1}{\min} {l(x_{k}, u_{k}) + C^{*}_{k-1}(x_{k-1})}
+$$
+$(4)$
 
 :::
 
-::: tip **Example 2**
+::: tip Example 2
 
 We can still use the net in Figure 1, perform the forward iteration:
 
@@ -339,6 +350,82 @@ Suppose K=4, we need to calculate $C^{*}_{4}$ for a, b, c, d, e. Each has 5 opti
 :::
 
 ### 2.3.2 Optimal Plans of Unspecified Lengths
+
+In section 2.3.1 we learn algorithm solving optimal fixed-length plans. However, it is obviously unreasonable. To begin with, we don't know the exact length of the solution. We need to set it in advance, which can be inappropriate. In example 1, we can obtain the optimal path from $G_{2}(a)$. But we repeat another redundant iteration in $G_{1}$.
+
+So how to address this issue? That is variable-length plan.
+
+The value-iteration method, originally used for fixed-length plans, is generalized for plans of different lengths. There is no upper limit to how long a plan can be, making this approach a true generalization of earlier fixed-length formulations.
+
+How to accomplish this? Here we introduce a special "termination" action, denoted as $u_{T}$. This action allows a plan to stop at any state, effectively saying, "We are done." Once this action is applied, the state no longer changes, and no additional costs are incurred. This enables plans of different lengths to be handled uniformly. For example, a two-step plan $(u_{1}, u_{2})$ that reaches the goal can be extended to a longer plan by simply repeating the termination action without changing the cost like $(u_{1}, u_{2}, u_{T}, u_{T}, u_{T})$.
+
+The termination action is applied when the system has reached a goal state, meaning the current state $x \in x_{G}$.
+
+Once the goal is achieved, further actions are unnecessary, and the cost will not increase. So, the system applies the termination action to "stop" further planning or changes in the state.
+
+For iteration going on, we introduce two similar formulas.
+
+**For backward value iteration:**
+
+This formula calculates the optimal action $(u^{*})$ at a given state $x$:
+
+$$
+u^* = \arg \min_{u \in U(x)} \left( l(x, u) + G^*(f(x, u)) \right)
+$$
+$(5)$
+
+- **$l(x, u)$**: Represents the cost incurred by taking action $u$ in state $x$.
+- **$G^*(f(x, u))$**: The optimal *cost-to-go* function, which estimates the remaining cost to the goal from the next state $f(x, u)$, the state that results from applying action $u $ to state $x$.
+
+The formula minimizes the total cost, which is the sum of the immediate cost $l(x, u)$ and the cost-to-go from the resulting state. The `argmin` part means we are selecting the action $u^{*}$ that yields the lowest total cost.
+
+
+**For forward value iteration:**
+
+$$
+u^{} = \arg \min_{u^{-1} \in U^{-1}(x)} \left( C^*(f^{-1}(x, u^{-1})) + l(f^{-1}(x, u^{-1}), u') \right)
+$$
+$(6)$
+
+- **$f^{-1}(x, u^{-1})$**: Refers to the state from which action $u^{-1}$ would bring the system into state $x$.
+- **$C^{*}$**: The optimal *cost-to-come* function, analogous to $G^{*}$, but in a forward direction. It tells us the best cost incurred to reach $x$ from some previous state.
+- **$l(f^{-1}(x, u^{-1}), u')$**: Represents the cost of the action leading from the predecessor state to $x$.
+
+In this way can we not rely on the specified $k$. Since we select the action $u^{*}$ that yields the lowest total cost every iteration.
+
+::: important Distinguish
+
+**Key Differences between (2) (4) in fixed-length planning and (5) (6) in variable-length planning**
+
+1. **Fixed vs. Variable Length**:
+   - **(2)(4)** is used in the context of fixed-length planning, where the number of stages is known and the goal is to minimize the cost over a set number of steps.
+   - **(5)(6)** is for variable-length planning, where the number of stages is unspecified, and you want to minimize the overall *cost-to-go/cost-to-come*, with no constraint on the number of steps.
+
+2. **Stage Dependency**:
+   - **(2)(4)** depends on the stage index $k$ (since the cost-to-go depends on the specific stage).
+   - **(5)(6)** is independent of any stage index because it is used for unspecified-length plans, where the focus is on minimizing the total cost regardless of how long the plan takes.
+
+**Similarity**
+
+Both formulas aim to minimize the total cost by selecting the optimal action at each state based on a cost function that combines immediate cost and the future *cost-to-go*/past *cost-to-come*. The mechanism for selecting actions is the same—iteratively finding the action that leads to the least total cost.
+
+
+Example 1 will be changed into:
+
+|      | a  | b  | c  | d  | e  |
+|------|----|----|----|----|----|
+| G₀*  | ∞  | ∞  | ∞  | 0  | ∞  |
+| G₋₁* | ∞  | 4  | 1  | 0  | ∞  |
+| G₋₂* | 6  | 2  | 1  | 0  | ∞  |
+| G₋₃* | 4  | 2  | 1  | 0  | ∞  |
+| G₋₄* | 4  | 2  | 1  | 0  | ∞  |
+| G*   | 4  | 2  | 1  | 0  | ∞  |
+
+:::
+
+
+
+
 
 
 
