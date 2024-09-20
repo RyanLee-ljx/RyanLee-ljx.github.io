@@ -59,9 +59,9 @@ The following figure gives a general template of search algorithms. At any point
 
     while Q not empty do:
 
-         x = Q.GetFirst()
+        x = Q.GetFirst()
 
-          if x in x_G:
+        if x in x_G:
 
             return SUCCESS
 
@@ -69,15 +69,15 @@ The following figure gives a general template of search algorithms. At any point
 
             x' = f(x,u)
 
-              if x' not visited:
+            if x' not visited:
 
-                 Q.insert(x')
+                Q.insert(x')
 
-                  mark x' visited
+                mark x' visited
 
-              else:
+            else:
 
-                  Resolve duplicate x'
+                Resolve duplicate x'
 
     Return FAILURE
 
@@ -105,31 +105,31 @@ This section presents several search algorithms, each of which constructs a _sea
 
 **BACKWARD SEARCH**
 
-  Q.insert(x_G) and mark x_G as visited.
+    Q.insert(x_G) and mark x_G as visited.
 
-  while Q not empty do:
+    while Q not empty do:
 
-    x = Q.GetFirst()
+        x = Q.GetFirst()
 
-    if x in xI:
+        if x in xI:
 
-        return SUCCESS
+            return SUCCESS
 
-    for all u^-1 in U(x)^-1:
+        for all u^-1 in U(x)^-1:
 
-        x' = f^-1(x,u^-1)
+            x' = f^-1(x,u^-1)
 
-        if x' not visited:
+            if x' not visited:
 
-            Q.insert(x')
+                Q.insert(x')
 
-            mark x' visited
+                mark x' visited
 
-        else:
+            else:
 
-            Resolve duplicate x'
+                Resolve duplicate x'
 
-  Return FAILURE
+    Return FAILURE
 
 2. **Bidirectional search**: One tree is grown from the initial state, and the other is grown from the goal state. The search terminates with success when the two trees meet. Failure occurs if either priority queue has been exhausted.
 
@@ -214,7 +214,7 @@ This section discusses optimal planning problems involving optimizing time, dist
 
 ::: center
 
-$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F}) \quad \quad \quad \quad \quad  \quad \quad \quad \quad \quad \quad (1)$
+$L(\pi_{K}) = sum_{k=1}^{K} l(x_{k}, u_{k}) + L_{F}(x_{F})$
 
 :::
 
@@ -238,11 +238,11 @@ This section will mainly discuss the *value iteration* algorithm, which is to it
 
 #### 2.3.1.1 Backward value iteration
 
-Firstly, we will introduce a new cost fuctional called $G^{*}_{k}$, which represents the cost accumulated through stage k to F. It can be written as the following equation:
+Firstly, we will introduce a new cost fuctional called $G^{*}_{k}$, which represents the *cost-to-go* fuction accumulated through stage k to F. It can be written as the following equation:
 
 ::: center
 
-$G^{*}_{k}(x_{k})= \underset{uk}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}\quad \quad \quad \quad \quad  \quad \quad \quad \quad \quad \quad (2)$
+$G^{*}_{k}(x_{k})= \underset{uk...uK}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}$
 
 :::
 
@@ -250,7 +250,7 @@ This can be converted to the following equation (the proof process is omitted he
 
 ::: center
 
-$G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})} \quad \quad \quad \quad \quad  \quad \quad \quad \quad \quad \quad (3)$
+$G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})}$
 
 :::
 
@@ -264,9 +264,9 @@ $G^{*}_{F}(x_{F}) \to G^{*}_{K}(x_{K}) \to G^{*}_{K-1}(x_{K-1}) \to ... \to G^{*
 
 $x_{1}$ may contain the $x_{I}$.
 
-::: tip **Example**
+::: tip **Example 1**
 
-![A five-state example. Each vertex represents a state, and each edge represents an input that can be applied to the state transition equation to change the state. The weights on the edges represent l(xk, uk) (xk is the originating vertex of the edge).](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example1.png?raw=true)
+![Figure 1 A five-state example. Each vertex represents a state, and each edge represents an input that can be applied to the state transition equation to change the state. The weights on the edges represent l(xk, uk) (xk is the originating vertex of the edge).](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example1.png?raw=true)
 
 Suppose that $K=4, x_{I}=a, x_{G}={d}$. Hence, there will be four iterations by constructing $G^{*}_{4}(x_{4}), G^{*}_{3}(x_{3}), G^{*}_{2}(x_{2}), G^{*}_{1}(x_{1})$.
 
@@ -289,3 +289,60 @@ In this way can you easily obtain $G^{*}_{2}(x_{2}), G^{*}_{1}(x_{1})$. The resu
 | G₁* | 6  | 4  | 5  | 4  | ∞  |
 
 :::
+
+#### 2.3.1.2 Forward value iteration
+
+The ideas from Section 2.3.1.1 may be recycled to yield a symmetrically equivalent method that computes optimal cost-to-come functions from the initial stage.
+
+In the backward case, $x_{G}$ must be fixed, and in the forward case, $x_{I}$ must be fixed.
+
+Symmetrically, here we introduce $C^{*}_{k}$, which denotes the optimal *cost-to-come* value from stage 1 to k. $l_{I}$ serves as the same role of $l_{F}$. That is
+
+::: center
+
+$C^{*}_{k}(x_{1})=l_{I}(x_{1})$
+
+:::
+
+in which $l_{I}$ is a new function that yields $l_{I}(x_{I})=0$, and $l_{I}(x)=\infty$ for all $x \ne x_{I}$. Thus, any plans that try to start from a state other than $x_{I}$ will immediately receive infinite cost.
+
+Likewise, we can get the same equation:
+
+:::center
+
+$C^{*}_{k}(x_{k})= \underset{u1...uk-1}{\min} {sum_{i=1}^{k-1} l(x_{k}, u_{k}) + l_I(x_I)}$
+
+:::
+
+Also the recurrence:
+
+::: center
+
+$C^{*}_{k}(x_{k}) = \underset{uk-1}{\min} {l(x_{k}, u_{k}) + C^{*}_{k-1}(x_{k-1})}$
+
+:::
+
+::: tip **Example 2**
+
+We can still use the net in Figure 1, perform the forward iteration:
+
+Suppose K=4, we need to calculate $C^{*}_{4}$ for a, b, c, d, e. Each has 5 options of $C^{*}_{k-1}(x_{k-1})$. For instance, $C^{*}_{4}(x_{c})$, there exsits a-c, b-c, c-c, d-c, e-c. $C^{*}_{3}(x_{e})=\infty$, $l_{a-c}, l_{c-c}=\infty$. Thus we only need to compare $l_{b-c}+C^{*}_{3}(x_{b})$ and $l_{d-c}+C^{*}_{3}(x_{d})$. The former is smaller, which equals to 5 while the latter is 7.
+
+|     | a  | b  | c  | d  | e  |
+|-----|----|----|----|----|----|
+| C₁* | 0  | ∞  | ∞  | ∞  | ∞  |
+| C₂* | 2  | 2  | ∞  | ∞  | ∞  |
+| C₃* | 4  | 4  | 3  | 6  | ∞  |
+| C₄* | 4  | 6  | 5  | 4  | 7  |
+| C₅* | 6  | 6  | 5  | 6  | 5  |
+
+:::
+
+### 2.3.2 Optimal Plans of Unspecified Lengths
+
+
+
+
+
+
+

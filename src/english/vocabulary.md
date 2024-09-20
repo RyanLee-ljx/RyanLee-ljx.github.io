@@ -36,6 +36,6 @@ however, the notation and explanation can become more cumbersome because
 
 11. recurrence: 重复出现
 
-12. preclude：阻止，防止（人/事）
+12. preclude：阻止，防止（人/事） prevent
 
 13. onward：向前的/地
