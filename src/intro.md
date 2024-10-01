@@ -38,13 +38,13 @@ PageView: true
 
 ## 我 _Myself_
 
-- 职业： 一名在读 CSUer :school:，对，就是那个*California State University*(bushi)。
+- 职业： 一名在读 CSUer :school:，对，就是那个*California State University*(bushi)。即将变为SJTUer.
 
 - 星座： 水瓶座 <HopeIcon icon = 'shuipingzuo'/> 一枚。
 
 - 成分： Swiftie :strawberry: 一枚。
 
-- 人格： INFJ 绿老头一枚。
+- 人格： INFJ 绿老头一枚。(有点变化)
 
 - 爱好： LOL、听歌 :headphones:、唱歌 :microphone:、吉他 :guitar:、足球 :soccer:。
 
@@ -65,10 +65,10 @@ PageView: true
 
 目前博客内容主要为过去做过的一些项目、小研究、自学内容的整理等，有时间也会加入书评、乐评、随笔等其他内容。
 
-- **`交通`** 主要记录本专业一些相关内容，如常见模型、算法讲解与实现。
+- **`交通`** 主要记录本科专业一些相关学习内容。
 - **`机器学习`** 主要为自学 ML 笔记及代码。
-- **`数模`** 总结自己参加数模比赛过程中，常见的模型、算法整理。
-- **`英语`** 交通方向的英文文献、交通方面的专业名词、理论知识、前沿技术发展等。
+- **`路径规划`** 纪录读研阶段学习内容。
+- **`英语`** 读研期间英语学习的纪录。
 - **`Myself`** 博主的自我介绍。
 
   :heart: 感谢你看到这里 :heart:
