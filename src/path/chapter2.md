@@ -446,7 +446,36 @@ The key differences between Dijkstra algorithm and forward value iteration algor
 |      **Efficiency**      | More efficient for single-goal problems                      | Less efficient; explores the entire state space               |
 
 
+If Dijkstra’s algorithm seems so clever, then why have we spent time covering the value-iteration method? For some problems it may become too expensive to maintain the sorted queue, and value iteration could provide a more efficient alternative. A more important reason is that value iteration extends easily to a much broader class of problems. Examples include optimal planning over continuous state spaces (Sections 8.5.2 and 14.5), stochastic optimal planning (Section 10.2), and computing dynamic game equilibria (Section 10.5).
 
+
+Dijkstra’s algorithm belongs to a broader family of *label-correcting algorithms*, which all produce optimal plans by making small modifications to the general forward-search algorithm.
+
+
+**FORWARD LABEL CORRECTING(xG)**
+
+    1   Set C(x) = ∞ for all x(except xI), and set C(xI) = 0.
+
+    2   Q.Insert(xI)
+
+    3   while Q not empty do:
+
+    4       x ← GetFirst(Q)
+
+    5       for all u in U(x)
+
+    6           x' ← f(x, u)
+
+    7           if C(x) + l(x, u) < min{C(x'), C(xG)}
+
+    8               C(x') ← C(x) + l(x, u)
+
+    9               if x' is not xG
+
+    10                  Q.Insert(x')
+
+
+Notably, the label-correcting approach uses the cost at the goal state to ==prune away== many candidate paths; this is shown in line 7. Thus, it is only formulated to work for a single goal state; it can be adapted to work for multiple goal states, but performance degrades. The motivation for including C(xG) in line 7 is that there is no need to worry about improving costs at some state, x′, if its new cost-to-come would be higher than C(xG); there is no way it could be along a path that improves the cost to go to xG.
 
 
 
