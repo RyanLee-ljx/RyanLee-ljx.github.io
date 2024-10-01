@@ -369,10 +369,14 @@ For iteration going on, we introduce two similar formulas.
 
 This formula calculates the optimal action $(u^{*})$ at a given state $x$:
 
+::: center
+
 $$
 u^* = \arg \min_{u \in U(x)} \left( l(x, u) + G^*(f(x, u)) \right)
 $$
 $(5)$
+
+:::
 
 - **$l(x, u)$**: Represents the cost incurred by taking action $u$ in state $x$.
 - **$G^*(f(x, u))$**: The optimal *cost-to-go* function, which estimates the remaining cost to the goal from the next state $f(x, u)$, the state that results from applying action $u $ to state $x$.
@@ -382,10 +386,14 @@ The formula minimizes the total cost, which is the sum of the immediate cost $l(
 
 **For forward value iteration:**
 
+::: center
+
 $$
 u^{} = \arg \min_{u^{-1} \in U^{-1}(x)} \left( C^*(f^{-1}(x, u^{-1})) + l(f^{-1}(x, u^{-1}), u') \right)
 $$
 $(6)$
+
+:::
 
 - **$f^{-1}(x, u^{-1})$**: Refers to the state from which action $u^{-1}$ would bring the system into state $x$.
 - **$C^{*}$**: The optimal *cost-to-come* function, analogous to $G^{*}$, but in a forward direction. It tells us the best cost incurred to reach $x$ from some previous state.
@@ -423,6 +431,19 @@ Example 1 will be changed into:
 
 :::
 
+### 2.3.3 Dijkstra Revisited
+
+The key differences between Dijkstra algorithm and forward value iteration algorithm are shown as below:
+
+|         Feature          | Dijkstra's Algorithm | Forward Value Iteration |
+|--------------------------|----------------------|-------------------------|
+|      **Cost Metric**     | Minimizes **cost-to-come** (from start to current state) | Propagates **cost-to-come** in forward iteration              |
+|       **Approach**       | Greedy, explores states with minimum cost-to-come            | Dynamic programming, iterates over all states simultaneously  |
+| **Exploration Strategy** | Expands one state at a time based on smallest cost-to-come   | Updates all states simultaneously in each iteration           |
+|       **Priority**       | Uses a priority queue to expand least-cost states first      | Does not prioritize; updates globally                         |
+| **Set of Alive States**  | Yes, maintains a set of "alive" states (states yet to be finalized) | No, updates all states without maintaining alive states      |
+|    **Best Use Case**     | Finding the shortest path to a goal state                    | Computing global cost-to-come for all states                  |
+|      **Efficiency**      | More efficient for single-goal problems                      | Less efficient; explores the entire state space               |
 
 
 
