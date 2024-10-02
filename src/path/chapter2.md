@@ -538,8 +538,6 @@ $$
 I = {Battery1, Battery2, Cap, F lashlight}
 $$
 
-:::
-
 ![An example that involves putting batteries into a flashlight](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example%203.png?raw=true)
 
 Two different predicates will be defined, *On* and *In*, each of which is a partial function on *I*. The predicate On may only be applied to evaluate whether the Cap is On the Flashlight and is written as *On(Cap, Flashlight)*. The predicate *In* may be applied in the following two ways: *In(Battery1, Flashlight)*, *In(Battery2, F lashlight)*, to indicate whether either battery is in the flashlight. 
@@ -569,11 +567,10 @@ $$
 which means that both batteries must be in the flashlight, and the cap must be on. 
 The set O consists of the four operators, which are 
 
-| Name       | Preconditions                                        | Effects                                        |
-|------------|------------------------------------------------------|------------------------------------------------|
-| PlaceCap   | {¬On(Cap, Flashlight)}                               | {On(Cap, Flashlight)}                          |
-| RemoveCap  | {On(Cap, Flashlight)}                                | {¬On(Cap, Flashlight)}                         |
-| Insert(i)  | {¬On(Cap, Flashlight), ¬In(i, Flashlight)}           | {In(i, Flashlight)}                            |
+| Name       | Preconditions                              | Effects                |
+| PlaceCap   | {¬On(Cap, Flashlight)}                     | {On(Cap, Flashlight)}  |
+| RemoveCap  | {On(Cap, Flashlight)}                      | {¬On(Cap, Flashlight)} |
+| Insert(i)  | {¬On(Cap, Flashlight), ¬In(i, Flashlight)} | {In(i, Flashlight)}    |
 
 Here is a plan that reaches the goal state in the smallest number of steps: 
 
