@@ -542,29 +542,29 @@ $$
 
 ![An example that involves putting batteries into a flashlight](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example%203.png?raw=true)
 
- Two different predicates will be defined, *On* and *In*, each of which is a partial function on *I*. The predicate On may only be applied to evaluate whether the Cap is On the Flashlight and is written as *On(Cap, Flashlight)*. The predicate *In* may be applied in the following two ways: *In(Battery1, Flashlight)*, *In(Battery2, F lashlight)*, to indicate whether either battery is in the flashlight. 
+Two different predicates will be defined, *On* and *In*, each of which is a partial function on *I*. The predicate On may only be applied to evaluate whether the Cap is On the Flashlight and is written as *On(Cap, Flashlight)*. The predicate *In* may be applied in the following two ways: *In(Battery1, Flashlight)*, *In(Battery2, F lashlight)*, to indicate whether either battery is in the flashlight. 
  
- Recall that predicates are only partial functions in general. For the predicate In, it is not desirable to apply any instance to any argument. For example, it is meaningless to define *In(Battery1, Battery1)* and *In(F lashlight, Battery2)* (they could be included in the model, always retaining a negative value, but it is inefficient).
+Recall that predicates are only partial functions in general. For the predicate In, it is not desirable to apply any instance to any argument. For example, it is meaningless to define *In(Battery1, Battery1)* and *In(F lashlight, Battery2)* (they could be included in the model, always retaining a negative value, but it is inefficient).
 
- The initial set is  
+The initial set is  
  
- ::: center
+::: center
 
- $$
- S = {On(Cap, F lashlight)}.
- $$
+$$
+S = {On(Cap, F lashlight)}.
+$$
  
- :::
+:::
 
- Based on S, both *¬In(Battery1, F lashlight)* and *¬In(Battery2, Flashlight)* are assumed to hold. Thus, S indicates that the cap is on the flashlight, but the batteries are outside. The goal state is 
+Based on S, both *¬In(Battery1, F lashlight)* and *¬In(Battery2, Flashlight)* are assumed to hold. Thus, S indicates that the cap is on the flashlight, but the batteries are outside. The goal state is 
  
- ::: center
+::: center
 
- $$
- G = {On(Cap, Flashlight), In(Battery1, Flashlight),  In(Battery2, Flashlight)}
- $$
+$$
+G = {On(Cap, Flashlight), In(Battery1, Flashlight),  In(Battery2, Flashlight)}
+$$
 
- :::
+:::
 
 which means that both batteries must be in the flashlight, and the cap must be on. 
 The set O consists of the four operators, which are 
