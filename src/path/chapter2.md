@@ -277,11 +277,11 @@ Suppose that $K=4, x_{I}=a, x_{G}={d}$. Hence, there will be four iterations by 
 
 Firstly, $G^{*}_{5}(x_{5})=x_{F}$, For state a, b, c, e, they are not in $x_{G}$, so each value of them is $\infty$. For state d, the value is 0.
 
-$K=4, G^{*}_{4}(x_{4})=\underset{u4}{\min} {l(x_{4}, u_{4}) + G^{*}_{5}(x_{5})}$, $x_{5}$ can be a, b, c, d, e. Let's assume a as the current state($x_{4}$) for instance. $G^{*}_{5}(c)=\infty$, the equation goes to $G^{*}_{4}(a)=\underset{u_{4}}{\min} {l(a, u_{4}) + G^{*}_{5}(x_{5})}$. Here, $x_{5}$ can be $a, b, c, d, e$. $u_{4}$ is the edge from a to $x_{5}$. We need to find out the smallest of the five combinations of $a$ and $x_{5}(a, b, c, d, e)$. Obviously, all of them is $\infty$. 
+$K=4, G^{*}_{4}(x_{4})=\underset{u4}{\min} {l(x_{4}, u_{4}) + G^{*}_{5}(x_{5})}$, $x_{5}$ can be a, b, c, d, e. Let's assume a as the current state($x_{4}$) for instance. $G^{*}_{5}(c)=\infty$, the equation goes to $G^{*}_{4}(a)=\underset{u_{4}}{\min} {l(a, u_{4}) + G^{*}_{5}(x_{5})}$. Here, $x_{5}$ can be a, b, c, d, e. $u_{4}$ is the edge from a to $x_{5}$. We need to find out the smallest of the five combinations of $a$ and $x_{5}(a, b, c, d, e)$. Obviously, all of them is $\infty$. 
 
 Let's take b, c as the $x_{4}$, respectively. You can see that $G^{*}_{4}(b)={l(b, u_bd) + G^{*}_{5}(d)}={4+0}=4$. $G^{*}_{4}(c)={l(c, u_cd) + G^{*}_{5}(d)}={1+0}=1$.
 
-$K=3$, the potential options of $x_{4}=b, c$. You need to take $a,b,c,d,e$ as $x_{3}$ to calculate their optimal value $G^{*}_{3}(x_{3})$. For example, d as $x_{3}$. There are five circumstances, in which 3 of them are $\infty$(a, d, e). So the left two are $G^{*}_{3}(d)={l(d, u_dc) + G^{*}_{3}(c)}={1+1}=2$. $G^{*}_{3}(d)={l(d, u_db) + G^{*}_{3}(b)}={\infty+0}=\infty$ So $G^{*}_{3}(d)=2$.
+$K=3$, the potential options of $x_{4}=b, c$. You need to take a,b,c,d,e as $x_{3}$ to calculate their optimal value $G^{*}_{3}(x_{3})$. For example, d as $x_{3}$. There are five circumstances, in which 3 of them are $\infty$(a, d, e). So the left two are $G^{*}_{3}(d)={l(d, u_dc) + G^{*}_{3}(c)}={1+1}=2$. $G^{*}_{3}(d)={l(d, u_db) + G^{*}_{3}(b)}={\infty+0}=\infty$ So $G^{*}_{3}(d)=2$.
 
 In this way can you easily obtain $G^{*}_{2}(x_{2}), G^{*}_{1}(x_{1})$. The results are shown in the following table.
 
