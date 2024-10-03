@@ -534,7 +534,7 @@ Initially, we have several instances and define several predicates so as to form
 Imagine a planning problem that involves putting two batteries into a flashlight, as shown in the following figure. The set of instances are
 
 $$
-I = {Battery1, Battery2, Cap, F lashlight}
+I = \{Battery1, Battery2, Cap, Flashlight\}
 $$
 
 ::: left
@@ -570,6 +570,7 @@ $$
 $$
 
 In words, the plan simply says to take the cap off, put the batteries in, and place the cap back on.
+
 
 :::
 
