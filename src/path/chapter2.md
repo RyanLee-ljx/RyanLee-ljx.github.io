@@ -183,7 +183,6 @@ This section presents several search algorithms, each of which constructs a _sea
 
     Return FAILURE
 
-
 ### 2.2.4 A Unified View of the Search Methods
 
 For all search methods, there usually involves the following 6 steps:
@@ -234,17 +233,18 @@ $l(x_{k}, u_{k})$ is the cost term after applying $u_{k}$ at $x_{k}$ while $f(x_
 
 ### 2.3.1 Optimal Fixed-Length Plans
 
-This section will mainly discuss the *value iteration* algorithm, which is to iteratively compute optimal cost-to-go (or cost-to-come) functions over the state space. In some conditions, it can be reduced to Dijkstra algorithm. There are mainly two versions of this algorithm, namely backward value iteration and forward value iteration.
+This section will mainly discuss the _value iteration_ algorithm, which is to iteratively compute optimal cost-to-go (or cost-to-come) functions over the state space. In some conditions, it can be reduced to Dijkstra algorithm. There are mainly two versions of this algorithm, namely backward value iteration and forward value iteration.
 
 #### 2.3.1.1 Backward value iteration
 
-Firstly, we will introduce a new cost fuctional called $G^{*}_{k}$, which represents the *cost-to-go* fuction accumulated through stage k to F. It can be written as the following equation:
+Firstly, we will introduce a new cost fuctional called $G^{*}_{k}$, which represents the _cost-to-go_ fuction accumulated through stage k to F. It can be written as the following equation:
 
 ::: center
 
 $$
 G^{*}_{k}(x_{k})= \underset{uk...uK}{\min} {sum_{i=k}^{K} l(x_{k}, u_{k}) + l_F(x_F)}
 $$
+
 $(1)$
 :::
 
@@ -255,6 +255,7 @@ This can be converted to the following equation (the proof process is omitted he
 $$
 G^{*}_{k}(x_{k}) = \underset{uk}{\min} {l(x_{k}, u_{k}) + G^{*}_{k+1}(x_{k+1})}
 $$
+
 $(2)$
 
 :::
@@ -263,7 +264,7 @@ This produces the recurrence, which can be used to obtain $G^{*}_{k}(x_{k})$ ite
 
 ::: center
 
-$G^{*}_{F}(x_{F}) \to G^{*}_{K}(x_{K}) \to G^{*}_{K-1}(x_{K-1}) \to ... \to G^{*}_{k}(x_{k}) \to ... \to G^{*}_{1}(x_{1})$ 
+$G^{*}_{F}(x_{F}) \to G^{*}_{K}(x_{K}) \to G^{*}_{K-1}(x_{K-1}) \to ... \to G^{*}_{k}(x_{k}) \to ... \to G^{*}_{1}(x_{1})$
 
 :::
 
@@ -277,7 +278,7 @@ Suppose that $K=4, x_{I}=a, x_{G}={d}$. Hence, there will be four iterations by 
 
 Firstly, $G^{*}_{5}(x_{5})=x_{F}$, For state a, b, c, e, they are not in $x_{G}$, so each value of them is $\infty$. For state d, the value is 0.
 
-$K=4, G^{*}_{4}(x_{4})=\underset{u4}{\min} {l(x_{4}, u_{4}) + G^{*}_{5}(x_{5})}$, $x_{5}$ can be a, b, c, d, e. Let's assume a as the current state($x_{4}$) for instance. $G^{*}_{5}(c)=\infty$, the equation goes to $G^{*}_{4}(a)=\underset{u_{4}}{\min} {l(a, u_{4}) + G^{*}_{5}(x_{5})}$. Here, $x_{5}$ can be a, b, c, d, e. $u_{4}$ is the edge from a to $x_{5}$. We need to find out the smallest of the five combinations of $a$ and $x_{5}(a, b, c, d, e)$. Obviously, all of them is $\infty$. 
+$K=4, G^{*}_{4}(x_{4})=\underset{u4}{\min} {l(x_{4}, u_{4}) + G^{*}_{5}(x_{5})}$, $x_{5}$ can be a, b, c, d, e. Let's assume a as the current state($x_{4}$) for instance. $G^{*}_{5}(c)=\infty$, the equation goes to $G^{*}_{4}(a)=\underset{u_{4}}{\min} {l(a, u_{4}) + G^{*}_{5}(x_{5})}$. Here, $x_{5}$ can be a, b, c, d, e. $u_{4}$ is the edge from a to $x_{5}$. We need to find out the smallest of the five combinations of $a$ and $x_{5}(a, b, c, d, e)$. Obviously, all of them is $\infty$.
 
 Let's take b, c as the $x_{4}$, respectively. You can see that $G^{*}_{4}(b)={l(b, u_bd) + G^{*}_{5}(d)}={4+0}=4$. $G^{*}_{4}(c)={l(c, u_cd) + G^{*}_{5}(d)}={1+0}=1$.
 
@@ -285,13 +286,13 @@ $K=3$, the potential options of $x_{4}=b, c$. You need to take a,b,c,d,e as $x_{
 
 In this way can you easily obtain $G^{*}_{2}(x_{2}), G^{*}_{1}(x_{1})$. The results are shown in the following table.
 
-|     | a  | b  | c  | d  | e  |
-|-----|----|----|----|----|----|
-| G₅* | ∞  | ∞  | ∞  | 0  | ∞  |
-| G₄* | ∞  | 4  | 1  | ∞  | ∞  |
-| G₃* | 6  | 2  | ∞  | 2  | ∞  |
-| G₂* | 4  | 6  | 3  | ∞  | ∞  |
-| G₁* | 6  | 4  | 5  | 4  | ∞  |
+|      | a   | b   | c   | d   | e   |
+| ---- | --- | --- | --- | --- | --- |
+| G₅\* | ∞   | ∞   | ∞   | 0   | ∞   |
+| G₄\* | ∞   | 4   | 1   | ∞   | ∞   |
+| G₃\* | 6   | 2   | ∞   | 2   | ∞   |
+| G₂\* | 4   | 6   | 3   | ∞   | ∞   |
+| G₁\* | 6   | 4   | 5   | 4   | ∞   |
 
 :::
 
@@ -301,7 +302,7 @@ The ideas from Section 2.3.1.1 may be recycled to yield a symmetrically equivale
 
 In the backward case, $x_{G}$ must be fixed, and in the forward case, $x_{I}$ must be fixed.
 
-Symmetrically, here we introduce $C^{*}_{k}$, which denotes the optimal *cost-to-come* value from stage 1 to k. $l_{I}$ serves as the same role of $l_{F}$. That is
+Symmetrically, here we introduce $C^{*}_{k}$, which denotes the optimal _cost-to-come_ value from stage 1 to k. $l_{I}$ serves as the same role of $l_{F}$. That is
 
 ::: center
 
@@ -318,6 +319,7 @@ Likewise, we can get the same equation:
 $$
 C^{*}_{k}(x_{k})= \underset{u1...uk-1}{\min} {sum_{i=1}^{k-1} l(x_{k}, u_{k}) + l_I(x_I)}
 $$
+
 $(3)$
 
 :::
@@ -329,6 +331,7 @@ Also the recurrence:
 $$
 C^{*}_{k}(x_{k}) = \underset{uk-1}{\min} {l(x_{k}, u_{k}) + C^{*}_{k-1}(x_{k-1})}
 $$
+
 $(4)$
 
 :::
@@ -339,13 +342,13 @@ We can still use the net in Figure 1, perform the forward iteration:
 
 Suppose K=4, we need to calculate $C^{*}_{4}$ for a, b, c, d, e. Each has 5 options of $C^{*}_{k-1}(x_{k-1})$. For instance, $C^{*}_{4}(x_{c})$, there exsits a-c, b-c, c-c, d-c, e-c. $C^{*}_{3}(x_{e})=\infty$, $l_{a-c}, l_{c-c}=\infty$. Thus we only need to compare $l_{b-c}+C^{*}_{3}(x_{b})$ and $l_{d-c}+C^{*}_{3}(x_{d})$. The former is smaller, which equals to 5 while the latter is 7.
 
-|     | a  | b  | c  | d  | e  |
-|-----|----|----|----|----|----|
-| C₁* | 0  | ∞  | ∞  | ∞  | ∞  |
-| C₂* | 2  | 2  | ∞  | ∞  | ∞  |
-| C₃* | 4  | 4  | 3  | 6  | ∞  |
-| C₄* | 4  | 6  | 5  | 4  | 7  |
-| C₅* | 6  | 6  | 5  | 6  | 5  |
+|      | a   | b   | c   | d   | e   |
+| ---- | --- | --- | --- | --- | --- |
+| C₁\* | 0   | ∞   | ∞   | ∞   | ∞   |
+| C₂\* | 2   | 2   | ∞   | ∞   | ∞   |
+| C₃\* | 4   | 4   | 3   | 6   | ∞   |
+| C₄\* | 4   | 6   | 5   | 4   | 7   |
+| C₅\* | 6   | 6   | 5   | 6   | 5   |
 
 :::
 
@@ -374,15 +377,15 @@ This formula calculates the optimal action $(u^{*})$ at a given state $x$:
 $$
 u^* = \arg \min_{u \in U(x)} \left( l(x, u) + G^*(f(x, u)) \right)
 $$
+
 $(5)$
 
 :::
 
 - **$l(x, u)$**: Represents the cost incurred by taking action $u$ in state $x$.
-- **$G^*(f(x, u))$**: The optimal *cost-to-go* function, which estimates the remaining cost to the goal from the next state $f(x, u)$, the state that results from applying action $u $ to state $x$.
+- **$G^*(f(x, u))$**: The optimal _cost-to-go_ function, which estimates the remaining cost to the goal from the next state $f(x, u)$, the state that results from applying action $u $ to state $x$.
 
 The formula minimizes the total cost, which is the sum of the immediate cost $l(x, u)$ and the cost-to-go from the resulting state. The `argmin` part means we are selecting the action $u^{*}$ that yields the lowest total cost.
-
 
 **For forward value iteration:**
 
@@ -391,12 +394,13 @@ The formula minimizes the total cost, which is the sum of the immediate cost $l(
 $$
 u^{} = \arg \min_{u^{-1} \in U^{-1}(x)} \left( C^*(f^{-1}(x, u^{-1})) + l(f^{-1}(x, u^{-1}), u') \right)
 $$
+
 $(6)$
 
 :::
 
 - **$f^{-1}(x, u^{-1})$**: Refers to the state from which action $u^{-1}$ would bring the system into state $x$.
-- **$C^{*}$**: The optimal *cost-to-come* function, analogous to $G^{*}$, but in a forward direction. It tells us the best cost incurred to reach $x$ from some previous state.
+- **$C^{*}$**: The optimal _cost-to-come_ function, analogous to $G^{*}$, but in a forward direction. It tells us the best cost incurred to reach $x$ from some previous state.
 - **$l(f^{-1}(x, u^{-1}), u')$**: Represents the cost of the action leading from the predecessor state to $x$.
 
 In this way can we not rely on the specified $k$. Since we select the action $u^{*}$ that yields the lowest total cost every iteration.
@@ -406,8 +410,9 @@ In this way can we not rely on the specified $k$. Since we select the action $u^
 **Key Differences between (2) (4) in fixed-length planning and (5) (6) in variable-length planning**
 
 1. **Fixed vs. Variable Length**:
+
    - **(2)(4)** is used in the context of fixed-length planning, where the number of stages is known and the goal is to minimize the cost over a set number of steps.
-   - **(5)(6)** is for variable-length planning, where the number of stages is unspecified, and you want to minimize the overall *cost-to-go/cost-to-come*, with no constraint on the number of steps.
+   - **(5)(6)** is for variable-length planning, where the number of stages is unspecified, and you want to minimize the overall _cost-to-go/cost-to-come_, with no constraint on the number of steps.
 
 2. **Stage Dependency**:
    - **(2)(4)** depends on the stage index $k$ (since the cost-to-go depends on the specific stage).
@@ -415,19 +420,18 @@ In this way can we not rely on the specified $k$. Since we select the action $u^
 
 **Similarity**
 
-Both formulas aim to minimize the total cost by selecting the optimal action at each state based on a cost function that combines immediate cost and the future *cost-to-go*/past *cost-to-come*. The mechanism for selecting actions is the same—iteratively finding the action that leads to the least total cost.
-
+Both formulas aim to minimize the total cost by selecting the optimal action at each state based on a cost function that combines immediate cost and the future _cost-to-go_/past _cost-to-come_. The mechanism for selecting actions is the same—iteratively finding the action that leads to the least total cost.
 
 Example 1 will be changed into:
 
-|      | a  | b  | c  | d  | e  |
-|------|----|----|----|----|----|
-| G₀*  | ∞  | ∞  | ∞  | 0  | ∞  |
-| G₋₁* | ∞  | 4  | 1  | 0  | ∞  |
-| G₋₂* | 6  | 2  | 1  | 0  | ∞  |
-| G₋₃* | 4  | 2  | 1  | 0  | ∞  |
-| G₋₄* | 4  | 2  | 1  | 0  | ∞  |
-| G*   | 4  | 2  | 1  | 0  | ∞  |
+|       | a   | b   | c   | d   | e   |
+| ----- | --- | --- | --- | --- | --- |
+| G₀\*  | ∞   | ∞   | ∞   | 0   | ∞   |
+| G₋₁\* | ∞   | 4   | 1   | 0   | ∞   |
+| G₋₂\* | 6   | 2   | 1   | 0   | ∞   |
+| G₋₃\* | 4   | 2   | 1   | 0   | ∞   |
+| G₋₄\* | 4   | 2   | 1   | 0   | ∞   |
+| G\*   | 4   | 2   | 1   | 0   | ∞   |
 
 :::
 
@@ -435,22 +439,19 @@ Example 1 will be changed into:
 
 The key differences between Dijkstra algorithm and forward value iteration algorithm are shown as below:
 
-|         Feature          | Dijkstra's Algorithm | Forward Value Iteration |
-|--------------------------|----------------------|-------------------------|
-|      **Cost Metric**     | Minimizes **cost-to-come** (from start to current state) | Propagates **cost-to-come** in forward iteration              |
-|       **Approach**       | Greedy, explores states with minimum cost-to-come            | Dynamic programming, iterates over all states simultaneously  |
-| **Exploration Strategy** | Expands one state at a time based on smallest cost-to-come   | Updates all states simultaneously in each iteration           |
-|       **Priority**       | Uses a priority queue to expand least-cost states first      | Does not prioritize; updates globally                         |
+| Feature                  | Dijkstra's Algorithm                                                | Forward Value Iteration                                      |
+| ------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Cost Metric**          | Minimizes **cost-to-come** (from start to current state)            | Propagates **cost-to-come** in forward iteration             |
+| **Approach**             | Greedy, explores states with minimum cost-to-come                   | Dynamic programming, iterates over all states simultaneously |
+| **Exploration Strategy** | Expands one state at a time based on smallest cost-to-come          | Updates all states simultaneously in each iteration          |
+| **Priority**             | Uses a priority queue to expand least-cost states first             | Does not prioritize; updates globally                        |
 | **Set of Alive States**  | Yes, maintains a set of "alive" states (states yet to be finalized) | No, updates all states without maintaining alive states      |
-|    **Best Use Case**     | Finding the shortest path to a goal state                    | Computing global cost-to-come for all states                  |
-|      **Efficiency**      | More efficient for single-goal problems                      | Less efficient; explores the entire state space               |
-
+| **Best Use Case**        | Finding the shortest path to a goal state                           | Computing global cost-to-come for all states                 |
+| **Efficiency**           | More efficient for single-goal problems                             | Less efficient; explores the entire state space              |
 
 If Dijkstra’s algorithm seems so clever, then why have we spent time covering the value-iteration method? For some problems it may become too expensive to maintain the sorted queue, and value iteration could provide a more efficient alternative. A more important reason is that value iteration extends easily to a much broader class of problems. Examples include optimal planning over continuous state spaces (Sections 8.5.2 and 14.5), stochastic optimal planning (Section 10.2), and computing dynamic game equilibria (Section 10.5).
 
-
-Dijkstra’s algorithm belongs to a broader family of *label-correcting algorithms*, which all produce optimal plans by making small modifications to the general forward-search algorithm.
-
+Dijkstra’s algorithm belongs to a broader family of _label-correcting algorithms_, which all produce optimal plans by making small modifications to the general forward-search algorithm.
 
 **FORWARD LABEL CORRECTING($x_G$)**
 
@@ -474,9 +475,7 @@ Dijkstra’s algorithm belongs to a broader family of *label-correcting algorith
 
     10                  Q.Insert(x')
 
-
 Notably, the label-correcting approach uses the cost at the goal state to ==prune away== many candidate paths; this is shown in line 7. Thus, it is only formulated to work for a single goal state; it can be adapted to work for multiple goal states, but performance degrades. The motivation for including $C(x_G)$ in line 7 is that there is no need to worry about improving costs at some state, $x′$, if its new cost-to-come would be higher than $C(x_G)$; there is no way it could be along a path that improves the cost to go to $x_G$.
-
 
 ## 2.4 Using Logic to Formulate Discrete Planning
 
@@ -504,23 +503,23 @@ Logic-based representations are difficult to generalize.
 
 STRIPS-like representations have been the most common logic-based representations for discrete planning problems. This refers to the STRIPS system, which is considered one of the first planning algorithms and representations; its name is derived from the STanford Research Institute Problem Solver. There are many variations of STRIPS-like representations. Here is one formulation:
 
-1. A finite, nonempty set $I$ of *instances*. *Instances* are just the object existing in the world like books or trees.  
+1. A finite, nonempty set $I$ of _instances_. _Instances_ are just the object existing in the world like books or trees.
 
-2. A finite, nonempty set $P$ of *predicates*, which are binary-valued (partial) functions of one of more instances. Each application of a *predicate* to a specific set of *instances* is called a *positive literal*. A logically negated positive literal is called a *negative literal*. 
+2. A finite, nonempty set $P$ of _predicates_, which are binary-valued (partial) functions of one of more instances. Each application of a _predicate_ to a specific set of _instances_ is called a _positive literal_. A logically negated positive literal is called a _negative literal_.
 
-The *predicates* can form the basic properties or statements of certain *instances*. For example, a predicate called *Under* might be used to indicate things like Under(Book, T able) (the book is under the table) or Under(Dirt, Rug). 
+The _predicates_ can form the basic properties or statements of certain _instances_. For example, a predicate called _Under_ might be used to indicate things like Under(Book, T able) (the book is under the table) or Under(Dirt, Rug).
 
-A *predicate* can be interpreted as a kind of function that yields *true* or *false* values; 
+A _predicate_ can be interpreted as a kind of function that yields _true_ or _false_ values;
 
-however, it is important to note that it is only a partial function because it might not be desirable to allow any *instance* to be inserted as an argument to the *predicate*.(In other words, some combinations of *predicates* and *instance* are obviously *true* or *false*.)
+however, it is important to note that it is only a partial function because it might not be desirable to allow any _instance_ to be inserted as an argument to the _predicate_.(In other words, some combinations of _predicates_ and _instance_ are obviously _true_ or _false_.)
 
 **Summary: instances + predicates = positive/negative literal**
 
-3. A finite, nonempty set $O$ of operators, each of which has: 1) *preconditions*, which are positive or negative literals that must hold for the operator to apply, and 2) *effects*, which are positive or negative literals that are the result of applying the operator.  
+3. A finite, nonempty set $O$ of operators, each of which has: 1) _preconditions_, which are positive or negative literals that must hold for the operator to apply, and 2) _effects_, which are positive or negative literals that are the result of applying the operator.
 
-4. An *initial set* $S$ which is expressed as a set of positive literals. Negative literals are implied. For any positive literal that does not appear in $S$, its corresponding negative literal is assumed to hold initially.  
+4. An _initial set_ $S$ which is expressed as a set of positive literals. Negative literals are implied. For any positive literal that does not appear in $S$, its corresponding negative literal is assumed to hold initially.
 
-5. A *goal set* $G$ which is expressed as a set of both positive and negative literals.
+5. A _goal set_ $G$ which is expressed as a set of both positive and negative literals.
 
 Summary: preconditions, effects, initial sets and goal sets are all made up of literals.
 
@@ -530,61 +529,48 @@ Initially, we have several instances and define several predicates so as to form
 
 ::: tip Example 3
 
-Imagine a planning problem that involves putting two batteries into a flashlight, as shown in the following figure. The set of instances are 
+![An example that involves putting batteries into a flashlight](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example%203.png?raw=true)
 
-::: center
+Imagine a planning problem that involves putting two batteries into a flashlight, as shown in the following figure. The set of instances are
 
 $$
 I = {Battery1, Battery2, Cap, F lashlight}
 $$
 
-![An example that involves putting batteries into a flashlight](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example%203.png?raw=true)
+::: left
 
-Two different predicates will be defined, *On* and *In*, each of which is a partial function on *I*. The predicate On may only be applied to evaluate whether the Cap is On the Flashlight and is written as *On(Cap, Flashlight)*. The predicate *In* may be applied in the following two ways: *In(Battery1, Flashlight)*, *In(Battery2, F lashlight)*, to indicate whether either battery is in the flashlight. 
- 
-Recall that predicates are only partial functions in general. For the predicate In, it is not desirable to apply any instance to any argument. For example, it is meaningless to define *In(Battery1, Battery1)* and *In(F lashlight, Battery2)* (they could be included in the model, always retaining a negative value, but it is inefficient).
+Two different predicates will be defined, _On_ and _In_, each of which is a partial function on _I_. The predicate On may only be applied to evaluate whether the Cap is On the Flashlight and is written as _On(Cap, Flashlight)_. The predicate _In_ may be applied in the following two ways: _In(Battery1, Flashlight)_, _In(Battery2, F lashlight)_, to indicate whether either battery is in the flashlight.
 
-The initial set is  
- 
-::: center
+Recall that predicates are only partial functions in general. For the predicate In, it is not desirable to apply any instance to any argument. For example, it is meaningless to define _In(Battery1, Battery1)_ and _In(F lashlight, Battery2)_ (they could be included in the model, always retaining a negative value, but it is inefficient).
+
+The initial set is
 
 $$
 S = {On(Cap, F lashlight)}.
 $$
- 
-:::
 
-Based on S, both *¬In(Battery1, F lashlight)* and *¬In(Battery2, Flashlight)* are assumed to hold. Thus, S indicates that the cap is on the flashlight, but the batteries are outside. The goal state is 
- 
-::: center
+Based on S, both _¬In(Battery1, F lashlight)_ and _¬In(Battery2, Flashlight)_ are assumed to hold. Thus, S indicates that the cap is on the flashlight, but the batteries are outside. The goal state is
 
 $$
 G = {On(Cap, Flashlight), In(Battery1, Flashlight),  In(Battery2, Flashlight)}
 $$
 
-:::
+which means that both batteries must be in the flashlight, and the cap must be on. The set O consists of the four operators, which are
 
-which means that both batteries must be in the flashlight, and the cap must be on. 
-The set O consists of the four operators, which are 
+| Name    | Preconditions | Effects |
+| ------- | ------------- | ------- |
+| PlaceCap | {¬On(Cap, Flashlight)} | {On(Cap, Flashlight)} |
+| RemoveCap | {On(Cap, Flashlight)} | {¬On(Cap, Flashlight)} |
+| Insert(i) | {¬On(Cap, Flashlight), ¬In(i, Flashlight)} | {In(i, Flashlight)} |
 
-| Name       | Preconditions                              | Effects                |
-| PlaceCap   | {¬On(Cap, Flashlight)}                     | {On(Cap, Flashlight)}  |
-| RemoveCap  | {On(Cap, Flashlight)}                      | {¬On(Cap, Flashlight)} |
-| Insert(i)  | {¬On(Cap, Flashlight), ¬In(i, Flashlight)} | {In(i, Flashlight)}    |
-
-Here is a plan that reaches the goal state in the smallest number of steps: 
-
-::: center
+Here is a plan that reaches the goal state in the smallest number of steps:
 
 $$
-(RemoveCap, Insert(Battery1), Insert(Battery2), PlaceCap)
+(Remove(Cap), Insert(Battery1), Insert(Battery2), Place(Cap))
 $$
-
-:::
 
 In words, the plan simply says to take the cap off, put the batteries in, and place the cap back on.
 
 :::
 
 This example appears quite simple, and one would expect a planning algorithm to easily find such a solution. It can be made more challenging by adding many more instances to I, such as more batteries, more flashlights, and a bunch of objects that are irrelevant to achieving the goal. Also, many other predicates and operators can be added so that the different combinations of operators become overwhelming.
-
