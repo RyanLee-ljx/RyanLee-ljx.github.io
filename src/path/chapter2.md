@@ -531,25 +531,31 @@ Initially, we have several instances and define several predicates so as to form
 
 ![An example that involves putting batteries into a flashlight](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/Pla/example%203.png?raw=true)
 
+
 Imagine a planning problem that involves putting two batteries into a flashlight, as shown in the following figure. The set of instances are
+
 
 $$
 I = \{Battery1, Battery2, Cap, Flashlight\}
 $$
 
-::: left
 
 Two different predicates will be defined, _On_ and _In_, each of which is a partial function on _I_. The predicate On may only be applied to evaluate whether the Cap is On the Flashlight and is written as _On(Cap, Flashlight)_. The predicate _In_ may be applied in the following two ways: _In(Battery1, Flashlight)_, _In(Battery2, F lashlight)_, to indicate whether either battery is in the flashlight.
 
+
 Recall that predicates are only partial functions in general. For the predicate In, it is not desirable to apply any instance to any argument. For example, it is meaningless to define _In(Battery1, Battery1)_ and _In(F lashlight, Battery2)_ (they could be included in the model, always retaining a negative value, but it is inefficient).
 
+
 The initial set is
+
 
 $$
 S = \{On(Cap, Flashlight)\}.
 $$
 
+
 Based on S, both _¬In(Battery1, F lashlight)_ and _¬In(Battery2, Flashlight)_ are assumed to hold. Thus, S indicates that the cap is on the flashlight, but the batteries are outside. The goal state is
+
 
 $$
 G = {On(Cap, Flashlight), In(Battery1, Flashlight),  In(Battery2, Flashlight)}
@@ -557,11 +563,13 @@ $$
 
 which means that both batteries must be in the flashlight, and the cap must be on. The set O consists of the four operators, which are
 
+
 | Name    | Preconditions | Effects |
 | ------- | ------------- | ------- |
-| PlaceCap | {¬On(Cap, Flashlight)} | {On(Cap, Flashlight)} |
-| RemoveCap | {On(Cap, Flashlight)} | {¬On(Cap, Flashlight)} |
-| Insert(i) | {¬On(Cap, Flashlight), ¬In(i, Flashlight)} | {In(i, Flashlight)} |
+| PlaceCap | $\{¬On(Cap, Flashlight)\}$ | $\{On(Cap, Flashlight)\}$ |
+| RemoveCap | $\{On(Cap, Flashlight)\}$ | $\{¬On(Cap, Flashlight)\}$ |
+| Insert(i) | $\{¬On(Cap, Flashlight), ¬In(i, Flashlight)\}$ | $\{In(i, Flashlight)\}$ |
+
 
 Here is a plan that reaches the goal state in the smallest number of steps:
 
