@@ -546,7 +546,7 @@ Recall that predicates are only partial functions in general. For the predicate 
 The initial set is
 
 $$
-S = {On(Cap, F lashlight)}.
+S = \{On(Cap, Flashlight)\}.
 $$
 
 Based on S, both _¬In(Battery1, F lashlight)_ and _¬In(Battery2, Flashlight)_ are assumed to hold. Thus, S indicates that the cap is on the flashlight, but the batteries are outside. The goal state is
