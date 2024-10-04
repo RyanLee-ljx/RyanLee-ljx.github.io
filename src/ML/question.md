@@ -269,7 +269,7 @@ If the learning rate is too large, the gradient descent algorithm will not conve
 
 4. 简要介绍卷积概念及其作用、池化的作用是什么？卷积前后图像尺寸之间的关系是什么？
 
-(见)[https://ryanlee-ljx.github.io/ML/convolution.html]
+[见](https://ryanlee-ljx.github.io/ML/convolution.html)
 
 5. 简述神经网络中梯度下降方法的原理和作用（作用请从机器学习训练阶段的三个步骤的角度来阐述）。
    
