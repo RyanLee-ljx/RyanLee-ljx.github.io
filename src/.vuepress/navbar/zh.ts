@@ -2,7 +2,7 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
 	{
-		text: "交通",
+		text: "本科",
 		icon: "zhihuijiaotong",
 		link: "/traffic/",
 	},

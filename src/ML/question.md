@@ -439,6 +439,8 @@ SVM 的缺点：
 
 （4）LDA 选择分类性能最好的投影方向，而 PCA 选择样本点投影具有最大方差的方向。
 
+## Further Reading: Questions in English
+
 ### 1. What is Regularization?
 
 Regularization is a technique used in machine learning to prevent overfitting by adding a **penalty**（惩罚项） to the model's complexity. It works by incorporating additional terms to the loss function, such as **L1 (Lasso)**（L1 正则化） or **L2 (Ridge)**（L2 正则化） penalties, which constrain the magnitude of the model parameters. This helps in reducing the variance without substantially increasing the bias, leading to better generalization on unseen data.
