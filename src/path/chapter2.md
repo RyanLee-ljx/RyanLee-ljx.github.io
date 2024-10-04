@@ -507,13 +507,13 @@ STRIPS-like representations have been the most common logic-based representation
 
 2. A finite, nonempty set $P$ of _predicates_, which are binary-valued (partial) functions of one of more instances. Each application of a _predicate_ to a specific set of _instances_ is called a _positive literal_. A logically negated positive literal is called a _negative literal_.
 
-The _predicates_ can form the basic properties or statements of certain _instances_. For example, a predicate called _Under_ might be used to indicate things like Under(Book, T able) (the book is under the table) or Under(Dirt, Rug).
+The _predicates_ can form the basic properties or statements of certain _instances_. For example, a predicate called _Under_ might be used to indicate things like Under(Book, Table) (the book is under the table) or Under(Dirt, Rug). (Here book and table are arguments)
 
 A _predicate_ can be interpreted as a kind of function that yields _true_ or _false_ values;
 
-however, it is important to note that it is only a partial function because it might not be desirable to allow any _instance_ to be inserted as an argument to the _predicate_.(In other words, some combinations of _predicates_ and _instance_ are obviously _true_ or _false_.)
+however, it is important to note that it is only a partial function which needs argument(s) to be inserted. And here instances are the argument(s). It might not be desirable to allow any _instance_ to be inserted as an argument to the _predicate_.(In other words, some combinations of _predicates_ and _instance_ are obviously _true_ or _false_.) 
 
-**Summary: instances + predicates = positive/negative literal**
+**Summary: predicates(argument 1, argument 2, argument 3..., argument n) = positive/negative literal (instances are arguments)**
 
 3. A finite, nonempty set $O$ of operators, each of which has: 1) _preconditions_, which are positive or negative literals that must hold for the operator to apply, and 2) _effects_, which are positive or negative literals that are the result of applying the operator.
 
@@ -583,3 +583,92 @@ In words, the plan simply says to take the cap off, put the batteries in, and pl
 :::
 
 This example appears quite simple, and one would expect a planning algorithm to easily find such a solution. It can be made more challenging by adding many more instances to I, such as more batteries, more flashlights, and a bunch of objects that are irrelevant to achieving the goal. Also, many other predicates and operators can be added so that the different combinations of operators become overwhelming.
+
+### 2.4.2 Converting to the State-Space Representation
+
+By converting the logic-based representation to the state-space representation, we can easily use the algorithm introduced previously to solve the problem.
+
+Up to now, the notion of “state” has been only vaguely mentioned in the context of the STRIPS-like representation. Now consider making this more concrete. Suppose that every predicate has $k$ arguments, and any instance could appear in each argument. This means that there are $|P||I|^k$ complementary pairs, which corresponds to all of the ways to substitute instances into all arguments of all predicates.(obviously there are p predicates, all of which has k places that each has I options(instances))
+
+To express the state, a positive or negative literal must be selected from every complementary pair. For convenience, this selection can be encoded as a binary string by imposing a linear ordering on the instances and predicates.
+
+Using Example 3, the state might be specified in order as  
+
+
+$$
+(On(Cap, F lashlight), ¬In(Battery1, Flashlight1), In(Battery2, Flashlight))
+$$
+
+
+Using a binary string, each element can be “0” to denote a negative literal or “1” to denote positive literal. The encoded state is x = 101 for the formula above.
+
+If any instance can appear in the argument of any predicate, then the length of the string is $|P||I|^k$. The total number of possible states of the world that could possibly be distinguished corresponds to the set of all possible bit strings. This set has size  
+
+
+$$
+2^{|P||I|^k} .
+$$
+
+(Each place has 0 or 1 two options)
+
+We can see that a small number of P and I can generate enormous state spaces, leading inefficient performance of algorithm. 
+
+The next step in converting to a state-space representation is to encode the initial state $x_I$ as a string. The goal set, $X_G$, is the set of all strings that are consistent with the positive and negative goal literals. This can be compressed by extending the string alphabet to include a “don’t care” symbol, $δ$.(Namely 1 or 0 in this place are both acceptable.) A single string that has a “0” for each negative literal, a “1” for each positive literal, and a “δ” for all others would suffice in representing any XG that is expressed with positive and negative literals.
+
+Now convert the operators. To apply the search techniques of Section 2.2, note that it is not necessary to determine $U(x)$ explicitly in advance for all $x \in X$. Instead, $U(x)$ can be computed whenever each $x$ is encountered for the first time in the search. 
+
+The effects of the operator are encoded by the state transition equation. From a given $x \in X$, the next state, $f(x, u)$, is obtained by ==flipping part of the bits==(0 → 1 or inversely) when operators applied.
+
+## 2.5 Logic-Based Planning Methods
+
+This section discusses how to adapt the value-iteration method to work under the logic-based representation, yielding optimal plans.
+
+### 2.5.1 Searching in a Space of Partial Plans
+
+One alternative to searching directly in X is to construct *partial plans* without reference to particular states. By using the operator representation, partial plans can be incrementally constructed. The idea is to iteratively achieve required subgoals in a partial plan while ensuring that no conflicts arise that could destroy the solution developed so far.
+
+A partial plan $σ$ is defined as  
+
+1. A set $O_σ$ of operators that need to be applied. If the operators contain variables, these may be filled in by specific values or left as variables. The same operator may appear multiple times in $O_σ$, possibly with different values for the variables.  
+
+2. A partial ordering relation $≺_σ$ on $O_σ$, which indicates for some pairs $o1, o2 \in O_σ$ that one must appear before other: $o1 ≺_σ o2$.  
+
+3. A set $B_σ$ of binding constraints, in which each indicates that some variables across operators must take on the same value.  
+
+4. A set $C_σ$ of causal links, in which each is of the form $(o1, l, o2)$ and indicates that $o1$ achieves the literal $l$ for the purpose of satisfying a precondition of $o2$(In other words, $o1$ achieved $l$ which is the precondition of $o2$).
+
+::: tip Example 4 (A Partial Plan)
+
+Each partial plan encodes a set of possible plans. Recall the model from Example 3. Suppose  
+
+
+$$
+O_σ = \{RemoveCap, Insert(Battery1)\}. 
+$$
+
+
+A sensible ordering constraint is that  
+
+
+$$
+RemoveCap ≺_σ Insert(Battery1)  
+$$
+
+A causal link
+
+
+$$
+(RemoveCap, ¬On(Cap, Flashlight), Insert(Battery1))
+$$
+
+
+indicates that the RemoveCap operator achieves the literal $¬On(Cap, Flashlight)$, which is a precondition of $Insert(Battery1)$. 
+
+There are no binding constraints for this example. The partial plan implicitly represents the set of all plans for which RemoveCap appears before $Insert(Battery1)$, under the constraint that the causal link is not violated.
+
+:::
+
+
+A vertex in the partial-plan search graph is a partial plan, and an edge is constructed by extending one partial plan to obtain another partial plan that is closer to completion. Although the general template is simple, the algorithm performance depends critically on the choice of initial plan and the particular flaw that is resolved in each iteration. One straightforward generalization is to develop multiple partial plans and decide which one to refine in each iteration. 
+
+In early works, methods based on partial plans seemed to offer substantial benefits; however, they are currently considered to be not “competitive enough” in comparison to methods that search the state space. One problem is that it becomes more difficult to develop application-specific heuristics without explicit references to states. Also, the vertices in the partial-plan search graph are costly to maintain and manipulate in comparison to ordinary states.
