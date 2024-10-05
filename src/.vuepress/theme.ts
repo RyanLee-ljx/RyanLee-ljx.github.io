@@ -15,7 +15,7 @@ export default hopeTheme({
 
   darkmode:'toggle',
 
-  iconAssets: "//at.alicdn.com/t/c/font_4520209_06gcf7m75jp.css",
+  iconAssets: "//at.alicdn.com/t/c/font_4520209_yy9lqw71sxl.css",
 
   blog: {
     medias: {

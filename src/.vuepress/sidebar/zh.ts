@@ -48,7 +48,7 @@ export default sidebar({
 
 
 
-	"/english/": [
+	"/daily/": [
 		{
 			text: "英语",
       collapsible: true,
