@@ -17,9 +17,9 @@ export default navbar([
 		link: "/path/",
 	},
 	{
-		text: "英语",
-		icon: "english",
-		link: "/english/",
+		text: "日常",
+		icon: "daily",
+		link: "/daily/",
 	},
 	{
 		text: "Myself",

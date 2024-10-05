@@ -50,20 +50,21 @@ export default sidebar({
 
 	"/english/": [
 		{
-			text: "前沿技术",
+			text: "英语",
       collapsible: true,
 			link: "/english/",
 			children: [
         'tec_1.md',
+        'vocabulary.md',
 			],
 		},	
 
     {
-			text: "专业术语",
+			text: "吉他",
       collapsible: true,
-			link: "/english/",
+			link: "/mujita/",
 			children: [
-        'vocabulary.md',
+        'yinxiuzhifu.md'
 			],
 		},	
 
