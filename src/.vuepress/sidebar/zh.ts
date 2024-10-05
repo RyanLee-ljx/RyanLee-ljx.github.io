@@ -52,7 +52,7 @@ export default sidebar({
 		{
 			text: "英语",
       collapsible: true,
-			link: "/english/",
+			link: "/daily/",
 			children: [
         'tec_1.md',
         'vocabulary.md',
@@ -62,7 +62,7 @@ export default sidebar({
     {
 			text: "吉他",
       collapsible: true,
-			link: "/mujita/",
+			link: "/daily/",
 			children: [
         'yinxiuzhifu.md'
 			],
