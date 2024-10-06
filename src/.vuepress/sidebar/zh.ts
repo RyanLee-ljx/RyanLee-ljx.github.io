@@ -52,18 +52,19 @@ export default sidebar({
 		{
 			text: "英语",
       collapsible: true,
-			link: "/daily/",
+			link: "/daily/english/",
 			children: [
-        '/english/',
+        'tec_1.md',
+        'vocabulary.md',
 			],
 		},	
 
     {
 			text: "吉他",
       collapsible: true,
-			link: "/daily/",
+			link: "/daily/guitar/",
 			children: [
-        '/guitar/'
+        'yinxiuzhifu.md'
 			],
 		},	
 
