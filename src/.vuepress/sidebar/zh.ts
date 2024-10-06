@@ -49,7 +49,7 @@ export default sidebar({
 			text: "文献阅读",
 			link: "/path/",
 			children: [
-        'paper/chapter1.md',
+        'paper/iMTSP.md',
 			],
 		},
 
