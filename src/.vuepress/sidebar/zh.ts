@@ -40,10 +40,19 @@ export default sidebar({
 			text: "PLANNING ALGORITHMS",
 			link: "/path/",
 			children: [
-        'chapter1.md',
-        'chapter2.md'
+        'pla/chapter1.md',
+        'pla/chapter2.md'
 			],
 		},
+
+    {
+			text: "文献阅读",
+			link: "/path/",
+			children: [
+        'paper/chapter1.md',
+			],
+		},
+
 	],
 
 

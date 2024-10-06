@@ -4,7 +4,7 @@ ReadingTime: true
 date: 2024-10-05
 Word: true
 PageView: true
-category: PR
+category: GT
 ---
 
 # 音符与休止符
