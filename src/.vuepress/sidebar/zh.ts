@@ -54,8 +54,7 @@ export default sidebar({
       collapsible: true,
 			link: "/daily/",
 			children: [
-        'tec_1.md',
-        'vocabulary.md',
+        '/english/',
 			],
 		},	
 
@@ -64,7 +63,7 @@ export default sidebar({
       collapsible: true,
 			link: "/daily/",
 			children: [
-        'yinxiuzhifu.md'
+        '/guitar/'
 			],
 		},	
 
