@@ -60,7 +60,7 @@ export default sidebar({
 	"/daily/": [
 		{
 			text: "英语",
-      collapsible: true,
+      collapsible: false,
 			link: "/daily/",
 			children: [
         'english/tec_1.md',
@@ -70,10 +70,12 @@ export default sidebar({
 
     {
 			text: "吉他",
-      collapsible: true,
+      collapsible: false,
 			link: "/daily/",
 			children: [
-        'guitar/yinxiuzhifu.md'
+        'guitar/yinxiuzhifu.md',
+        'guitar/jiezou.md',
+        'guitar/pu.md',
 			],
 		},	
 

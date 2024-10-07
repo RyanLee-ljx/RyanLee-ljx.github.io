@@ -18,7 +18,7 @@ University of Illinois
 
 Copyright Steven M. LaValle 2006  
 
-Available for downloading at [http://planning.cs.uiuc.edu/]
+Available for downloading at [here](http://planning.cs.uiuc.edu/).
 
 Published by Cambridge University Press
 
