@@ -7,7 +7,9 @@ PageView: true
 category: GT
 ---
 
-# 五线谱
+# 五线谱、简谱、六线谱
+
+## 五线谱
 
 五线谱主要是四个内容：什么调，什么节奏，不同位置音符代表不同音高（由下图，从下往上依次是MI FA SOL LA SI DO RE MI FA），以及音符不同时值带来的节奏。
 
@@ -15,13 +17,13 @@ category: GT
 
 两线时间叫做间。
 
-# 简谱
+## 简谱
 
 简谱在音符那课已经讲了很多，主要见下图。
 
 ![简谱](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/guitar/lesson3/2.png?raw=true)
 
-# 六线谱
+## 六线谱
 
 ![六线谱](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/guitar/lesson3/3.png?raw=true)
 

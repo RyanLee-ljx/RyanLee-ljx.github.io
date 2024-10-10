@@ -50,6 +50,7 @@ export default sidebar({
 			link: "/path/",
 			children: [
         'paper/iMTSP.md',
+        'TC-CBS-t.md',
 			],
 		},
 
@@ -76,6 +77,7 @@ export default sidebar({
         'guitar/yinxiuzhifu.md',
         'guitar/jiezou.md',
         'guitar/pu.md',
+        'guitar/C.md',
 			],
 		},	
 

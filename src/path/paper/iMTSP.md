@@ -16,6 +16,7 @@ This paper presents a network-based approach to solving the Min-Max Multiple Tra
 - Upper level: Optimizes the assignment of cities to agents using an allocation network. This network leverages a Compositional Message Passing Neural Network (CMPNN) to encode city topological relationships and an attention mechanism to determine which agent should visit which cities.
 
 - Lower level: Uses a traditional TSP solver to compute the optimal visiting order of cities for each agent, based on the assignment provided by the upper level.
+
 The objective is to minimize the longest tour length among all agents, which is non-differentiable and leads to high variance in gradient estimates, making optimization difficult. 
 
 To address this:
@@ -24,7 +25,7 @@ To address this:
 
 - A surrogate network is introduced to predict the maximum tour length based on the city assignments. This acts as a control variate, reducing the variance in gradient estimates and stabilizing the training process.
 
-The final gradient is a combination of:
+The final gradien of the parameter $\theta$ in allocation network is a combination of:
 
 1. The log-derivative-based gradient, adjusted by the difference between the surrogate network’s prediction and the actual maximum tour length.
 
