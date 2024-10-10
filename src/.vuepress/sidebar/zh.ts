@@ -50,7 +50,7 @@ export default sidebar({
 			link: "/path/",
 			children: [
         'paper/iMTSP.md',
-        'TC-CBS-t.md',
+        'paper/TC-CBS-t.md',
 			],
 		},
 
