@@ -525,7 +525,7 @@ Summary: preconditions, effects, initial sets and goal sets are all made up of l
 
 **The process involves:**
 
-Initially, we have several instances and define several predicates so as to form literals. We set the initial sets and goal sets. Based on corresponding preconditions, we need to find the operators that prodces the effects we want (reach the destination).
+Initially, we have several instances and define several predicates so as to form literals. We set the initial sets and goal sets. Based on corresponding preconditions, we need to find the operators that produces the effects we want (reach the destination).
 
 ::: tip Example 3
 

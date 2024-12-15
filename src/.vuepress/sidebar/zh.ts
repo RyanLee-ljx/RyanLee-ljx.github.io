@@ -77,7 +77,7 @@ export default sidebar({
         'guitar/yinxiuzhifu.md',
         'guitar/jiezou.md',
         'guitar/pu.md',
-        'guitar/C.md',
+        'guitar/yinjie.md',
 			],
 		},	
 
