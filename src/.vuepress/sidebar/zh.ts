@@ -32,6 +32,16 @@ export default sidebar({
         'convolution.md',
 			],
 		},
+
+    {
+			text: "Control Variate",
+      collapsible: false,
+			link: "/ML/",
+			children: [
+        'control_variate.md',
+			],
+		},
+    
 	],
 
 
