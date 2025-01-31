@@ -7,5 +7,4 @@ PageView: true
 category: ML
 ---
 
-
 # Log-Derivative Trick
