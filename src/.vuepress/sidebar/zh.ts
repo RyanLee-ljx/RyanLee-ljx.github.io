@@ -34,14 +34,32 @@ export default sidebar({
 		},
 
     {
-			text: "Control Variate",
+			text: "Tricks in ML",
       collapsible: false,
 			link: "/ML/",
 			children: [
         'control_variate.md',
+        'log.md',
 			],
 		},
-    
+
+    {
+			text: "Attention mechanism",
+      collapsible: false,
+			link: "/ML/",
+			children: [
+        'attention.md',
+			],
+		},
+  
+    {
+			text: "Graph Neural Network",
+      collapsible: false,
+			link: "/ML/",
+			children: [
+        'gnn.md',
+			],
+		},
 	],
 
 

@@ -1,7 +1,7 @@
 ---
-icon: 
+icon: tujiegou
 ReadingTime: true
-date: 2024-12-17
+date: 2025-02-01
 Word: true
 PageView: true
 category: ML
@@ -9,4 +9,3 @@ category: ML
 
 # 图神经网络
 
-图是
