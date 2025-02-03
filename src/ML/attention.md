@@ -219,7 +219,11 @@ The output of the Decoder is typically generated through the following steps:
 3. Select the Output:
    Based on the probability distribution, the word with the highest probability is selected as the output $y_t$ for the current time step. Alternatively, sampling methods can be used to generate the output.
 
+The following pictures can clearly illustrate this process.
 
+![illustration of Attention Mechanism](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/attention1.png?raw=true)
+
+![illustration of Attention Mechanism](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/attention2.png?raw=true)
 ## Summary
 
 The essence of attention mechanism is that we select important information from the input,giving them more weigths so as to omit redundant information.
