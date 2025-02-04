@@ -221,9 +221,10 @@ The output of the Decoder is typically generated through the following steps:
 
 The following pictures can clearly illustrate this process.
 
-![illustration of Attention Mechanism](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/attention1.png?raw=true)
+![illustration of Attention Mechanism(1)](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/attention1.png?raw=true)
 
-![illustration of Attention Mechanism](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/attention2.png?raw=true)
+![illustration of Attention Mechanism(2)](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/attention2.png?raw=true)
+
 ## Summary
 
 The essence of attention mechanism is that we select important information from the input,giving them more weigths so as to omit redundant information.
