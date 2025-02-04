@@ -14,6 +14,9 @@ jobs:
   deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
+      - name: Clean npm cache
+        run: npm cache clean --force
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
