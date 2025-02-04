@@ -119,7 +119,7 @@ The attention mechanism typically involves the following key elements:
 The attention score measures the ==similarity== between the query and each key. A common approach is to compute the dot product between the query and the keys, optionally scaled by a factor to stabilize training:
 
 $$
-\text{Score}(Q, K) = \frac{Q K^T}{\sqrt{d_k}}       
+\text{Score}(Q, K) = \frac{QK^T}{\sqrt{d_k}}       
 
 (1)
 $$
