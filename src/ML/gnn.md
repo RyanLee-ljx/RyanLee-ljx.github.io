@@ -121,45 +121,7 @@ $$
 - $W^{(l)}$: Trainable weight matrix.
 - $\sigma$: Activation function (e.g., ReLU).
 
-#### Example: Two-Layer GCN for Node Classification
-
-**Task**
-Classify nodes in a citation network (e.g., Cora dataset), where nodes represent papers, edges are citations, and features are word vectors.
-
-**Forward Pass**
-
-1. **Input Layer**:
-
-   $H^{(0)} = X$ (raw node features).
-
-2. **First GCN Layer**:
-
-   $$
-   H^{(1)} = \text{ReLU}\left( \hat{A} H^{(0)} W^{(0)} \right)
-   $$
-
-   - $W^{(0)} \in \mathbb{R}^{F \times H}$, maps features to hidden dimension $H$.
-
-3. **Second GCN Layer**:
-
-   $$
-   H^{(2)} = \text{softmax}\left( \hat{A} H^{(1)} W^{(1)} \right)
-   $$
-
-   - $W^{(1)} \in \mathbb{R}^{H \times C}$, maps hidden features to $C$ classes.
-
-**Loss Function**
-
-Cross-entropy loss over labeled nodes:
-
-$$
-\mathcal{L} = -\sum_{i \in \mathcal{Y}_L} \sum_{c=1}^C Y_{ic} \ln H^{(2)}_{ic}
-$$
-
-- $\mathcal{Y}_L$: Indices of labeled nodes.
-- $Y$: Ground-truth labels.
-
-#### Numerical Example
+::: tip Example
 
 **Step 1: Define Inputs**
 
@@ -227,6 +189,8 @@ $$
 
 After matrix multiplication and ReLU, the output features are transformed.
 
+:::
+
 ### GAT
 
 A **Graph Attention Network (GAT)** is a neural network architecture designed to process graph-structured data, similar to GCNs. However, GAT introduces an **attention mechanism** to weigh the importance of neighboring nodes dynamically. This allows the model to focus on more relevant neighbors during feature aggregation, making it more flexible and expressive than GCNs.
@@ -274,47 +238,7 @@ $$
 
 - $\sigma$: Nonlinear activation function (e.g., ReLU).
 
-#### Example: Two-Layer GAT for Node Classification
-
-**Task**
-Classify nodes in a citation network (e.g., Cora dataset), where nodes represent papers, edges are citations, and features are word vectors.
-
-**Forward Pass**
-
-1. **Input Layer**:
-   $H^{(0)} = X$ (raw node features).
-
-2. **First GAT Layer**:
-   - Compute attention coefficients $\alpha_{ij}$ for all edges.
-   - Aggregate features using the attention mechanism:
-
-     $$
-     H^{(1)} = \text{ReLU}\left( \sum_{j \in \mathcal{N}_i} \alpha_{ij} W^{(0)} h_j \right)
-     $$
-
-   - $W^{(0)} \in \mathbb{R}^{F \times H}$: Weight matrix mapping features to hidden dimension $H$.
-
-3. **Second GAT Layer**:
-   - Repeat the attention mechanism and aggregation:
-
-     $$
-     H^{(2)} = \text{softmax}\left( \sum_{j \in \mathcal{N}_i} \alpha_{ij} W^{(1)} h_j \right)
-     $$
-
-   - $W^{(1)} \in \mathbb{R}^{H \times C}$: Weight matrix mapping hidden features to $C$ classes.
-
-**Loss Function**
-
-Cross-entropy loss over labeled nodes:
-
-$$
-\mathcal{L} = -\sum_{i \in \mathcal{Y}_L} \sum_{c=1}^C Y_{ic} \ln H^{(2)}_{ic}
-$$
-
-- $\mathcal{Y}_L$: Indices of labeled nodes.
-- $Y$: Ground-truth labels.
-
-#### Numerical Example
+::: tip Example
 
 **Step 1: Define Inputs**
 
@@ -370,6 +294,8 @@ $$
 h_1' = \text{ReLU}\left( \alpha_{12} W h_2 + \alpha_{13} W h_3 \right)
 $$
 
+:::
+
 ### GraphSAGE
 
 **GraphSAGE** is a framework for inductive representation learning on large graphs. Unlike GCNs, which require the entire graph during training, GraphSAGE generates node embeddings by sampling and aggregating features from a node's local neighborhood. This makes it scalable to large graphs and capable of generalizing to unseen nodes.
@@ -416,105 +342,94 @@ $$
 
 ![GraphSAGE](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/gnn/gsage.png?raw=true)
 
-#### Example: Two-Layer GraphSAGE for Node Classification
-
-**Task**
-
-Classify nodes in a social network, where nodes represent users, edges represent friendships, and features are user attributes.
-
-**Forward Pass**
-
-1. **Input Layer**:
-
-   $h_v^{(0)} = x_v$ (raw node features).
-
-2. **First GraphSAGE Layer**:
-
-   - Sample neighbors for each node.
-   - Aggregate neighbor features using a mean aggregator:
-
-     $$
-     h_{\mathcal{N}(v)}^{(1)} = \text{MEAN}\left( \{ h_u^{(0)}, \forall u \in \mathcal{N}(v) \} \right)
-     $$
-
-   - Combine features:
-
-     $$
-     h_v^{(1)} = \text{ReLU}\left( W^{(1)} \cdot [h_v^{(0)} \| h_{\mathcal{N}(v)}^{(1)}] \right)
-     $$
-
-3. **Second GraphSAGE Layer**:
-
-   - Repeat sampling and aggregation:
-
-     $$
-     h_{\mathcal{N}(v)}^{(2)} = \text{MEAN}\left( \{ h_u^{(1)}, \forall u \in \mathcal{N}(v) \} \right)
-     $$
-
-   - Combine features:
-
-     $$
-     h_v^{(2)} = \text{softmax}\left( W^{(2)} \cdot [h_v^{(1)} \| h_{\mathcal{N}(v)}^{(2)}] \right)
-     $$
-
-**Loss Function**
-
-Cross-entropy loss over labeled nodes:
-
-$$
-\mathcal{L} = -\sum_{v \in \mathcal{Y}_L} \sum_{c=1}^C Y_{vc} \ln h_{vc}^{(2)}
-$$
-
-- $\mathcal{Y}_L$: Indices of labeled nodes.
-- $Y$: Ground-truth labels.
-
-#### Numerical Example
-
-**Step 1: Define Inputs**
-
-- **Adjacency Matrix** (3 nodes):
-
-  $$
-  A = \begin{bmatrix}
-  0 & 1 & 1 \\
-  1 & 0 & 0 \\
-  1 & 0 & 0
-  \end{bmatrix}
-  $$
-
-- **Node Features** ($ X \in \mathbb{R}^{3 \times 2} $):
-
-  $$
-  X = \begin{bmatrix}
-  1 & 0 \\
-  0 & 1 \\
-  1 & 1
-  \end{bmatrix}
-  $$
-
-**Step 2: First Layer Aggregation**
-
-- For node 1, sample neighbors (nodes 2 and 3).
-- Compute mean of neighbor features:
-
-  $$
-  h_{\mathcal{N}(1)}^{(1)} = \text{MEAN}\left( h_2^{(0)}, h_3^{(0)} \right) = \text{MEAN}\left( \begin{bmatrix} 0 & 1 \end{bmatrix}, \begin{bmatrix} 1 & 1 \end{bmatrix} \right) = \begin{bmatrix} 0.5 & 1 \end{bmatrix}
-  $$
-
-- Combine features (assume $W^{(1)} = \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix}$):
-
-  $$
-  h_1^{(1)} = \text{ReLU}\left( W^{(1)} \cdot [h_1^{(0)} \| h_{\mathcal{N}(1)}^{(1)}] \right)
-  $$
-
-**Step 3: Second Layer Aggregation**
-
-- Repeat the process for the second layer to compute the final embeddings.
-
 ## Summary
 
 In summary, GNNs differ in which components exchange information with each other, the aggregation function, and the update function.
 
 ![Types of GNN](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/gnn/tpyes.png?raw=true)
 
+## Code
 
+Here we design a code that can randomly produce several graph alongside their features. We use *networkx* to visualize. For better understand the calculation process, we preset the parameters to be identity matrix.
+
+
+![input graph](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/gnn/Figure_1.png?raw=true)
+
+![result](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/gnn/result.png?raw=true)
+
+```
+import networkx as nx
+import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+
+
+class GCNs(nn.Module):
+    def __init__(self, num_feature_in, num_feature_out):
+        super(GCNs, self).__init__()
+        # self.W = torch.nn.Parameter(torch.randn([num_feature_in, num_feature_out]))  
+        self.W = torch.nn.Parameter(torch.eye(num_feature_in, num_feature_out))
+
+    def forward(self, adj_matrix, node_feature):
+        '''
+        if the input is not in batch, we need to 
+        add a dimension(batch dimension) to the input.
+        '''
+        if len(adj_matrix.shape) == 2:
+            adj_matrix = torch.unsqueeze(adj_matrix, dim=0)
+        if len(node_feature.shape) == 2:
+            node_feature = torch.unsqueeze(node_feature, dim=0)
+        # make sure the input is float type. 
+        adj_matrix = adj_matrix.float()
+        node_feature = node_feature.float()
+        # number of nodes
+        num_nodes = adj_matrix.shape[1]
+
+        A = adj_matrix + torch.eye(num_nodes)
+        A = A.float()
+        # calculate degree matrix
+        D = torch.diag_embed(A.sum(dim=-1))
+        D = D.float()
+        D_sqrt = D.pow(-0.5)
+        D_sqrt[D_sqrt.isinf()] = 0
+
+        H_t1 = torch.bmm(D_sqrt, A)
+        H_t1 = torch.bmm(H_t1, D_sqrt)
+        H_t1 = torch.bmm(H_t1, node_feature)
+        H_t1 = torch.nn.functional.relu(torch.matmul(H_t1, self.W))
+        return H_t1
+
+# input
+batch_size = 4
+num_node = 6
+num_feature = 2
+
+# create upper triangular part of the adjacent matrix
+map_input_n = torch.triu(torch.randint(0, 2, (batch_size, num_node, num_node)))  
+map_input_n = map_input_n + map_input_n.transpose(-2, -1)
+map_input_n.diagonal(dim1=1, dim2=2).zero_()  # diagonal part = 0
+print(map_input_n)
+# node feature
+map_input_feature_n = torch.randint(0, 3, (batch_size, num_node, num_feature))  
+
+# visualize
+graph = [nx.Graph(i.numpy()) for i in map_input_n]  # list conatins nxgraph
+fig, axe = plt.subplots(2, 2)  
+axe = axe.flatten()  # flatten for better index
+for i in range(batch_size):
+    ax = axe[i]
+    for j in range(num_node):  # add feature vector to every node
+        graph[i].nodes[j]['feature_vector'] = map_input_feature_n[i][j][:].numpy()
+    nx.draw(graph[i], ax=ax, with_labels=True, font_size=12, font_color='black', node_color='lightblue',
+            edge_color='gray')
+    ax.set_title(f"Graph {i + 1}")
+plt.tight_layout()
+plt.show()
+
+# output
+net = GCNs(num_feature, num_feature)
+with torch.no_grad():
+    print(f"Your input is: \n {map_input_feature_n}")
+    output = net(map_input_n, map_input_feature_n)
+    print(f"Your output is: \n {output}")
+```

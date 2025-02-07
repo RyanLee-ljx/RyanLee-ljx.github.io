@@ -13,7 +13,7 @@ This article will introduce a powerful technique in machine learning called *Ate
 
 The core method of *attention mechanism* is to pay more attention to what we want. It allows model to weigh the importance of different parts of input dynamically rather than treating them equally. The model learns to assign higher weights to the most relevant elements.
 
-Before stepping into the main text, we should first know some preliminary knowledge.
+Before stepping into the main text, we should first know some preliminary knowledge(Understand hidden states, encoder, decoder).
 
 ## Preliminaries
 
@@ -116,7 +116,7 @@ The attention mechanism typically involves the following key elements:
 
 ### Attention Score
 
-The attention score measures the ==similarity== between the query and each key. A common approach is to compute the dot product between the query and the keys, optionally scaled by a factor to stabilize training:
+The attention score measures the ==similarity== between the query and each key. A common approach is to compute the ==dot product== between the query and the keys, optionally scaled by a factor to stabilize training:
 
 $$
 \text{Score}(Q, K) = \frac{QK^T}{\sqrt{d_k}}       
@@ -172,7 +172,7 @@ This process is the content we introduce in the preliminaries.
 
 ### Attention Calculation
 
-Calculate the similarity, namely the attention score, between its current hidden state $h_{t}$(namely the **query**) and each element of encoder's output($s_i, i=1,2...T$) with (1).
+Calculate the similarity, namely the attention score, between decoder's current hidden state $h_{t}$(namely the **query**) and each element of encoder's output($s_i, i=1,2...T$) with (1).
 
 Derive attention score of $s_i$ using (2).
 
@@ -199,10 +199,10 @@ Where:
 The output of the Decoder is typically generated through the following steps:
 
 1. Compute Logits Using Hidden State and Context Vector:
-   The hidden state $h_t$ and the Context Vector $c_t$ are combined and passed through a fully connected layer (often a linear transformation followed by an activation function) to produce unnormalized scores (logits).
+   The hidden state $h_t$, the Context Vector $c_t$ and the output from the previous time step $y_{t-1}$ are combined and passed through a fully connected layer (often a linear transformation followed by an activation function) to produce unnormalized scores (logits).
 
    $$
-   \text{logits} = W_o [h_t; c_t] + b_o
+   \text{logits} = W_o [h_t; c_t; y_{t-1}] + b_o
    $$
 
    Where:
@@ -235,9 +235,113 @@ $$
 \text{Attention}(\text{Source}, \text{Query}_t) = \sum_{i=1}^{N}\text{Similarity}(\text{Query}_t, \text{Key}_i)\cdot \text{Value}_i
 $$
 
+## Example & code
+
+::: tip
+
+To better understand the matrix calculation, we can see the following illustration.
+
+![](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/illustration1.jpg?raw=true)
+
+![illustration](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/illustration2.jpg?raw=true)
+
+Assume:
+
+Key (K): [3, 2]（three itmes with the dimension of 2）
+
+Value (V): [3, 2]（three itmes with the dimension of 2）
+
+Query (Q): [3, 2]（three itmes with the dimension of 2）
+
+$$
+Q = \begin{bmatrix}
+1 & 2 \\
+3 & 4 \\
+5 & 6 
+\end{bmatrix}, \quad
+{K} = \begin{bmatrix}
+0.5 & 1 \\
+1.5 & 2 \\
+2.5 & 3 
+\end{bmatrix}, \quad
+{v} = \begin{bmatrix}
+10 & 20 \\
+30 & 40 \\
+50 & 60 
+\end{bmatrix}
+$$
+
+Code:
+
+```
+import torch
+import torch.nn as nn
 
 
+class Attention(nn.Module):
+    def __init__(self, dim):
+        super(Attention, self).__init__()
+        '''
+        if you want to apply a linear transformation to the input(q, k, v), 
+        you can add the following code to your program.
+        self.wk = torch.nn.Linear(dim, dim)
+        self.wv = torch.nn.Linear(dim, dim)
+        self.wq = torch.nn.Linear(dim, dim)
+        '''
 
+    def forward(self, query, key, value):
+        '''
+        if the input is not in batch, we need to 
+        add a dimension(batch dimension) to the input.
+        '''
+        if len(key.shape) == 2:
+            key = torch.unsqueeze(key, dim=0)
+        if len(query.shape) == 2:
+            query = torch.unsqueeze(query, dim=0)
+        if len(value.shape) == 2:
+            value = torch.unsqueeze(value, dim=0)
+        # make sure the input is float type. 
+        key = key.float()
+        query = query.float()
+        value = value.float()
+        '''
+        if apply linear transformation, add the following code.
+        key = self.wk(key)
+        value = self.wv(value)
+        query = self.wv(query)
+        '''
+        d_k = key.shape[-1]
+        score = torch.bmm(query, key.transpose(-2, -1))/(d_k ** 0.5) 
+        print(f"score: \n {score} \n")
+        attention_weights = torch.nn.functional.softmax(score, dim=-1)
+        print(f"attention weights: \n {attention_weights} \n")
+        output = torch.bmm(attention_weights, value)
+        return output
+
+
+# input
+Q = torch.tensor([[1, 2],
+                  [3, 4],
+                  [5, 6]])
+
+K = torch.tensor([[0.5, 1],
+                  [1.5, 2],
+                  [2.5, 3]])
+
+V = torch.tensor([[10, 20],
+                  [30, 40],
+                  [50, 60]])
+
+attention_layer = Attention(2)
+output = attention_layer(Q, K, V)
+
+print(f"output: \n{output}\n")
+
+```
+
+Results:
+
+![Results](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/attention/result.png?raw=true)
 
 
 
