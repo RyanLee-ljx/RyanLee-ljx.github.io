@@ -466,3 +466,7 @@ Cross validation is a technique for assessing the performance and robustness of 
 ### 6. Decision Tree Principle
 
 A **Decision Tree**（决策树） is a supervised learning algorithm used for both classification and regression tasks. It works by recursively splitting the data based on feature values to create a tree structure, where each internal node represents a decision based on a feature, each branch represents the outcome of the decision, and each leaf node represents a class label or a continuous value. The splits are chosen to maximize the reduction in **impurity**（杂质）, commonly measured by metrics like **Gini impurity**（基尼杂质） or **information gain (entropy)**（信息增益或熵）. The resulting model is a tree that predicts the target variable by traversing from the root to a leaf node based on the feature values of the input data.
+
+
+
+

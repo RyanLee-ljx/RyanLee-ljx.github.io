@@ -16,16 +16,17 @@ export default sidebar({
 
 	"/ML/": [
 		{
-			text: "基本知识",
+			text: "Knowledge",
       collapsible: false,
 			link: "/ML/",
 			children: [
         'question.md',
+        'document.md'
 			],
 		},
 
     {
-			text: "卷积",
+			text: "Convolution",
       collapsible: false,
 			link: "/ML/",
 			children: [

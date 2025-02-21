@@ -350,7 +350,7 @@ In summary, GNNs differ in which components exchange information with each other
 
 ## Code
 
-Here we design a code that can randomly produce several graph alongside their features. We use *networkx* to visualize. For better understand the calculation process, we preset the parameters to be identity matrix.
+Here we write codes that can randomly produce several graph alongside their features. We use *networkx* to visualize. For better understand the calculation process, we preset the parameters to be identity matrix.
 
 
 ![input graph](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/gnn/Figure_1.png?raw=true)
