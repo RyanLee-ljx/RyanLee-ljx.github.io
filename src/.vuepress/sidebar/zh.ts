@@ -61,6 +61,16 @@ export default sidebar({
         'gnn.md',
 			],
 		},
+
+    {
+			text: "Reinforcement Learning",
+      collapsible: false,
+			link: "/RL/",
+			children: [
+        'C1.md',
+        'C2.md',
+			],
+		},
 	],
 
 
