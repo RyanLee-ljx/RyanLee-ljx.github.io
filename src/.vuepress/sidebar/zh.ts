@@ -65,7 +65,7 @@ export default sidebar({
     {
 			text: "Reinforcement Learning",
       collapsible: false,
-			link: "/ML/RL/",
+			link: "/RL/",
 			children: [
         'B.md',
         'C1.md',
