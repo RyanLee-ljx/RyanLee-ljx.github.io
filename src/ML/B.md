@@ -1,5 +1,5 @@
 ---
-icon: RL
+icon: qianghuaxuexi
 ReadingTime: true
 date: 2025-07-04
 Word: true
