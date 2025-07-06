@@ -3,7 +3,7 @@ import { sidebar } from "vuepress-theme-hope";
 export default sidebar({
 	"/traffic/": [
 		{
-			text: "元胞自动机仿真",
+			text: "Cellular Automata",
       collapsible: true,
 			link: "/traffic/",
 			children: [
@@ -65,7 +65,7 @@ export default sidebar({
     {
 			text: "Reinforcement Learning",
       collapsible: false,
-			link: "/RL/",
+			link: "/ML/",
 			children: [
         'B.md',
         'C1.md',
@@ -86,7 +86,7 @@ export default sidebar({
 		},
 
     {
-			text: "文献阅读",
+			text: "Paper Review",
 			link: "/path/",
 			children: [
         'paper/iMTSP.md',
@@ -100,7 +100,7 @@ export default sidebar({
 
 	"/daily/": [
 		{
-			text: "英语",
+			text: "English",
       collapsible: false,
 			link: "/daily/",
 			children: [
@@ -110,7 +110,7 @@ export default sidebar({
 		},	
 
     {
-			text: "吉他",
+			text: "Guitar",
       collapsible: false,
 			link: "/daily/",
 			children: [
