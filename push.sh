@@ -1,4 +1,8 @@
 git checkout main
-git add -A   # 把所有本地文件（当前文件夹）添加到暂存区
-git commit -m 'deploy:'$(date "+%Y%m%d-%H:%M:%S")    # 提交  后面是注释，表示当前时间
-git push origin main   # origin远程仓库名字  main 仓库下分支名字 
+# git fetch origin
+# git pull --rebase origin main    # 把远端改动放到本地当前分支之下（如果远端比你新）
+# # 解决任何冲突后（如果有）：
+git add -A
+git commit -m 'deploy:'$(date "+%Y%m%d-%H:%M:%S")
+git push origin main
+
