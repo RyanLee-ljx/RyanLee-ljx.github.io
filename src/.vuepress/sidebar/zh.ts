@@ -73,6 +73,7 @@ export default sidebar({
         'C3.md',
         'C4.md',
         'C5.md',
+        'C6.md',
 			],
 		},
 	],
