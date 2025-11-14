@@ -17,7 +17,7 @@ export default sidebar({
 	"/ML/": [
 		{
 			text: "Knowledge",
-      collapsible: false,
+      collapsible: true,
 			link: "/ML/",
 			children: [
         'question.md',
@@ -27,7 +27,7 @@ export default sidebar({
 
     {
 			text: "Convolution",
-      collapsible: false,
+      collapsible: true,
 			link: "/ML/",
 			children: [
         'convolution.md',
@@ -36,7 +36,7 @@ export default sidebar({
 
     {
 			text: "Tricks in ML",
-      collapsible: false,
+      collapsible: true,
 			link: "/ML/",
 			children: [
         'control_variate.md',
@@ -46,7 +46,7 @@ export default sidebar({
 
     {
 			text: "Attention mechanism",
-      collapsible: false,
+      collapsible: true,
 			link: "/ML/",
 			children: [
         'attention.md',
@@ -55,7 +55,7 @@ export default sidebar({
   
     {
 			text: "Graph Neural Network",
-      collapsible: false,
+      collapsible: true,
 			link: "/ML/",
 			children: [
         'gnn.md',
@@ -63,8 +63,18 @@ export default sidebar({
 		},
 
     {
+			text: "Diffusion Model",
+      collapsible: true,
+			link: "/ML/",
+			children: [
+        'diffusion_start.md',
+        'diffusion_1.md',
+			],
+		},
+
+    {
 			text: "Reinforcement Learning",
-      collapsible: false,
+      collapsible: true,
 			link: "/ML/",
 			children: [
         'B.md',
