@@ -66,28 +66,28 @@ export default sidebar({
 	"/robotics/": [
     {
 			text: "PLANNING ALGORITHMS",
-			link: "/robotics/",
+			link: "/Planning Algorithms/robotics/",
 			children: [
-        'Planning Algorithms/chapter1.md',
-        'Planning Algorithms/chapter2.md'
+        'chapter1.md',
+        'chapter2.md'
 			],
 		},
 
     {
 			text: "Paper Review",
-			link: "/robotics/",
+			link: "/Paper/robotics/",
 			children: [
-        'Paper/iMTSP.md',
-        'Paper/TC-CBS-t.md',
+        'iMTSP.md',
+        'TC-CBS-t.md',
 			],
 		},
 
     {
 			text: "Modern Robotics",
-			link: "/robotics/",
+			link: "/Modern Robotics/robotics/",
 			children: [
-        'Modern Robotics/back.md',
-        'Modern Robotics/content.md',
+        'back.md',
+        'content.md',
 			],
 		},
 
@@ -97,22 +97,22 @@ export default sidebar({
 		{
 			text: "English",
       collapsible: false,
-			link: "/daily/",
+			link: "/daily/English/",
 			children: [
-        'english/tec_1.md',
-        'english/vocabulary.md',
+        'tec_1.md',
+        'vocabulary.md',
 			],
 		},	
 
     {
 			text: "Guitar",
       collapsible: false,
-			link: "/daily/",
+			link: "/daily/Guitar/",
 			children: [
-        'guitar/yinxiuzhifu.md',
-        'guitar/jiezou.md',
-        'guitar/pu.md',
-        'guitar/yinjie.md',
+        'yinxiuzhifu.md',
+        'jiezou.md',
+        'pu.md',
+        'yinjie.md',
 			],
 		},	
 
