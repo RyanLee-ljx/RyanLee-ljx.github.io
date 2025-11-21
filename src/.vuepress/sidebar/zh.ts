@@ -68,7 +68,7 @@ export default sidebar({
 			text: "PLANNING ALGORITHMS",
 			link: "/Planning Algorithms/robotics/",
 			children: [
-        'chapter1.md',
+        '/Planning Algorithms/robotics/chapter1.md',
         'chapter2.md'
 			],
 		},
