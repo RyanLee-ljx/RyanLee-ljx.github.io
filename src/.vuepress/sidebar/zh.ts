@@ -90,10 +90,10 @@ export default sidebar({
 	],
 
 
-	"/path/": [
+	"/robotics/": [
     {
 			text: "PLANNING ALGORITHMS",
-			link: "/path/",
+			link: "/robotics/",
 			children: [
         'pla/chapter1.md',
         'pla/chapter2.md'
@@ -102,10 +102,19 @@ export default sidebar({
 
     {
 			text: "Paper Review",
-			link: "/path/",
+			link: "/robotics/",
 			children: [
         'paper/iMTSP.md',
         'paper/TC-CBS-t.md',
+			],
+		},
+
+    {
+			text: "Modern Robotics",
+			link: "/robotics/",
+			children: [
+        'book/back.md',
+        'book/content.md',
 			],
 		},
 

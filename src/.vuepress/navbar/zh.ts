@@ -12,9 +12,9 @@ export default navbar([
 		link: "/ML/",
 	},
 	{
-		text: "路径规划",
-		icon: "lujingguihua",
-		link: "/path/",
+		text: "机器人",
+		icon: "robot",
+		link: "/robotics/",
 	},
 	{
 		text: "日常",
