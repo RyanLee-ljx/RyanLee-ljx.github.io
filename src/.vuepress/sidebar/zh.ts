@@ -18,64 +18,37 @@ export default sidebar({
 		{
 			text: "Knowledge",
       collapsible: true,
-			link: "/ML/",
+			link: "/ML/Basic Knowledge/",
 			children: [
         'question.md',
-        'document.md'
-			],
-		},
-
-    {
-			text: "Convolution",
-      collapsible: true,
-			link: "/ML/",
-			children: [
+        'document.md',
         'convolution.md',
-			],
-		},
-
-    {
-			text: "Tricks in ML",
-      collapsible: true,
-			link: "/ML/",
-			children: [
-        'control_variate.md',
-        'log.md',
-			],
-		},
-
-    {
-			text: "Attention mechanism",
-      collapsible: true,
-			link: "/ML/",
-			children: [
         'attention.md',
 			],
 		},
+
   
     {
-			text: "Graph Neural Network",
-      collapsible: true,
-			link: "/ML/",
-			children: [
-        'gnn.md',
-			],
-		},
-
-    {
-			text: "Diffusion Model",
-      collapsible: true,
-			link: "/ML/",
-			children: [
-        'diffusion_start.md',
-        'diffusion_1.md',
-			],
-		},
+        text: "Basic Models",
+        collapsible: true,
+        link: "/ML/Model/",
+        children: [
+            'gnn.md',
+            {
+                text: 'Diffusion Model',
+                collapsible: true,
+                children: [
+                    'diffusion_start.md',
+                    'diffusion_1.md',
+                ],
+            },
+        ],
+    },
 
     {
 			text: "Reinforcement Learning",
       collapsible: true,
-			link: "/ML/",
+			link: "/ML/RL/",
 			children: [
         'B.md',
         'C1.md',
@@ -95,8 +68,8 @@ export default sidebar({
 			text: "PLANNING ALGORITHMS",
 			link: "/robotics/",
 			children: [
-        'pla/chapter1.md',
-        'pla/chapter2.md'
+        'Planning Algorithms/chapter1.md',
+        'Planning Algorithms/chapter2.md'
 			],
 		},
 
@@ -104,8 +77,8 @@ export default sidebar({
 			text: "Paper Review",
 			link: "/robotics/",
 			children: [
-        'paper/iMTSP.md',
-        'paper/TC-CBS-t.md',
+        'Paper/iMTSP.md',
+        'Paper/TC-CBS-t.md',
 			],
 		},
 
@@ -113,14 +86,12 @@ export default sidebar({
 			text: "Modern Robotics",
 			link: "/robotics/",
 			children: [
-        'book/back.md',
-        'book/content.md',
+        'Modern Robotics/back.md',
+        'Modern Robotics/content.md',
 			],
 		},
 
 	],
-
-
 
 	"/daily/": [
 		{

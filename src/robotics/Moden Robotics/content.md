@@ -500,14 +500,14 @@ $$
 
 有两种计算方法：
 
-### D-H 参数法 (Denavit-Hartenberg):
+### 4.1 D-H 参数法 (Denavit-Hartenberg):
 
 - 基于连杆坐标系的变换链：即将每一个连杆末端表示在前一个连杆坐标系里，$T_{04} = T_{01} T_{12} T_{23} T_{34}$。
 - 依赖坐标系的建立规则，容易出错。
 
 ![DH法](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/robot/dh.png?raw=true)
 
-### 指数积公式 (Product of Exponentials, PoE):
+### 4.2 指数积公式 (Product of Exponentials, PoE):
 
 - 不需要建立中间连杆坐标系，只需要基坐标系 $\{s\}$ 和末端坐标系 $\{b\}$。
 - 需要知道：
