@@ -20,10 +20,10 @@ export default sidebar({
       collapsible: true,
 			link: "/ML/Basic Knowledge/",
 			children: [
-        'question.md',
-        'document.md',
-        'convolution.md',
-        'attention.md',
+        '/Basic Knowledge/question.md',
+        '/Basic Knowledge/document.md',
+        '/Basic Knowledge/convolution.md',
+        '/Basic Knowledge/attention.md',
 			],
 		},
 
@@ -33,13 +33,13 @@ export default sidebar({
         collapsible: true,
         link: "/ML/Model/",
         children: [
-            'gnn.md',
+            '/Model/gnn.md',
             {
                 text: 'Diffusion Model',
                 collapsible: true,
                 children: [
-                    'diffusion_start.md',
-                    'diffusion_1.md',
+                    '/Model/Diffusion/diffusion_start.md',
+                    '/Model/Diffusion/diffusion_1.md',
                 ],
             },
         ],
@@ -50,14 +50,14 @@ export default sidebar({
       collapsible: true,
 			link: "/ML/RL/",
 			children: [
-        'B.md',
-        'C1.md',
-        'C2.md',
-        'C3.md',
-        'C4.md',
-        'C5.md',
-        'C6.md',
-        'C7.md',
+        '/RL/B.md',
+        '/RL/C1.md',
+        '/RL/C2.md',
+        '/RL/C3.md',
+        '/RL/C4.md',
+        '/RL/C5.md',
+        '/RL/C6.md',
+        '/RL/C7.md',
 			],
 		},
 	],
@@ -66,28 +66,28 @@ export default sidebar({
 	"/robotics/": [
     {
 			text: "PLANNING ALGORITHMS",
-			link: "/Planning Algorithms/robotics/",
+			link: "/robotics/Planning Algorithms/",
 			children: [
-        '/Planning Algorithms/robotics/chapter1.md',
-        'chapter2.md'
+        '/Planning Algorithms/chapter1.md',
+        '/Planning Algorithms/chapter2.md'
 			],
 		},
 
     {
 			text: "Paper Review",
-			link: "/Paper/robotics/",
+			link: "/robotics/Paper/",
 			children: [
-        'iMTSP.md',
-        'TC-CBS-t.md',
+        '/Paper/iMTSP.md',
+        '/Paper/TC-CBS-t.md',
 			],
 		},
 
     {
 			text: "Modern Robotics",
-			link: "/Modern Robotics/robotics/",
+			link: "/robotics/Modern Robotics/",
 			children: [
-        'back.md',
-        'content.md',
+        '/Modern Robotics/back.md',
+        '/Modern Robotics/content.md',
 			],
 		},
 
@@ -99,8 +99,8 @@ export default sidebar({
       collapsible: false,
 			link: "/daily/English/",
 			children: [
-        'tec_1.md',
-        'vocabulary.md',
+        '/English/tec_1.md',
+        '/English/vocabulary.md',
 			],
 		},	
 
@@ -109,10 +109,10 @@ export default sidebar({
       collapsible: false,
 			link: "/daily/Guitar/",
 			children: [
-        'yinxiuzhifu.md',
-        'jiezou.md',
-        'pu.md',
-        'yinjie.md',
+        '/Guitar/yinxiuzhifu.md',
+        '/Guitar/jiezou.md',
+        '/Guitar/pu.md',
+        '/Guitar/yinjie.md',
 			],
 		},	
 
