@@ -1,5 +1,5 @@
 ---
-icon: robotics
+icon: Robotics
 ReadingTime: true
 date: 2025-11-20
 Word: true
