@@ -19,6 +19,7 @@ export default sidebar({
 			text: "Knowledge",
       collapsible: true,
 			link: "/Basic Knowledge/",
+      prefix:"Basic Knowledge/",
 			children: [
         'question.md',
         'document.md',
@@ -32,6 +33,7 @@ export default sidebar({
         text: "Basic Models",
         collapsible: true,
         link: "/Model/",
+        prefix:"Model/",
         children: [
             '/gnn.md',
             {
@@ -49,6 +51,7 @@ export default sidebar({
 			text: "Reinforcement Learning",
       collapsible: true,
 			link: "/RL/",
+      prefix:"RL/",
 			children: [
         'B.md',
         'C1.md',
@@ -67,8 +70,9 @@ export default sidebar({
     {
 			text: "PLANNING ALGORITHMS",
 			link: "/Planning Algorithms/",
+      prefix:"Planning Algorithms/",
 			children: [
-        '/Planning Algorithms/chapter1.md',
+        'chapter1.md',
         'chapter2.md'
 			],
 		},
@@ -86,9 +90,10 @@ export default sidebar({
     {
 			text: "Modern Robotics",
 			link: "/Modern Robotics/",
+      prefix:"Modern Robotics/",
 			children: [
-        '/Modern Robotics/back.md',
-        '/Modern Robotics/content.md',
+        'back.md',
+        'content.md',
 			],
 		},
 
@@ -99,6 +104,7 @@ export default sidebar({
 			text: "English",
       collapsible: false,
 			link: "/English/",
+      prefix:"English/",
 			children: [
         'tec_1.md',
         'vocabulary.md',
@@ -109,6 +115,7 @@ export default sidebar({
 			text: "Guitar",
       collapsible: false,
 			link: "/Guitar/",
+      prefix:"Guitar/",
 			children: [
         'yinxiuzhifu.md',
         'jiezou.md',
