@@ -76,9 +76,10 @@ export default sidebar({
     {
 			text: "Paper Review",
 			link: "/Paper/",
+      prefix:"repo/",
 			children: [
-        '/Paper/iMTSP.md',
-        '/Paper/TC-CBS-t.md',
+        'iMTSP.md',
+        'TC-CBS-t.md',
 			],
 		},
 
