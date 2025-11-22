@@ -68,7 +68,7 @@ export default sidebar({
 			text: "PLANNING ALGORITHMS",
 			link: "/Planning Algorithms/",
 			children: [
-        'chapter1.md',
+        '/Planning Algorithms/chapter1.md',
         'chapter2.md'
 			],
 		},
@@ -77,8 +77,8 @@ export default sidebar({
 			text: "Paper Review",
 			link: "/Paper/",
 			children: [
-        'iMTSP.md',
-        'TC-CBS-t.md',
+        '/Paper/iMTSP.md',
+        '/Paper/TC-CBS-t.md',
 			],
 		},
 
@@ -86,8 +86,8 @@ export default sidebar({
 			text: "Modern Robotics",
 			link: "/Modern Robotics/",
 			children: [
-        'back.md',
-        'content.md',
+        '/Modern Robotics/back.md',
+        '/Modern Robotics/content.md',
 			],
 		},
 
