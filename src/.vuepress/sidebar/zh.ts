@@ -18,8 +18,8 @@ export default sidebar({
 		{
 			text: "Knowledge",
       collapsible: true,
-			link: "/Basic Knowledge/",
-      prefix:"Basic Knowledge/",
+			link: "/Basic_Knowledge/",
+      prefix:"Basic_Knowledge/",
 			children: [
         'question.md',
         'document.md',
@@ -69,8 +69,8 @@ export default sidebar({
 	"/robotics/": [
     {
 			text: "PLANNING ALGORITHMS",
-			link: "/Planning Algorithms/",
-      prefix:"Planning Algorithms/",
+			link: "/Planning_Algorithms/",
+      prefix:"Planning_Algorithms/",
 			children: [
         'chapter1.md',
         'chapter2.md'
@@ -89,8 +89,8 @@ export default sidebar({
 
     {
 			text: "Modern Robotics",
-			link: "/Modern Robotics/",
-      prefix:"Modern Robotics/",
+			link: "/Modern_Robotics/",
+      prefix:"Modern_Robotics/",
 			children: [
         'back.md',
         'content.md',
