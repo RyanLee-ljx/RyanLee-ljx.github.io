@@ -12,3 +12,5 @@ category: RL
 This blog is mainly a notebook of _Mathematical Foundations of Reinforcement Learning_ by Shiyu Zhao from Westlake University WindyLab.
 
 You can find more about the book and related tutorial videos at this [link](https://github.com/MathFoundationRL/Book-Mathematical-Foundation-of-Reinforcement-Learning).
+
+![Map of this book](https://github.com/RyanLee-ljx/RyanLee-ljx.github.io/blob/image/RL/map.png?raw=true)
