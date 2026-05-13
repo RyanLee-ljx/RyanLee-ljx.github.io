@@ -18,8 +18,7 @@ export default sidebar({
 		{
 			text: "Knowledge",
       collapsible: true,
-			link: "Basic Knowledge/",
-      prefix:"Basic Knowledge/",
+      prefix:"Basic_Knowledge/",
 			children: [
         'question.md',
         'document.md',
@@ -28,11 +27,10 @@ export default sidebar({
 			],
 		},
 
-  
+
     {
         text: "Basic Models",
         collapsible: true,
-        link: "Model/",
         prefix:"Model/",
         children: [
             'gnn.md',
@@ -50,7 +48,6 @@ export default sidebar({
     {
 			text: "Reinforcement Learning",
       collapsible: true,
-			link: "RL/",
       prefix:"RL/",
 			children: [
         'B.md',
@@ -106,26 +103,24 @@ export default sidebar({
 		{
 			text: "English",
       collapsible: false,
-			link: "English/",
-      prefix:"English/",
+      prefix:"english/",
 			children: [
         'tec_1.md',
         'vocabulary.md',
 			],
-		},	
+		},
 
     {
 			text: "Guitar",
       collapsible: false,
-			link: "Guitar/",
-      prefix:"Guitar/",
+      prefix:"guitar/",
 			children: [
         'yinxiuzhifu.md',
         'jiezou.md',
         'pu.md',
         'yinjie.md',
 			],
-		},	
+		},
 
 	],
 
