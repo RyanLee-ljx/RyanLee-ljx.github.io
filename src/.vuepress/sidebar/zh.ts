@@ -83,7 +83,7 @@ export default sidebar({
     {
 			text: "Paper Review",
 			collapsible: true,
-      prefix:"Paper/",
+      prefix:"paper/",
 			children: [
         'iMTSP.md',
         'TC-CBS-t.md',
