@@ -27,7 +27,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 9
 
 
       - name: Setup Node.js
@@ -36,13 +36,8 @@ jobs:
           node-version: 20
           cache: pnpm
 
-      - name: Update Corepack
-        run: npm install -g corepack@latest  # 强制更新到最新版本
-
       - name: Install Deps
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Build Docs
         env:
