@@ -72,8 +72,8 @@ export default sidebar({
 	"/robotics/": [
     {
 			text: "PLANNING ALGORITHMS",
-			link: "Planning Algorithm/",
-      prefix:"Planning Algorithm/",
+			collapsible: true,
+      prefix:"Planning_Algorithm/",
 			children: [
         'chapter1.md',
         'chapter2.md'
@@ -82,7 +82,7 @@ export default sidebar({
 
     {
 			text: "Paper Review",
-			link: "Paper/",
+			collapsible: true,
       prefix:"Paper/",
 			children: [
         'iMTSP.md',
@@ -92,8 +92,8 @@ export default sidebar({
 
     {
 			text: "Modern Robotics",
-			link: "Moden Robotics/",
-      prefix:"Moden Robotics/",
+			collapsible: true,
+      prefix:"Moden_Robotics/",
 			children: [
         'back.md',
         'content.md',
